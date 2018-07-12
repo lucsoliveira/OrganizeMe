@@ -1,9 +1,5 @@
 package com.lucas.study.organizeme;
 
-import android.content.Intent;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -21,10 +17,8 @@ public class TabTasks extends Fragment {
 
         OmegaRecyclerView omegaRecyclerView = rootView.findViewById(R.id.custom_recycler_view);
 
-        TasksAdapter adapter = new TasksAdapter(TaskModel.createTaskList());
+        TasksAdapter adapter = new TasksAdapter(TaskModel.createTaskList(),getActivity());
         omegaRecyclerView.setAdapter(adapter);
-
-
 
 
         return rootView;

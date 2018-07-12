@@ -1,7 +1,10 @@
 package com.lucas.study.organizeme;
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -12,11 +15,16 @@ import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHolder> {
+
+    private Context mcon;
 
     private List<TaskModel> mTasksList = new ArrayList<>();
 
-    public TasksAdapter(List<TaskModel> tasksList) {
+    public TasksAdapter(List<TaskModel> tasksList, Context con) {
+
+        mcon = con;
         mTasksList = tasksList;
     }
 
@@ -47,6 +55,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
         private Button btnDeleteTask;
 
         private long idTask;
+        private String nameTask;
 
         public ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_task, R.layout.item_left_swipe_menu);
@@ -84,19 +93,28 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
         void updateView(TaskModel task) {
             txtNameTask.setText(task.getTitleTask());
             idTask = task.getId();
+            nameTask = task.getTitleTask();
         }
 
-        Long getIdTask(){
-            return idTask;
-        }
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btnEditTask:
-                    showToast("Editar id:" + getIdTask());
+
+                    Intent i = new Intent(mcon, EditTaskActivity.class);
+                    i.putExtra("idTask", getIdTask());
+                    mcon.startActivity(i);
+
+                   // mcon.startActivity(new Intent(mcon, EditTaskActivity.class));
+
+                    /*
+                    intent.putExtra(EXTRA_MESSAGE, getTitleTask());
+                    startActivity(intent);
+                    */
 
                     break;
+
                 case R.id.btnDeleteTask:
 
                     TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
@@ -130,5 +148,9 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
         private void showToast(String message) {
             Toast.makeText(itemView.getContext(), message, Toast.LENGTH_SHORT).show();
         }
+
+
+        Long getIdTask(){ return idTask; }
+        String getTitleTask(){ return nameTask; }
     }
 }

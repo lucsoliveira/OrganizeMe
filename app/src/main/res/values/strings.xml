@@ -9,5 +9,6 @@
     <string name="btn_delete_task">Deletar</string>
     <string name="task_name">Nome da atividade</string>
     <string name="task_add_button">Adicionar</string>
+    <string name="task_edit_button">Editar</string>
 
 </resources>
