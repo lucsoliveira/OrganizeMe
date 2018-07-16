@@ -1,11 +1,15 @@
 package com.lucas.study.organizeme;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -106,13 +110,6 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     i.putExtra("idTask", getIdTask());
                     mcon.startActivity(i);
 
-                   // mcon.startActivity(new Intent(mcon, EditTaskActivity.class));
-
-                    /*
-                    intent.putExtra(EXTRA_MESSAGE, getTitleTask());
-                    startActivity(intent);
-                    */
-
                     break;
 
                 case R.id.btnDeleteTask:
@@ -139,7 +136,16 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     break;
 
                 case R.id.btnStop:
-                    showToast("Voce clicou em Stop: ");
+
+                    DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask());
+                    cdd.show();
+
+                    /*
+                    Intent i2 = new Intent(mcon, DialogEndActivity.class);
+                    //i2.putExtra("idTask", getIdTask());
+                    mcon.startActivity(i2);
+                    */
+
 
                     break;
             }
@@ -153,4 +159,6 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
         Long getIdTask(){ return idTask; }
         String getTitleTask(){ return nameTask; }
     }
+
+
 }

@@ -10,5 +10,6 @@
     <string name="task_name">Nome da atividade</string>
     <string name="task_add_button">Adicionar</string>
     <string name="task_edit_button">Editar</string>
+    <string name="task_end">Finalizar Cronometragem</string>
 
 </resources>

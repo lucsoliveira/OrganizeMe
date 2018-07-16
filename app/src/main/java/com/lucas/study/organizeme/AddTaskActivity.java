@@ -25,6 +25,7 @@ public class AddTaskActivity extends AppCompatActivity {
                 .coordinatorLayout);
 
         editTextTitle   = (EditText)findViewById(R.id.editTextTitle);
+
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
 
@@ -54,26 +55,4 @@ public class AddTaskActivity extends AppCompatActivity {
 
     }
 
-    /*
-
-    public void addTask(View view) {
-
-        TaskModel t = new TaskModel(editTextTitle.getText().toString());
-        t.save();
-
-        Snackbar snackbar = Snackbar
-                .make(coordinatorLayout, "Message is deleted", Snackbar.LENGTH_LONG)
-                .setAction("UNDO", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Message is restored!", Snackbar.LENGTH_SHORT);
-                        snackbar1.show();
-                    }
-                });
-
-        snackbar.show();
-
-    }
-
-    */
 }
