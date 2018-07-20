@@ -22,16 +22,17 @@
             android:textSize="18.5dp"
             />
 
-        <TextView
-            android:id="@+id/txtTime"
+        <Chronometer
+            android:id="@+id/chronometer_task"
+            android:visibility="gone"
             android:textColor="@color/colorAccent"
             android:layout_width="0dp"
-            android:layout_marginTop="13dp"
-            android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:textSize="16dp"
-            android:text="00:10"
-            />
+            android:layout_marginTop="13dp"
+            android:layout_height="wrap_content" />
+
+
 
         <ImageButton
             android:id="@+id/btnPlay"
@@ -48,6 +49,7 @@
         <ImageButton
             android:id="@+id/btnStop"
             android:layout_width="wrap_content"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_stop_24px"
 
@@ -57,6 +59,8 @@
 
         <ImageButton
             android:id="@+id/btnPause"
+
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
