@@ -19,7 +19,6 @@ import java.util.List;
 
 public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHolder> {
 
-    public SystemClock systemClock;
     private Context mcon;
     private boolean stateChronometer;
 
@@ -119,6 +118,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
             if(getStateChronometer(view)){
 
                 Toast.makeText(mcon, "Termine sua atividade antes de iniciar outra.", Toast.LENGTH_LONG).show();
+
             }else{
                 setStateChronometer(view, true);
                 chronometer().setBase(SystemClock.elapsedRealtime());
@@ -127,6 +127,9 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                 btnPause.setVisibility(View.VISIBLE);
                 btnStop.setVisibility(View.VISIBLE);
                 btnPlay.setVisibility(View.GONE);
+
+
+                setSwipeEnable(false);
             }
 
 
@@ -137,7 +140,6 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
         }
 
         public void stopChronometer(View view) {
-            chronometer().setBase(SystemClock.elapsedRealtime());
             pauseChronometer(view);
             setStateChronometer(view, false);
             clearChronometer(view);
@@ -160,7 +162,8 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
         }
 
         private long getElapsedTime() {
-            long elapsedTime = (SystemClock.elapsedRealtime() - chronometer().getBase()) / 60000;
+            //Duration in seconds
+            long elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase())/1000;
             return elapsedTime;
         }
 
@@ -195,11 +198,11 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     break;
 
                 case R.id.btnPause:
-                    showToast("Voce clicou em Pause: ");
                     pauseChronometer(v);
                     break;
 
                 case R.id.btnStop:
+
 
                     DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask());
                     cdd.show();
@@ -211,6 +214,8 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     */
 
                     stopChronometer(v);
+
+                    setSwipeEnable(true);
                     Toast.makeText(mcon, "Duração: " + getElapsedTime(), Toast.LENGTH_LONG).show();
 
                     break;

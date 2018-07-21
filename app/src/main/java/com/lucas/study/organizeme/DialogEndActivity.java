@@ -55,6 +55,6 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
                     break;
             }
 
-            dismiss();
+            //dismiss();
         }
 }
