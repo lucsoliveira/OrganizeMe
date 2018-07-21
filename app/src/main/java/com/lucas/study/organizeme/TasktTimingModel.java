@@ -29,6 +29,16 @@ public class TasktTimingModel extends SugarRecord<TasktTimingModel> {
     public TasktTimingModel(){
     }
 
+    public TasktTimingModel(Long idTask, int timeSecondsTask, int productivity, int humor, String moreInformation){
+
+        this.idTask = idTask;
+        this.timeSecondsTask = timeSecondsTask;
+        this.productivity = productivity;
+        this.humor = humor;
+        this.moreInformation = moreInformation;
+
+    }
+
     /* GETS AND SETS*/
     public Long getIdTask() {
         return idTask;

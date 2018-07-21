@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class DialogEndActivity extends Dialog implements android.view.View.OnClickListener {
@@ -17,15 +18,18 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
     public Context c;
     public Dialog d;
     public Button yes;
-    public Long idTime;
+    public Long idTask;
+    public int secondsTask;
+    public EditText moreInformation;
 
     private CoordinatorLayout coordinatorLayout;
 
-    public DialogEndActivity(Context a, Long idTime) {
+    public DialogEndActivity(Context a, Long idTask, int secondsTask) {
             super(a);
             // TODO Auto-generated constructor stub
             this.c = a;
-            this.idTime = idTime;
+            this.idTask = idTask;
+            this.secondsTask = secondsTask;
         }
 
         @Override
@@ -36,6 +40,10 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
             yes = (Button) findViewById(R.id.btn_yes);
             yes.setOnClickListener(this);
 
+
+
+            moreInformation = (EditText)findViewById(R.id.moreInformation);
+
             coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
 
         }
@@ -44,6 +52,10 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn_yes:
+
+                    TasktTimingModel timer = new TasktTimingModel(idTask,secondsTask,1,2,moreInformation.getText().toString());
+                    timer.save();
+
 
                     Toast.makeText(c,"Cronometragem Armazenada",Toast.LENGTH_LONG).show();
 

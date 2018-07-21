@@ -161,9 +161,9 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
             btnPlay.setVisibility(View.VISIBLE);
         }
 
-        private long getElapsedTime() {
+        private int getElapsedTime() {
             //Duration in seconds
-            long elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase())/1000;
+            int elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase())/1000;
             return elapsedTime;
         }
 
@@ -204,7 +204,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                 case R.id.btnStop:
 
 
-                    DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask());
+                    DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask(), getElapsedTime());
                     cdd.show();
 
                     /*

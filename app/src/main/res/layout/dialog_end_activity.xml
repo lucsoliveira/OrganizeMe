@@ -118,6 +118,7 @@
         />
 
     <android.support.design.widget.TextInputEditText
+        android:id="@+id/moreInformation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:shadowColor="@color/colorAccent"/>
