@@ -1,27 +1,26 @@
 package com.lucas.study.organizeme;
 
-import android.app.Activity;
 import android.app.Dialog;
+import android.app.assist.AssistStructure;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class DialogEndActivity extends Dialog implements android.view.View.OnClickListener {
 
     public Context c;
-    public Dialog d;
     public Button yes;
     public Long idTask;
-    public int secondsTask;
+    public int secondsTask, optionProductivity, optionHumor;
     public EditText moreInformation;
-
+    public RadioButton optionGood, optionMedium, optionBad, optionHappy, optionNeutral, optionSad;
     private CoordinatorLayout coordinatorLayout;
 
     public DialogEndActivity(Context a, Long idTask, int secondsTask) {
@@ -37,10 +36,18 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
             super.onCreate(savedInstanceState);
             requestWindowFeature(Window.FEATURE_NO_TITLE);
             setContentView(R.layout.dialog_end_activity);
+
             yes = (Button) findViewById(R.id.btn_yes);
             yes.setOnClickListener(this);
 
+            /* RADIO BUTTONS */
+            optionGood = (RadioButton) findViewById(R.id.optionGood);
+            optionMedium = (RadioButton) findViewById(R.id.optionMedium);
+            optionBad = (RadioButton) findViewById(R.id.optionBad);
 
+            optionHappy = (RadioButton) findViewById(R.id.optionHappy);
+            optionNeutral = (RadioButton) findViewById(R.id.optionNeutral);
+            optionSad = (RadioButton) findViewById(R.id.optionSad);
 
             moreInformation = (EditText)findViewById(R.id.moreInformation);
 
@@ -53,7 +60,17 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
             switch (v.getId()) {
                 case R.id.btn_yes:
 
-                    TasktTimingModel timer = new TasktTimingModel(idTask,secondsTask,1,2,moreInformation.getText().toString());
+                    /* RADIO BUTTONS */
+                    if(optionGood.isChecked()){ optionProductivity = 1;}
+                    else if(optionMedium.isChecked()){ optionProductivity = 2;}
+                    else if(optionBad.isChecked()){ optionProductivity = 3;}
+
+                    if(optionHappy.isChecked()){ optionHumor = 1;}
+                    else if(optionNeutral.isChecked()){ optionHumor = 2;}
+                    else if(optionSad.isChecked()){ optionHumor = 3;}
+                    /* END RADIO BUTTONS */
+
+                    TaskTimingModel timer = new TaskTimingModel(idTask,secondsTask,optionProductivity,optionHumor,moreInformation.getText().toString());
                     timer.save();
 
 

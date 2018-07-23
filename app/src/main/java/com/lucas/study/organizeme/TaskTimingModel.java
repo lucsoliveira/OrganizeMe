@@ -4,13 +4,13 @@ import com.orm.SugarRecord;
 
 import java.util.List;
 
-public class TasktTimingModel extends SugarRecord<TasktTimingModel> {
+public class TaskTimingModel extends SugarRecord<TaskTimingModel> {
 
-    Long idTask;
-    int timeSecondsTask;
-    int productivity;
-    int humor;
-    String moreInformation;
+    private Long idTask;
+    private int timeSecondsTask;
+    private int productivity;
+    private int humor;
+    private String moreInformation;
 
     /*
 
@@ -26,10 +26,10 @@ public class TasktTimingModel extends SugarRecord<TasktTimingModel> {
 
      */
 
-    public TasktTimingModel(){
+    public TaskTimingModel(){
     }
 
-    public TasktTimingModel(Long idTask, int timeSecondsTask, int productivity, int humor, String moreInformation){
+    public TaskTimingModel(Long idTask, int timeSecondsTask, int productivity, int humor, String moreInformation){
 
         this.idTask = idTask;
         this.timeSecondsTask = timeSecondsTask;
@@ -82,9 +82,9 @@ public class TasktTimingModel extends SugarRecord<TasktTimingModel> {
     /* END GETS AND SETS*/
 
     /* LIST CREATOR */
-    public static List<TasktTimingModel> createTaskTimingList() {
+    public static List<TaskTimingModel> createTaskTimingList() {
 
-        List<TasktTimingModel> listTasksTiming= TasktTimingModel.find(TasktTimingModel.class,"");
+        List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
         return listTasksTiming;
     }
 }

@@ -24,7 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".AddTaskActivity"
+        <!--TASKS-->
+        <activity android:name="AddTaskActivity"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -40,11 +41,22 @@
                 android:value=".MainActivity" />
         </activity>
 
+        <activity android:name=".HistoryTasksActivity"
+            android:parentActivityName=".MainActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <!--END TASKS-->
+
         <!--DATABASE-->
         <meta-data android:name="DATABASE" android:value="DB_ORGANIZEME.db" />
         <meta-data android:name="VERSION" android:value="2" />
         <meta-data android:name="QUERY_LOG" android:value="true" />
         <meta-data android:name="DOMAIN_PACKAGE_NAME" android:value="com.lucas.study.organizeme" />
+        <!--END DATABASE-->
 
     </application>
 

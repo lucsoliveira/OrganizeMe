@@ -216,7 +216,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     stopChronometer(v);
 
                     setSwipeEnable(true);
-                    Toast.makeText(mcon, "Duração: " + getElapsedTime(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(mcon, "Duração: " + getElapsedTime(), Toast.LENGTH_LONG).show();
 
                     break;
             }

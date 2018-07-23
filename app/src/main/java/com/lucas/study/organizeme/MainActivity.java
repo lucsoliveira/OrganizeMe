@@ -99,8 +99,15 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_history_tasks) {
+            Intent intent = new Intent(MainActivity.this, HistoryTasksActivity.class);
+            startActivity(intent);
+        }
+
         return super.onOptionsItemSelected(item);
     }
+
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to

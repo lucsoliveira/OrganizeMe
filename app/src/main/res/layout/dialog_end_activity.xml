@@ -35,20 +35,19 @@
         />
 
     <RadioGroup
-        android:id="@+id/android_question_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/option_1"
+            android:id="@+id/optionGood"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorTerciary"
             android:text="Bom"/>
 
         <RadioButton
-            android:id="@+id/option_2"
+            android:id="@+id/optionMedium"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
@@ -56,7 +55,7 @@
             android:text="Médio"/>
 
         <RadioButton
-            android:id="@+id/option_3"
+            android:id="@+id/optionBad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
@@ -76,28 +75,26 @@
         />
 
     <RadioGroup
-        android:id="@+id/android_question_two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/option_two_1"
+            android:id="@+id/optionHappy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorTerciary"
             android:text="Feliz"/>
 
         <RadioButton
-            android:id="@+id/option_two_2"
+            android:id="@+id/optionNeutral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
-
             android:text="Neutro"/>
 
         <RadioButton
-            android:id="@+id/option_two_3"
+            android:id="@+id/optionSad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
