@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtNameTask"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18.5dp"
+            />
+
+        <Chronometer
+            android:id="@+id/chronometer_task"
+            android:visibility="gone"
+            android:textColor="@color/colorAccent"
+            android:layout_width="0dp"
+            android:layout_weight="0.3"
+            android:textSize="16dp"
+            android:layout_marginTop="13dp"
+            android:layout_height="wrap_content" />
+
+
+
+        <ImageButton
+            android:id="@+id/btnPlay"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+
+            android:src="@drawable/ic_baseline_play_arrow_24px"
+
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+
+            />
+
+        <ImageButton
+            android:id="@+id/btnStop"
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_stop_24px"
+
+            android:layout_alignBaseline="@+id/btnPlay"
+            android:layout_alignBottom="@+id/btnPlay"
+            />
+
+        <ImageButton
+            android:id="@+id/btnPause"
+
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignBaseline="@+id/btnStop"
+            android:layout_alignBottom="@+id/btnStop"
+            android:src="@drawable/ic_baseline_pause_24px"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
