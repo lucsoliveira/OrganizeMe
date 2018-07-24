@@ -9,7 +9,7 @@
 
 
     <com.omega_r.libs.omegarecyclerview.OmegaRecyclerView
-        android:id="@+id/custom_recycler_view"
+        android:id="@+id/recyclerViewTimes"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="#c6c6c6"

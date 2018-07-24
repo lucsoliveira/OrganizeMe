@@ -82,9 +82,10 @@ public class TaskTimingModel extends SugarRecord<TaskTimingModel> {
     /* END GETS AND SETS*/
 
     /* LIST CREATOR */
-    public static List<TaskTimingModel> createTaskTimingList() {
+    public static List<TaskTimingModel> createTaskTimeList() {
 
-        List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
+        //List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
+        List<TaskTimingModel> listTasksTiming = TaskTimingModel.findWithQuery(TaskTimingModel.class,"Select * from Task_Timing_Model order by id DESC");
         return listTasksTiming;
     }
 }

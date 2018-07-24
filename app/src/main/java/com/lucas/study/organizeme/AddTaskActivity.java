@@ -36,7 +36,7 @@ public class AddTaskActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                TaskModel t = new TaskModel(editTextTitle.getText().toString());
+                TaskModel t = new TaskModel(editTextTitle.getText().toString(), 1);
                 t.save();
 
                 Snackbar snackbar = Snackbar

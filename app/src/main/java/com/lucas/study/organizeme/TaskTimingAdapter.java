@@ -1,11 +1,8 @@
 package com.lucas.study.organizeme;
 import android.content.Context;
 import android.content.Intent;
-import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,30 +10,22 @@ import android.widget.Toast;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapter.ViewHolder> {
 
     private Context mcon;
-    private boolean stateChronometer;
 
-    public boolean getStateChronometer(View v){
-        return stateChronometer;
-    }
+    private List<TaskTimingModel> mTasksTimeList = new ArrayList<>();
 
-    public void setStateChronometer(View v, boolean state){
-        this.stateChronometer = state;
-    }
-
-
-    private List<TaskModel> mTasksList = new ArrayList<>();
-
-    public TaskTimingAdapter(List<TaskModel> tasksList, Context con) {
+    public TaskTimingAdapter(List<TaskTimingModel> tasksList, Context con) {
 
         mcon = con;
-        mTasksList = tasksList;
+        mTasksTimeList = tasksList;
     }
 
     @Override
@@ -45,178 +34,117 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.updateView(mTasksList.get(position));
+    public void onBindViewHolder(final ViewHolder holderTime, int position) {
+        holderTime.updateView(mTasksTimeList.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mTasksList.size();
+        return mTasksTimeList.size();
     }
 
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private ImageButton btnPlay;
-        private ImageButton btnPause;
-        private ImageButton btnStop;
-
-        private TextView txtNameTask;
-
-        private Button btnEditTask;
-        private Button btnDeleteTask;
-
-        private long idTask;
+        private TextView txtNameTask, txtDuration, txtProductivity, txtHumor, txtMoreInfo;
+        private ImageButton editTime, deleteTime;
+        private long idTime, idTask;
+        private int durationTime;
         private String nameTask;
 
-        public Chronometer chronometer(){
-            return ((Chronometer) findViewById(R.id.chronometer_task));
-        }
-
         public ViewHolder(ViewGroup parent) {
-            super(parent, R.layout.item_task, R.layout.item_left_swipe_menu);
+            super(parent, R.layout.item_task_timing);
 
+            //IMAGE BUTTONS
+            editTime = findViewById(R.id.editTime);
+            editTime.setOnClickListener(this);
+            deleteTime = findViewById(R.id.deleteTime);
+            deleteTime.setOnClickListener(this);
 
-            btnPlay = findViewById(R.id.btnPlay);
-            btnPlay.setOnClickListener(this);
-
-            btnPause = findViewById(R.id.btnPause);
-            btnPause.setOnClickListener(this);
-
-            btnStop = findViewById(R.id.btnStop);
-            btnStop.setOnClickListener(this);
-
-            btnEditTask = findViewById(R.id.btnEditTask);
-            btnEditTask.setOnClickListener(this);
-
-
-            btnDeleteTask = findViewById(R.id.btnDeleteTask);
-            btnDeleteTask.setOnClickListener(this);
-
+            //TEXT VIEW
             txtNameTask = findViewById(R.id.txtNameTask);
+            txtDuration = findViewById(R.id.txtDuration);
+            txtProductivity = findViewById(R.id.txtProductivity);
+            txtHumor = findViewById(R.id.txtHumor);
+            txtMoreInfo = findViewById(R.id.txtMoreInfo);
 
-            setSwipeEnable(true);
-
-            contentView.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    smoothOpenBeginMenu();
-                    return true;
-                }
-            });
         }
 
-        void updateView(TaskModel task) {
+        void updateView(TaskTimingModel time) {
+
+            idTime = time.getId();
+            idTask = time.getIdTask();
+            durationTime = time.getTimeSecondsTask();
+            Date d = new Date(durationTime * 1000);
+
+
+            TaskModel task = TaskModel.findById(TaskModel.class, idTask);
             txtNameTask.setText(task.getTitleTask());
-            idTask = task.getId();
-            nameTask = task.getTitleTask();
-        }
 
-        /* Chronometer */
-
-        public void startChronometer(View view) {
-
-            if(getStateChronometer(view)){
-
-                Toast.makeText(mcon, "Termine sua atividade antes de iniciar outra.", Toast.LENGTH_LONG).show();
-
+            if(time.getMoreInformation().equals("")){
+                findViewById(R.id.linear_more_information).setVisibility(View.GONE);
             }else{
-                setStateChronometer(view, true);
-                chronometer().setBase(SystemClock.elapsedRealtime());
-                showChronometer(view);
-                chronometer().start();
-                btnPause.setVisibility(View.VISIBLE);
-                btnStop.setVisibility(View.VISIBLE);
-                btnPlay.setVisibility(View.GONE);
-
-
-                setSwipeEnable(false);
+                txtMoreInfo.setText(time.getMoreInformation());
             }
 
+            txtDuration.setText(String.valueOf(durationTime));
+
+            switch (time.getProductivity() ){
+                case 1:
+                    txtProductivity.setText(R.string.txt_good);
+                    break;
+                case 2:
+                    txtProductivity.setText(R.string.txt_medium);
+                    break;
+                case 3:
+                    txtProductivity.setText(R.string.txt_bad);
+                    break;
+
+            }
+
+            switch (time.getHumor() ){
+                case 1:
+                    txtHumor.setText(R.string.txt_happy);
+                    break;
+                case 2:
+                    txtHumor.setText(R.string.txt_neutral);
+                    break;
+                case 3:
+                    txtHumor.setText(R.string.txt_sad);
+                    break;
+            }
 
         }
-
-        public void pauseChronometer(View view) {
-            chronometer().stop();
-        }
-
-        public void stopChronometer(View view) {
-            pauseChronometer(view);
-            setStateChronometer(view, false);
-            clearChronometer(view);
-        }
-
-        public String getChronometer(View view) {
-            return chronometer().getFormat();
-        }
-
-        public void showChronometer(View view) {
-            chronometer().setVisibility(View.VISIBLE);
-        }
-
-        public void clearChronometer(View view) {
-
-            chronometer().setVisibility(View.GONE);
-            btnPause.setVisibility(View.GONE);
-            btnStop.setVisibility(View.GONE);
-            btnPlay.setVisibility(View.VISIBLE);
-        }
-
-        private int getElapsedTime() {
-            //Duration in seconds
-            int elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase())/1000;
-            return elapsedTime;
-        }
-
-        /* end Chronometer */
 
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
-                case R.id.btnEditTask:
-
+                case R.id.editTime:
+                    /*
                     Intent i = new Intent(mcon, EditTaskActivity.class);
                     i.putExtra("idTask", getIdTask());
                     mcon.startActivity(i);
-
+                    */
                     break;
 
-                case R.id.btnDeleteTask:
+                case R.id.deleteTime:
 
+                    /*
                     TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
                     t.delete();
 
                     showToast("Atividade deletada!");
 
 
-                    mTasksList.remove(getIdTask());
+                    mTasksTimeList.remove(getIdTask());
                     updateView(t);
-
-                    break;
-
-                case R.id.btnPlay:
-                    startChronometer(v);
-                    break;
-
-                case R.id.btnPause:
-                    pauseChronometer(v);
-                    break;
-
-                case R.id.btnStop:
-
-
-                    DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask(), getElapsedTime());
-                    cdd.show();
-
-                    /*
-                    Intent i2 = new Intent(mcon, DialogEndActivity.class);
-                    //i2.putExtra("idTask", getIdTask());
-                    mcon.startActivity(i2);
                     */
 
-                    stopChronometer(v);
+                    TaskTimingModel timing = TaskTimingModel.findById(TaskTimingModel.class, getIdTime());
+                    timing.delete();
 
-                    setSwipeEnable(true);
-                    //Toast.makeText(mcon, "Duração: " + getElapsedTime(), Toast.LENGTH_LONG).show();
+                    findViewById(R.id.itemTiming).setVisibility(v.GONE);
+
+                    showToast("Cronometragem deletada!");
 
                     break;
             }
@@ -227,9 +155,10 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
         }
 
 
-        Long getIdTask(){ return idTask; }
-        String getTitleTask(){ return nameTask; }
+        Long getIdTime(){ return idTime; }
+
     }
+
 
 
 

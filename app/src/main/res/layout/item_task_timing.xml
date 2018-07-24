@@ -1,72 +1,275 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="16dp"
-    android:orientation="vertical">
+    android:id="@+id/itemTiming"
+    android:paddingRight="16dp" >
 
 
-    <LinearLayout
-        android:id="@+id/buttons_container"
+    <RelativeLayout
+        android:id="@+id/itemTiming"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
 
         <TextView
             android:id="@+id/txtNameTask"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_alignParentLeft="true"
+            android:text="Nome da atividade"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18.5dp"
-            />
+            android:textSize="18dp" />
 
-        <Chronometer
-            android:id="@+id/chronometer_task"
-            android:visibility="gone"
-            android:textColor="@color/colorAccent"
-            android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textSize="16dp"
-            android:layout_marginTop="13dp"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true">
+
+            <ImageButton
+                android:id="@+id/editTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_edit_24px" />
+
+            <ImageButton
+                android:id="@+id/deleteTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_delete_forever_24px" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNameTask">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="@string/txt_duration"
+                android:textColor="#333"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/txtDuration"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_productivity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_duration">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+
+                android:text="@string/txt_productivity"
+                android:textColor="#333"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/txtProductivity"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_humor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_productivity">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+
+                android:text="@string/txt_humor"
+                android:textColor="#333"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/txtHumor"
+                android:layout_width="96dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_more_information"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linear_humor">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_more_information"
+                android:textColor="#333"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/txtMoreInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="sadsad"
+                android:textColor="#333" />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtNameTask"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:textSize="18dp"
+        android:layout_height="wrap_content"
+        android:text="Nome da atividade"
+        android:layout_alignParentLeft="true" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/editTime"
+            android:src="@drawable/ic_baseline_edit_24px"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-
-
         <ImageButton
-            android:id="@+id/btnPlay"
-            android:layout_height="wrap_content"
+            android:id="@+id/deleteTime"
+            android:src="@drawable/ic_baseline_delete_forever_24px"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
-            android:src="@drawable/ic_baseline_play_arrow_24px"
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/linear_duration"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/txtNameTask"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#333"
+            android:text="@string/txt_duration"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-
             />
-
-        <ImageButton
-            android:id="@+id/btnStop"
-            android:layout_width="wrap_content"
-            android:visibility="gone"
+        <TextView
+            android:id="@+id/txtDuration"
+            android:textSize="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_width="96dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_stop_24px"
+            android:layout_alignParentRight="true" />
 
-            android:layout_alignBaseline="@+id/btnPlay"
-            android:layout_alignBottom="@+id/btnPlay"
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_productivity"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/linear_duration"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+
+            android:textColor="#333"
+            android:text="@string/txt_productivity"
+            android:layout_alignParentLeft="true"
             />
+        <TextView
+            android:id="@+id/txtProductivity"
+            android:layout_width="96dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
 
-        <ImageButton
-            android:id="@+id/btnPause"
+    </LinearLayout>
 
-            android:visibility="gone"
+    <LinearLayout
+        android:id="@+id/linear_humor"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/linear_productivity"
+        android:layout_height="wrap_content">
+
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="16dp"
 
-            android:layout_alignBaseline="@+id/btnStop"
-            android:layout_alignBottom="@+id/btnStop"
-            android:src="@drawable/ic_baseline_pause_24px"/>
+            android:textColor="#333"
+            android:text="@string/txt_humor"
+            android:layout_alignParentLeft="true"
+            />
+        <TextView
+            android:id="@+id/txtHumor"
+            android:layout_width="96dp"
+            android:textSize="16dp"
+            android:textColor="@color/colorAccent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_more_information"
+        android:layout_width="wrap_content"
+        android:layout_below="@id/linear_humor"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:textColor="#333"
+            android:text="@string/txt_more_information"
+            />
+        <TextView
+            android:id="@+id/txtMoreInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#333"
+            android:text="sadsad" />
 
     </LinearLayout>
 

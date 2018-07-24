@@ -11,8 +11,6 @@
     <string name="action_history_timing_tasks">Histórico de Cronometragens</string>
     <string name="action_about">Sobre</string>
 
-
-
     <!--TASKS-->
     <string name="btn_edit_task">Editar</string>
     <string name="btn_delete_task">Deletar</string>
@@ -20,5 +18,17 @@
     <string name="task_add_button">Adicionar</string>
     <string name="task_edit_button">Editar</string>
     <string name="task_end">Finalizar Cronometragem</string>
+
+    <!--TIMES-->
+    <string name="txt_duration">Duração:</string>
+    <string name="txt_productivity">Produtividade:</string>
+    <string name="txt_humor">Estado Físico:</string>
+    <string name="txt_more_information">Informações Adicionais:</string>
+    <string name="txt_good">Bom</string>
+    <string name="txt_medium">Médio</string>
+    <string name="txt_bad">Ruim</string>
+    <string name="txt_happy">Feliz</string>
+    <string name="txt_neutral">Neutro</string>
+    <string name="txt_sad">Cansado</string>
 
 </resources>

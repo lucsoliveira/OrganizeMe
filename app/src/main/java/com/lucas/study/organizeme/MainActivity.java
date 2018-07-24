@@ -14,9 +14,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -123,16 +120,16 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0 :
-                    TabTasks tab1 = new TabTasks();
+                    TasksTab tab1 = new TasksTab();
                     return tab1;
 
                 case 1 :
-                    TabStats tab2 = new TabStats();
+                    StatsTab tab2 = new StatsTab();
                     return tab2;
 
 
                 case 2 :
-                    TabTodo tab3 = new TabTodo();
+                    TodoTab tab3 = new TodoTab();
                     return tab3;
 
                 default:

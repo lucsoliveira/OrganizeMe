@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
+
 public class HistoryTasksActivity extends AppCompatActivity {
 
     EditText editTextTitle;
@@ -18,13 +20,13 @@ public class HistoryTasksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_edit_task);
-
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
-        editTextTitle   = (EditText)findViewById(R.id.editTextTitle);
+        setContentView(R.layout.fragment_timing_history);
 
 
-        editTask = (Button) findViewById(R.id.editTask);
+        OmegaRecyclerView omegaRecyclerView = findViewById(R.id.recyclerViewTimes);
+
+        TaskTimingAdapter adapter = new TaskTimingAdapter(TaskTimingModel.createTaskTimeList(),this);
+        omegaRecyclerView.setAdapter(adapter);
 
 
 

@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 
-public class TabTasks extends Fragment {
+public class TasksTab extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

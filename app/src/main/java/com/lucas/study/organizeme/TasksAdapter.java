@@ -56,15 +56,9 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
 
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private ImageButton btnPlay;
-        private ImageButton btnPause;
-        private ImageButton btnStop;
-
+        private ImageButton btnPlay, btnPause, btnStop;
         private TextView txtNameTask;
-
-        private Button btnEditTask;
-        private Button btnDeleteTask;
-
+        private Button btnEditTask, btnDeleteTask;
         private long idTask;
         private String nameTask;
 
@@ -183,12 +177,17 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                 case R.id.btnDeleteTask:
 
                     TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
-                    t.delete();
-
+                    t.status = 0;
+                    t.save();
+                    findViewById(R.id.itemTask).setVisibility(v.GONE);
+                    findViewById(R.id.btnEditTask).setVisibility(v.GONE);
+                    findViewById(R.id.btnDeleteTask).setVisibility(v.GONE);
                     showToast("Atividade deletada!");
 
 
                     mTasksList.remove(getIdTask());
+
+
                     updateView(t);
 
                     break;
@@ -206,17 +205,8 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
 
                     DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask(), getElapsedTime());
                     cdd.show();
-
-                    /*
-                    Intent i2 = new Intent(mcon, DialogEndActivity.class);
-                    //i2.putExtra("idTask", getIdTask());
-                    mcon.startActivity(i2);
-                    */
-
                     stopChronometer(v);
-
                     setSwipeEnable(true);
-                    //Toast.makeText(mcon, "Duração: " + getElapsedTime(), Toast.LENGTH_LONG).show();
 
                     break;
             }
