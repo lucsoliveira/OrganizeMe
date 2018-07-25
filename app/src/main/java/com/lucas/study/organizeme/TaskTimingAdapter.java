@@ -11,9 +11,11 @@ import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapter.ViewHolder> {
@@ -74,8 +76,6 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
             idTime = time.getId();
             idTask = time.getIdTask();
             durationTime = time.getTimeSecondsTask();
-            Date d = new Date(durationTime * 1000);
-
 
             TaskModel task = TaskModel.findById(TaskModel.class, idTask);
             txtNameTask.setText(task.getTitleTask());
@@ -86,7 +86,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
                 txtMoreInfo.setText(time.getMoreInformation());
             }
 
-            txtDuration.setText(String.valueOf(durationTime));
+            txtDuration.setText(getDurationString(durationTime));
 
             switch (time.getProductivity() ){
                 case 1:
@@ -128,17 +128,6 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
 
                 case R.id.deleteTime:
 
-                    /*
-                    TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
-                    t.delete();
-
-                    showToast("Atividade deletada!");
-
-
-                    mTasksTimeList.remove(getIdTask());
-                    updateView(t);
-                    */
-
                     TaskTimingModel timing = TaskTimingModel.findById(TaskTimingModel.class, getIdTime());
                     timing.delete();
 
@@ -157,10 +146,23 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
 
         Long getIdTime(){ return idTime; }
 
+
+
     }
 
+    private String getDurationString(int seconds) {
 
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        seconds = seconds % 60;
 
+        return twoDigitString(hours) + " : " + twoDigitString(minutes) + " : " + twoDigitString(seconds);
+    }
 
+    private String twoDigitString(int number) {
+        if (number == 0) { return "00"; }
+        if (number / 10 == 0) { return "0" + number; }
+        return String.valueOf(number);
+    }
 
 }

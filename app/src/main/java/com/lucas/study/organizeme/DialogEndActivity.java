@@ -1,7 +1,6 @@
 package com.lucas.study.organizeme;
 
 import android.app.Dialog;
-import android.app.assist.AssistStructure;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -10,7 +9,6 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 public class DialogEndActivity extends Dialog implements android.view.View.OnClickListener {

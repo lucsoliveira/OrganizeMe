@@ -5,15 +5,6 @@
     android:id="@+id/itemTiming"
     android:paddingRight="16dp" >
 
-
-    <RelativeLayout
-        android:id="@+id/itemTiming"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp">
-
-
         <TextView
             android:id="@+id/txtNameTask"
             android:layout_width="wrap_content"
@@ -65,6 +56,8 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
 
+
+
         </LinearLayout>
 
         <LinearLayout
@@ -85,20 +78,11 @@
 
             <TextView
                 android:id="@+id/txtProductivity"
-                android:layout_width="96dp"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linear_humor"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear_productivity">
-
 
             <TextView
                 android:layout_width="wrap_content"
@@ -121,10 +105,10 @@
 
         <LinearLayout
             android:id="@+id/linear_more_information"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/linear_humor">
-
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_below="@id/linear_productivity">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -141,137 +125,6 @@
                 android:textColor="#333" />
 
         </LinearLayout>
-
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/txtNameTask"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_width="wrap_content"
-        android:textSize="18dp"
-        android:layout_height="wrap_content"
-        android:text="Nome da atividade"
-        android:layout_alignParentLeft="true" />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content">
-
-        <ImageButton
-            android:id="@+id/editTime"
-            android:src="@drawable/ic_baseline_edit_24px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <ImageButton
-            android:id="@+id/deleteTime"
-            android:src="@drawable/ic_baseline_delete_forever_24px"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_duration"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/txtNameTask"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:textColor="#333"
-            android:text="@string/txt_duration"
-            android:layout_alignParentLeft="true"
-            />
-        <TextView
-            android:id="@+id/txtDuration"
-            android:textSize="16dp"
-            android:textColor="@color/colorAccent"
-            android:layout_width="96dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_productivity"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/linear_duration"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-
-            android:textColor="#333"
-            android:text="@string/txt_productivity"
-            android:layout_alignParentLeft="true"
-            />
-        <TextView
-            android:id="@+id/txtProductivity"
-            android:layout_width="96dp"
-            android:textSize="16dp"
-            android:textColor="@color/colorAccent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_humor"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/linear_productivity"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-
-            android:textColor="#333"
-            android:text="@string/txt_humor"
-            android:layout_alignParentLeft="true"
-            />
-        <TextView
-            android:id="@+id/txtHumor"
-            android:layout_width="96dp"
-            android:textSize="16dp"
-            android:textColor="@color/colorAccent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linear_more_information"
-        android:layout_width="wrap_content"
-        android:layout_below="@id/linear_humor"
-        android:layout_height="wrap_content">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16dp"
-            android:textColor="#333"
-            android:text="@string/txt_more_information"
-            />
-        <TextView
-            android:id="@+id/txtMoreInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#333"
-            android:text="sadsad" />
-
-    </LinearLayout>
 
 
 </RelativeLayout>

@@ -180,8 +180,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     t.status = 0;
                     t.save();
                     findViewById(R.id.itemTask).setVisibility(v.GONE);
-                    findViewById(R.id.btnEditTask).setVisibility(v.GONE);
-                    findViewById(R.id.btnDeleteTask).setVisibility(v.GONE);
+                    findViewById(R.id.swipe_left).setVisibility(v.GONE);
                     showToast("Atividade deletada!");
 
 
