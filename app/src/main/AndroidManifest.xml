@@ -26,6 +26,7 @@
 
         <!--TASKS-->
         <activity android:name="AddTaskActivity"
+            android:label="@string/activity_add_activi"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
@@ -34,22 +35,35 @@
         </activity>
 
         <activity android:name=".EditTaskActivity"
+            android:label="@string/activity_edit_activi"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
-        <activity android:name=".HistoryTasksActivity"
-            android:parentActivityName=".MainActivity" >
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-
         <!--END TASKS-->
+
+        <!--TIMING-->
+        <activity
+            android:name=".HistoryTasksActivity"
+            android:label="@string/activity_times"
+            android:parentActivityName=".MainActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".EditTaskTimingActivity"
+            android:label="@string/activity_edit_times"
+            android:parentActivityName=".HistoryTasksActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <!--END TIMING-->
 
         <!--DATABASE-->
         <meta-data android:name="DATABASE" android:value="DB_ORGANIZEME.db" />

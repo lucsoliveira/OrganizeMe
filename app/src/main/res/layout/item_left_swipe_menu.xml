@@ -7,21 +7,21 @@
     android:orientation="horizontal">
 
     <Button
-        android:id="@+id/btnDeleteTask"
-        android:layout_height="match_parent"
-        android:layout_width="110dp"
-        android:text="@string/btn_delete_task"
-        android:gravity="center"
-        android:textColor="#da4141"
-        android:drawableLeft="@drawable/ic_baseline_delete_forever_24px"
-     />
-
-    <Button
         android:id="@+id/btnEditTask"
         android:gravity="center"
         android:layout_width="100dp"
-        android:text="@string/btn_edit_task"
+        android:text="@string/btn_edit"
         android:drawableLeft="@drawable/ic_baseline_edit_24px"
         android:layout_height="match_parent" />
+
+    <Button
+        android:id="@+id/btnDeleteTask"
+        android:layout_height="match_parent"
+        android:layout_width="110dp"
+        android:text="@string/btn_delete"
+        android:gravity="center"
+        android:textColor="#da4141"
+        android:drawableLeft="@drawable/ic_baseline_delete_forever_24px"
+    />
 
 </LinearLayout>

@@ -78,7 +78,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
             durationTime = time.getTimeSecondsTask();
 
             TaskModel task = TaskModel.findById(TaskModel.class, idTask);
-            txtNameTask.setText(task.getTitleTask());
+            txtNameTask.setText("#" + idTime + " " + task.getTitleTask());
 
             if(time.getMoreInformation().equals("")){
                 findViewById(R.id.linear_more_information).setVisibility(View.GONE);
@@ -119,11 +119,11 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.editTime:
-                    /*
-                    Intent i = new Intent(mcon, EditTaskActivity.class);
-                    i.putExtra("idTask", getIdTask());
+
+                    Intent i = new Intent(mcon, EditTaskTimingActivity.class);
+                    i.putExtra("idTime", getIdTime());
                     mcon.startActivity(i);
-                    */
+
                     break;
 
                 case R.id.deleteTime:

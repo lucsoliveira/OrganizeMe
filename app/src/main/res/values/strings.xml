@@ -1,5 +1,17 @@
 <resources>
 
+    <!--ACTIVITIES-->
+    <string name="activity_add_activi">Criar Atividade</string>
+    <string name="activity_edit_activi">Editar Atividade</string>
+    <string name="activity_times">Cronometragens</string>
+    <string name="activity_edit_times">Editar Cronometragem</string>
+
+    <!--BTN-->
+    <string name="btn_edit">Editar</string>
+    <string name="btn_delete">Deletar</string>
+    <string name="btn_add">Adicionar</string>
+    <string name="btn_save">Salvar</string>
+
     <!--TABS-->
     <string name="app_name">OrganizeMe</string>
     <string name="tab_text_1">Atividades</string>
@@ -12,11 +24,7 @@
     <string name="action_about">Sobre</string>
 
     <!--TASKS-->
-    <string name="btn_edit_task">Editar</string>
-    <string name="btn_delete_task">Deletar</string>
     <string name="task_name">Nome da atividade</string>
-    <string name="task_add_button">Adicionar</string>
-    <string name="task_edit_button">Editar</string>
     <string name="task_end">Finalizar Cronometragem</string>
 
     <!--TIMES-->
@@ -30,5 +38,9 @@
     <string name="txt_happy">Feliz</string>
     <string name="txt_neutral">Neutro</string>
     <string name="txt_sad">Cansado</string>
+
+    <!--END TIMING-->
+    <string name="txt_info_productivity">Como você avalia seu rendimento?</string>
+    <string name="txt_info_humor">Como você se sente agora?</string>
 
 </resources>

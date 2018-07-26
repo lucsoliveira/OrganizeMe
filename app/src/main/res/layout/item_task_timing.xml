@@ -10,7 +10,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="Nome da atividade"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18dp" />
 

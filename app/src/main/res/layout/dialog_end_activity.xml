@@ -29,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Como você avalia seu rendimento?"
+        android:text="@string/txt_info_productivity"
         android:textColor="@android:color/white"
         android:textSize="12dp"
         />
@@ -44,7 +44,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorTerciary"
-            android:text="Bom"/>
+            android:text="@string/txt_good"/>
 
         <RadioButton
             android:id="@+id/optionMedium"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
 
-            android:text="Médio"/>
+            android:text="@string/txt_medium"/>
 
         <RadioButton
             android:id="@+id/optionBad"
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
 
-            android:text="Ruim"/>
+            android:text="@string/txt_bad"/>
 
     </RadioGroup>
 
@@ -69,7 +69,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:text="Como você se sente agora?"
+        android:text="@string/txt_info_humor"
         android:textColor="@android:color/white"
         android:textSize="12dp"
         />
@@ -84,14 +84,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorTerciary"
-            android:text="Feliz"/>
+            android:text="@string/txt_happy"/>
 
         <RadioButton
             android:id="@+id/optionNeutral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
-            android:text="Neutro"/>
+            android:text="@string/txt_neutral"/>
 
         <RadioButton
             android:id="@+id/optionSad"
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
 
-            android:text="Cansado"/>
+            android:text="@string/txt_sad"/>
 
     </RadioGroup>
 
@@ -132,7 +132,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/white"
             android:clickable="true"
-            android:text="Salvar"
+            android:text="@string/btn_save"
             android:textColor="#5DBCD2"
             android:textStyle="bold"
             />
