@@ -42,5 +42,6 @@
     <!--END TIMING-->
     <string name="txt_info_productivity">Como você avalia seu rendimento?</string>
     <string name="txt_info_humor">Como você se sente agora?</string>
+    <string name="txt_info_duration">Duração em Minutos</string>
 
 </resources>

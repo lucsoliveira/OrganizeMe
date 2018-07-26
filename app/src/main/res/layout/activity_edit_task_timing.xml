@@ -16,11 +16,10 @@
 
         <TextView
             android:layout_gravity="center"
-        android:id="@+id/txtNameTask"
+        android:id="@+id/txtNameTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:text="Nome da atividade"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18dp" />
 
@@ -98,12 +97,36 @@
 
     </RadioGroup>
 
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:text="@string/txt_info_duration"
+        android:textSize="12dp"
+        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:layout_height="wrap_content">
+
+            <NumberPicker
+                android:id="@+id/numberMinutes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                />
+
+        </LinearLayout>
+
         <Button
-            android:id="@+id/editTimeTask"
+            android:id="@+id/saveTimeTask"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="@string/btn_edit" />
+            android:text="@string/btn_save" />
 
     </LinearLayout>
 

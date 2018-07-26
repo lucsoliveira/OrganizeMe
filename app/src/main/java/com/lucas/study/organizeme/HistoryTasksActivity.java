@@ -1,11 +1,8 @@
 package com.lucas.study.organizeme;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -27,8 +24,6 @@ public class HistoryTasksActivity extends AppCompatActivity {
 
         TaskTimingAdapter adapter = new TaskTimingAdapter(TaskTimingModel.createTaskTimeList(),this);
         omegaRecyclerView.setAdapter(adapter);
-
-
 
     }
 
