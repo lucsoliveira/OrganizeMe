@@ -32,12 +32,11 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     /* CHART */
     private LineChartView chart;
     private LineChartData data;
-    private int numberOfLines = 1;
-    //private int numberOfPoints = 5;
+    private int numberOfLines;
 
     public List<PointValue> values;
     private boolean hasAxes = true;
-    private boolean hasAxesNames = true;
+    private boolean hasAxesNames = false;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -113,7 +112,7 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
     private void resetViewport() {
         final Viewport v = new Viewport(chart.getMaximumViewport());
-        v.bottom = 0;
+        v.bottom = Float.parseFloat("-0.5");;
         v.top = Float.parseFloat("2.5");
 
         v.left = 0;
@@ -188,87 +187,26 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
      * {@link LineChartView#setLineChartData(LineChartData)}. Last 4th line has non-monotonically x values.
      */
 
-    private void togglePointColor() {
-        pointsHaveDifferentColor = !pointsHaveDifferentColor;
-
-        generateData();
-    }
-
-    private void setCircles() {
-        shape = ValueShape.CIRCLE;
-
-        generateData();
-    }
-
-    private void setSquares() {
-        shape = ValueShape.SQUARE;
-
-        generateData();
-    }
-
-    private void setDiamonds() {
-        shape = ValueShape.DIAMOND;
-
-        generateData();
-    }
-
-    private void toggleLabels() {
-        hasLabels = !hasLabels;
-
-        if (hasLabels) {
-            hasLabelForSelected = false;
-            chart.setValueSelectionEnabled(hasLabelForSelected);
-        }
-
-        generateData();
-    }
-
-    private void toggleLabelForSelected() {
-        hasLabelForSelected = !hasLabelForSelected;
-
-        chart.setValueSelectionEnabled(hasLabelForSelected);
-
-        if (hasLabelForSelected) {
-            hasLabels = false;
-        }
-
-        generateData();
-    }
-
-    private void toggleAxes() {
-        hasAxes = !hasAxes;
-
-        generateData();
-    }
-
-    private void toggleAxesNames() {
-        hasAxesNames = !hasAxesNames;
-
-        generateData();
-    }
-
-
-    private void prepareDataAnimation() {
-        for (Line line : data.getLines()) {
-            for (PointValue value : line.getValues()) {
-                // Here I modify target only for Y values but it is OK to modify X targets as well.
-                value.setTarget(value.getX(), (float) Math.random() * 100);
-            }
-        }
-    }
-
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
         Spinner spinner = (Spinner) parent;
         if(spinner.getId() == R.id.spinnerTaskChart) {
+
             String item = parent.getItemAtPosition(pos).toString();
 
             /* CHART */
             //generateValues();
-            generateTimingValues(TaskTimingModel.createTaskTimeListWithLimit("6", String.valueOf(idActiveTasks.get(pos))));
-            generateData();
-            chart.setViewportCalculationEnabled(false);
-            resetViewport();
+            List<TaskTimingModel> list = TaskTimingModel.createTaskTimeListWithLimit("6", String.valueOf(idActiveTasks.get(pos)));
+
+            if(list.size() >= 5){
+                generateTimingValues(list);
+                generateData();
+                chart.setViewportCalculationEnabled(false);
+                resetViewport();
+            }else{
+                Toast.makeText(getContext(), "Acrescente mais cronometragens", Toast.LENGTH_LONG).show();
+            }
+
 
         }
 

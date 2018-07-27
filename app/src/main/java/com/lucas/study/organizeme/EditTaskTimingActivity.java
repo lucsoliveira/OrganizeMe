@@ -121,34 +121,6 @@ public class EditTaskTimingActivity extends AppCompatActivity {
                 }
                 time.save();
                 Toast.makeText(getApplicationContext(), "Alterações salvas", Toast.LENGTH_LONG).show();
-                //String newTitle = editTextTitle.getText().toString();
-
-                /*
-                if(oldTitle.equals(newTitle)){
-
-                }else{
-
-                    t.titleTask = newTitle; // modify the values
-                    t.save(); // updates the previous entry with new values.
-
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Atividade atualizada", Snackbar.LENGTH_LONG)
-                            .setAction("DESFAZER", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-
-                                    t.titleTask = oldTitle; // revert the title
-                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade revertida!", Snackbar.LENGTH_SHORT);
-                                    snackbar1.show();
-                                }
-                            });
-
-                    snackbar.show();
-
-                }
-                */
-
 
             }
 
