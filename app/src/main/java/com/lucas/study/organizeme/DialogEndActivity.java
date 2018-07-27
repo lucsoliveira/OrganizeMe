@@ -59,13 +59,13 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
                 case R.id.btn_yes:
 
                     /* RADIO BUTTONS */
-                    if(optionGood.isChecked()){ optionProductivity = 1;}
-                    else if(optionMedium.isChecked()){ optionProductivity = 2;}
-                    else if(optionBad.isChecked()){ optionProductivity = 3;}
+                    if(optionGood.isChecked()){ optionProductivity = 2;}
+                    else if(optionMedium.isChecked()){ optionProductivity = 1;}
+                    else if(optionBad.isChecked()){ optionProductivity = 0;}
 
-                    if(optionHappy.isChecked()){ optionHumor = 1;}
-                    else if(optionNeutral.isChecked()){ optionHumor = 2;}
-                    else if(optionSad.isChecked()){ optionHumor = 3;}
+                    if(optionHappy.isChecked()){ optionHumor = 2;}
+                    else if(optionNeutral.isChecked()){ optionHumor = 1;}
+                    else if(optionSad.isChecked()){ optionHumor = 0;}
                     /* END RADIO BUTTONS */
 
                     TaskTimingModel timer = new TaskTimingModel(idTask,secondsTask,optionProductivity,optionHumor,moreInformation.getText().toString());

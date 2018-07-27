@@ -11,18 +11,17 @@ public class TaskTimingModel extends SugarRecord<TaskTimingModel> {
     private int productivity;
     private int humor;
     private String moreInformation;
-
     /*
 
      + Productivity
-        1 - Good
-        2 - Medium
-        3 - Bad
+        2 - Good
+        1 - Medium
+        0 - Bad
 
      + Humor
-        1 - Happy
-        2 - Neutral
-        3 - Sad
+        2 - Happy
+        1 - Neutral
+        0 - Sad
 
      */
 
@@ -88,4 +87,36 @@ public class TaskTimingModel extends SugarRecord<TaskTimingModel> {
         List<TaskTimingModel> listTasksTiming = TaskTimingModel.findWithQuery(TaskTimingModel.class,"Select * from Task_Timing_Model order by id DESC");
         return listTasksTiming;
     }
+
+    /* LIST CREATOR */
+    public static List<TaskTimingModel> createTaskTimeListWithLimit(String limit) {
+
+        //List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
+        List<TaskTimingModel> listTasksTiming = TaskTimingModel.findWithQuery(TaskTimingModel.class,"Select * from Task_Timing_Model order by id DESC limit ?",limit);
+
+        //ordering by ASC for plotting
+
+        //int sizelist = Integer.parseInt(limit);
+        /*
+        for(int i = 0; i < sizelist - 2; i++){
+            assert auxList != null;
+            auxList.add(listTasksTiming.get(i));
+        }
+        */
+
+        return listTasksTiming;
+        //return auxList;
+    }
+
+    /* LIST CREATOR */
+    public static List<TaskTimingModel> createTaskTimeListWithLimit(String limit, String id) {
+
+        //List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
+        List<TaskTimingModel> listTasksTiming = TaskTimingModel.findWithQuery(TaskTimingModel.class,"Select * from Task_Timing_Model where id_Task = ? order by id DESC limit ?", id, limit);
+
+        return listTasksTiming;
+        //return auxList;
+    }
+
+
 }

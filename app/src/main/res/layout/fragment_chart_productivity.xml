@@ -40,7 +40,14 @@
                 <lecho.lib.hellocharts.view.LineChartView
                     android:id="@+id/chart"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="230dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerTaskChart"
+                    android:layout_width="fill_parent"
+                    android:layout_marginTop="10dp"
+                    android:textAlignment="center"
+                    android:layout_height="50dp"/>
 
             </LinearLayout>
 

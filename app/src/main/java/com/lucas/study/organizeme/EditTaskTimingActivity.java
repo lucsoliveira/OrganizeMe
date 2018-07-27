@@ -43,7 +43,7 @@ public class EditTaskTimingActivity extends AppCompatActivity {
         final TaskTimingModel time = TaskTimingModel.findById(TaskTimingModel.class, intent.getLongExtra("idTime", 0));
         final TaskModel task = TaskModel.findById(TaskModel.class, time.getIdTask());
 
-        txtTitleTime.setText("#" + time.getIdTask() + " " + task.getTitleTask());
+        txtTitleTime.setText("#" + time.getId() + " " + task.getTitleTask());
 
         numberPicker = (NumberPicker) findViewById(R.id.numberMinutes);
 
@@ -54,26 +54,26 @@ public class EditTaskTimingActivity extends AppCompatActivity {
         numberPicker.setValue(minutes);
 
         switch (time.getProductivity()) {
-            case 1:
+            case 2:
                 optionGood.setChecked(true);
                 break;
-            case 2:
+            case 1:
                 optionMedium.setChecked(true);
                 break;
-            case 3:
+            case 0:
                 optionBad.setChecked(true);
                 break;
 
         }
 
         switch (time.getHumor()) {
-            case 1:
+            case 2:
                 optionHappy.setChecked(true);
                 break;
-            case 2:
+            case 1:
                 optionNeutral.setChecked(true);
                 break;
-            case 3:
+            case 0:
                 optionSad.setChecked(true);
                 break;
         }
@@ -90,13 +90,13 @@ public class EditTaskTimingActivity extends AppCompatActivity {
 
 
                 /* RADIO BUTTONS */
-                if(optionGood.isChecked()){ newProductivity = 1;}
-                else if(optionMedium.isChecked()){ newProductivity = 2;}
-                else if(optionBad.isChecked()){ newProductivity = 3;}
+                if(optionGood.isChecked()){ newProductivity = 2;}
+                else if(optionMedium.isChecked()){ newProductivity = 1;}
+                else if(optionBad.isChecked()){ newProductivity = 0;}
 
-                if(optionHappy.isChecked()){ newHumor = 1;}
-                else if(optionNeutral.isChecked()){ newHumor = 2;}
-                else if(optionSad.isChecked()){ newHumor = 3;}
+                if(optionHappy.isChecked()){ newHumor = 2;}
+                else if(optionNeutral.isChecked()){ newHumor = 1;}
+                else if(optionSad.isChecked()){ newHumor = 0;}
                 /* END RADIO BUTTONS */
 
                 int newMinute = numberPicker.getValue();

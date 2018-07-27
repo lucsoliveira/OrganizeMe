@@ -32,7 +32,6 @@ public class TaskModel extends SugarRecord<TaskModel> {
     private static int lastTaskId = 0;
 
     public static List<TaskModel> createTaskList() {
-        List<TaskModel> aux;
 
         //List<TaskModel> listTasks = TaskModel.find(TaskModel.class,"");
 

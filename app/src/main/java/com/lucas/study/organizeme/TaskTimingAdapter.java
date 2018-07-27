@@ -89,26 +89,26 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
             txtDuration.setText(getDurationString(durationTime));
 
             switch (time.getProductivity() ){
-                case 1:
+                case 2:
                     txtProductivity.setText(R.string.txt_good);
                     break;
-                case 2:
+                case 1:
                     txtProductivity.setText(R.string.txt_medium);
                     break;
-                case 3:
+                case 0:
                     txtProductivity.setText(R.string.txt_bad);
                     break;
 
             }
 
             switch (time.getHumor() ){
-                case 1:
+                case 2:
                     txtHumor.setText(R.string.txt_happy);
                     break;
-                case 2:
+                case 1:
                     txtHumor.setText(R.string.txt_neutral);
                     break;
-                case 3:
+                case 0:
                     txtHumor.setText(R.string.txt_sad);
                     break;
             }
