@@ -16,7 +16,7 @@
     <string name="app_name">OrganizeMe</string>
     <string name="tab_text_1">Atividades</string>
     <string name="tab_text_2">Estatísticas</string>
-    <string name="tab_text_3">To do!</string>
+    <string name="tab_text_3">Tarefas</string>
 
     <!--MENU-->
     <string name="action_settings">Configurações</string>

@@ -5,5 +5,8 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
 
+    <!--STATS-->
+    <dimen name="title_card">20sp</dimen>
+
 
 </resources>
