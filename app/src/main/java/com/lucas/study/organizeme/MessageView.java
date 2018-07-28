@@ -26,6 +26,12 @@ public class MessageView {
 
     }
 
+    public MessageView(CoordinatorLayout layoutAttack){
+
+        this.layoutAttack = layoutAttack;
+
+    }
+
     public int getMsg() {
         return msg;
     }

@@ -35,8 +35,8 @@ public class TasksTab extends Fragment {
 
         if (listTasks.size() == 0) {
 
-            MessageView msgNoTasks = new MessageView(R.string.message_no_tasks,
-                    MaterialDrawableBuilder.IconValue.WEATHER_RAINY,
+            MessageView msgNoTasks = new MessageView(R.string.message_no_tasks_tab,
+                    MaterialDrawableBuilder.IconValue.TIMETABLE,
                     messageNoActivities, R.color.colorPrimaryDark,
                     96);
 

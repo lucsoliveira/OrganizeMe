@@ -73,11 +73,18 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
         //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
 
+
         MessageView msgBestChoice = new MessageView(R.string.message_need_more_counts_bestchoice,
                 MaterialDrawableBuilder.IconValue.INFORMATION,
                 messageBestChoice,
                 R.color.colorPrimaryDark,
                 96);
+
+        MessageView msgNoTasks = new MessageView(R.string.message_no_tasks,
+                MaterialDrawableBuilder.IconValue.CHART_LINE,
+                messageChart, R.color.colorPrimaryDark,
+                96);
+
 
         msgBestChoice.showMessageView();
 
@@ -108,10 +115,6 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
         if(listTasks.size() == 0){
 
-            MessageView msgNoTasks = new MessageView(R.string.message_no_tasks,
-                    MaterialDrawableBuilder.IconValue.WEATHER_RAINY,
-                    messageChart, R.color.colorPrimaryDark,
-                    96);
 
             msgNoTasks.showMessageView();
 

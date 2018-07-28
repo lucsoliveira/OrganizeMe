@@ -47,7 +47,8 @@
     <!--STATS-->
     <string name="title_card_productivity">Gráfico de rendimento</string>
     <!--MESSAGES-->
-    <string name="message_no_tasks">Você não tem nenhuma atividade cadastrada. Clique no botão abaixo para cadastar.</string>
+    <string name="message_no_tasks">Você não tem nenhuma atividade cadastrada.</string>
+    <string name="message_no_tasks_tab">Você não tem nenhuma atividade cadastrada. Clique no botão abaixo para cadastar.</string>
     <string name="message_need_more_counts_chart">Precisamos de mais cronometragens desta atividade para gerar um gráfico. Tente selecionar outra atividade.</string>
     <string name="message_need_more_counts_bestchoice">Opss! É preciso mais cronometragens para gerar uma estatística de produtividade. Volte mais tarde.</string>
 </resources>
