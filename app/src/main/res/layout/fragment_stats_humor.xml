@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginBottom="@dimen/card_margin_bottom"
     android:layout_marginTop="@dimen/card_margin_top">
 
-    <!-- A CardView that contains a TextView -->
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="280dp"
+        app:cardUseCompatPadding="true"
         card_view:cardElevation="@dimen/card_elevation"
         card_view:cardCornerRadius="@dimen/card_corner_radius">
 
@@ -20,7 +21,7 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Contagem de atividade"
+            android:text="Humor ao longo do dia"
             android:textSize="@dimen/title_card"
             />
 

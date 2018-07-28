@@ -1,5 +1,8 @@
 package com.lucas.study.organizeme;
 
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,18 +10,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import lecho.lib.hellocharts.animation.ChartAnimationListener;
 import lecho.lib.hellocharts.formatter.SimpleAxisValueFormatter;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -35,17 +39,18 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     private int numberOfLines;
 
     public List<PointValue> values;
-    private boolean hasAxes = true;
+    private boolean hasAxes = false;
     private boolean hasAxesNames = false;
     private boolean hasLines = true;
-    private boolean hasPoints = true;
+    private boolean hasPoints = false;
     private ValueShape shape = ValueShape.CIRCLE;
     private boolean isFilled = false;
     private boolean hasLabels = false;
-    private boolean isCubic = true;
+    private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
     private boolean pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
+    public CoordinatorLayout messageChart, messageBestChoice, chartView;
 
     public List<TaskModel> listTasks = TaskModel.findWithQuery(TaskModel.class,"Select * from Task_Model where status = ? order by id DESC", "1");
     /* END CHART */
@@ -60,34 +65,59 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         View rootView = inflater.inflate(R.layout.tab_stats, container, false);
         chart = (LineChartView) rootView.findViewById(R.id.chart);
 
-        if(times.size() >= 5){
+        chartView = (CoordinatorLayout) rootView.findViewById(R.id.chartView);
+        messageChart = (CoordinatorLayout) rootView.findViewById(R.id.messageChart);
+        messageBestChoice = (CoordinatorLayout) rootView.findViewById(R.id.messageBestChoice);
 
-            /* CHART */
+
+
+        //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
+
+        MessageView msgBestChoice = new MessageView(R.string.message_need_more_counts_bestchoice,
+                MaterialDrawableBuilder.IconValue.INFORMATION,
+                messageBestChoice,
+                R.color.colorPrimaryDark,
+                96);
+
+        msgBestChoice.showMessageView();
+
+        //IF DON`T HAVE ANY TASK ADDED
+        if(listTasks.size() != 0){
+            if(times.size() >= 5){
+
+                //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
+                chartView.setVisibility(View.VISIBLE);
+            }
+
             /* SPINNER CHART */
             Spinner spinnerTaskChart = (Spinner) rootView.findViewById(R.id.spinnerTaskChart);
+            spinnerTaskChart.setVisibility(View.VISIBLE);
             spinnerTaskChart.setOnItemSelectedListener(this);
             List<String> activesTasks = new ArrayList<String>();
+
             for(int i = 0; i < listTasks.size(); i++){
                 activesTasks.add(listTasks.get(i).getTitleTask());
                 idActiveTasks.add(listTasks.get(i).getId());
             }
             ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, activesTasks);
-            // Drop down layout style - list view with radio button
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-            // attaching data adapter to spinner
             spinnerTaskChart.setAdapter(dataAdapter);
 
             /* END SPINNER CHART */
+        }
 
-            /* END CHART */
+        if(listTasks.size() == 0){
 
+            MessageView msgNoTasks = new MessageView(R.string.message_no_tasks,
+                    MaterialDrawableBuilder.IconValue.WEATHER_RAINY,
+                    messageChart, R.color.colorPrimaryDark,
+                    96);
 
-        }else{
-
-            chart.setVisibility(View.GONE);
+            msgNoTasks.showMessageView();
 
         }
+
+
 
         return rootView;
     }
@@ -121,6 +151,7 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         chart.setMaximumViewport(v);
         chart.setCurrentViewport(v);
         chart.setZoomEnabled(false);
+        chartView.setVisibility(View.VISIBLE);
     }
 
     private void generateData() {
@@ -198,13 +229,26 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
             //generateValues();
             List<TaskTimingModel> list = TaskTimingModel.createTaskTimeListWithLimit("6", String.valueOf(idActiveTasks.get(pos)));
 
+            MessageView msgNeedMoreCountsChart = new MessageView(R.string.message_need_more_counts_chart,
+                    MaterialDrawableBuilder.IconValue.CHART_LINE,
+                    messageChart,
+                    R.color.colorPrimaryDark,
+                    96);
+
+            msgNeedMoreCountsChart.showMessageView();
+
             if(list.size() >= 5){
+
                 generateTimingValues(list);
                 generateData();
                 chart.setViewportCalculationEnabled(false);
                 resetViewport();
+                msgNeedMoreCountsChart.hideMessageView();
+
             }else{
-                Toast.makeText(getContext(), "Acrescente mais cronometragens", Toast.LENGTH_LONG).show();
+                chartView.setVisibility(View.GONE);
+
+
             }
 
 
@@ -232,4 +276,5 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         }
 
     }
+
 }

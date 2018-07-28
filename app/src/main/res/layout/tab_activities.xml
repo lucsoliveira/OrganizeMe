@@ -10,7 +10,7 @@
 
 
     <include
-        android:id="@+id/messageChart"
+        android:id="@+id/messageActivities"
         android:visibility="gone"
         layout="@layout/fragment_message" />
 

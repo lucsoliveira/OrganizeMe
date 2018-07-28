@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ScrollView
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
@@ -16,11 +16,12 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <include layout="@layout/fragment_stats_count_activities"></include>
+            <include layout="@layout/fragment_stats_best_choice"></include>
             <include layout="@layout/fragment_chart_productivity"></include>
             <include layout="@layout/fragment_stats_count_tasks"></include>
+            <include layout="@layout/fragment_stats_humor"></include>
 
         </LinearLayout>
 
