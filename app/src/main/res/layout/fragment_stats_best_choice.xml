@@ -16,9 +16,13 @@
         card_view:cardCornerRadius="4dp">
 
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <TextView
                 android:textColor="@color/colorPrimaryDark"
                 android:layout_margin="10dp"
+                android:id="@+id/titleCardBest"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Melhor produtividade"
@@ -26,10 +30,21 @@
                 />
 
 
-        <include
-            android:visibility="gone"
-            android:id="@+id/messageBestChoice"
-            layout="@layout/fragment_message" />
+            <include
+                android:visibility="gone"
+                android:id="@+id/messageBestChoice"
+                layout="@layout/fragment_message" />
+
+
+            <Spinner
+                android:id="@+id/spinnerHumor"
+                android:layout_width="fill_parent"
+                android:layout_height="50dp"
+                android:visibility="gone"
+                android:layout_alignParentBottom="true"
+                android:textAlignment="center" />
+
+        </RelativeLayout>
 
 
     </android.support.v7.widget.CardView>

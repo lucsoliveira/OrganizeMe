@@ -9,13 +9,8 @@ import android.widget.Toast;
 
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
-
-import java.math.BigDecimal;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 
 public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapter.ViewHolder> {
@@ -47,11 +42,11 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
 
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private TextView txtNameTask, txtDuration, txtProductivity, txtHumor, txtMoreInfo;
+        private TextView txtNameTask, txtDuration, txtProductivity, txtHumor, txtMoreInfo, txtDate;
         private ImageButton editTime, deleteTime;
         private long idTime, idTask;
         private int durationTime;
-        private String nameTask;
+        private String nameTask, dateCreate;
 
         public ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_task_timing);
@@ -68,6 +63,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
             txtProductivity = findViewById(R.id.txtProductivity);
             txtHumor = findViewById(R.id.txtHumor);
             txtMoreInfo = findViewById(R.id.txtMoreInfo);
+            txtDate = findViewById(R.id.txtDate);
 
         }
 
@@ -75,6 +71,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
 
             idTime = time.getId();
             idTask = time.getIdTask();
+            dateCreate = time.getCreatedAt();
             durationTime = time.getTimeSecondsTask();
 
             TaskModel task = TaskModel.findById(TaskModel.class, idTask);
@@ -87,6 +84,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
             }
 
             txtDuration.setText(getDurationString(durationTime));
+            txtDate.setText(dateCreate);
 
             switch (time.getProductivity() ){
                 case 2:

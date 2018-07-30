@@ -38,6 +38,7 @@
     <string name="txt_happy">Feliz</string>
     <string name="txt_neutral">Neutro</string>
     <string name="txt_sad">Cansado</string>
+    <string name="txt_date">Data: </string>
 
     <!--END TIMING-->
     <string name="txt_info_productivity">Como você avalia seu rendimento?</string>

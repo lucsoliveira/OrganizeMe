@@ -18,8 +18,12 @@ import android.widget.Toast;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import lecho.lib.hellocharts.formatter.SimpleAxisValueFormatter;
 import lecho.lib.hellocharts.model.Axis;
@@ -85,17 +89,19 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
                 messageChart, R.color.colorPrimaryDark,
                 96);
 
-
-        msgBestChoice.showMessageView();
-
         //IF DON`T HAVE ANY TASK ADDED
         if(listTasks.size() != 0){
+
             if(times.size() >= 5){
 
                 //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
                 chartView.setVisibility(View.VISIBLE);
+                //msgBestChoice.hideMessageView();
+
+
             }
 
+            msgBestChoice.showMessageView();
             /* SPINNER CHART */
             Spinner spinnerTaskChart = (Spinner) rootView.findViewById(R.id.spinnerTaskChart);
             spinnerTaskChart.setVisibility(View.VISIBLE);
@@ -111,6 +117,24 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
             spinnerTaskChart.setAdapter(dataAdapter);
 
             /* END SPINNER CHART */
+
+            Spinner spinnerHumor = (Spinner) rootView.findViewById(R.id.spinnerHumor);
+
+            List<String> activesHumor = new ArrayList<String>();
+            List<Integer> intHumor = new ArrayList<Integer>();
+            spinnerHumor.setVisibility(View.VISIBLE);
+            spinnerHumor.setOnItemSelectedListener(this);
+            activesHumor.add("Feliz"); intHumor.add(2);
+            activesHumor.add("Neutro"); intHumor.add(1);
+            activesHumor.add("Cansado"); intHumor.add(0);
+
+            ArrayAdapter<String> dataAdapterHumor = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, activesHumor);
+            dataAdapterHumor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerHumor.setAdapter(dataAdapterHumor);
+
+            /* SPINNER HUMOR **/
+
+            Toast.makeText(getContext(), "Teste da função: " + bestProductivity("2",null), Toast.LENGTH_LONG).show();
         }
 
         if(listTasks.size() == 0){
@@ -224,6 +248,9 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
         Spinner spinner = (Spinner) parent;
+        if(spinner.getId() == R.id.spinnerHumor) {
+
+        }
         if(spinner.getId() == R.id.spinnerTaskChart) {
 
             String item = parent.getItemAtPosition(pos).toString();
@@ -257,6 +284,7 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
         }
 
+
     }
 
     @Override
@@ -274,10 +302,42 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
         int sizeList = list.size() - 1;
         values = new ArrayList<PointValue>();
+
         for(int i = 0; i <= sizeList; i++){
             values.add(new PointValue(i, list.get(sizeList - i).getProductivity()));
         }
 
+
+
     }
+
+    private String bestProductivity(String humor, Long task){
+
+        if(task == null){
+            List<TaskTimingModel> timesProductivity = TaskTimingModel.createTaskTimeProductivity("2",humor,"100");
+            int sizeList = timesProductivity.size();
+
+            if(sizeList == 0){
+                return "Ainda não temos dados suficientes.";
+            }
+
+            int secondsMedium = 0;
+
+            for(int i = 0; i< sizeList; i++){
+                secondsMedium += timesProductivity.get(i).getTimeSecondsTask();
+            }
+
+            //int minutesBest = (secondsMedium /sizeList)/60;
+
+            return String.valueOf((secondsMedium/sizeList)/60);
+        }
+
+
+        return "Erro ao tentar buscar as cronometragens no banco de dados. Por favor, entre em contado com o desenvolvedor.";
+
+    }
+
+
+
 
 }

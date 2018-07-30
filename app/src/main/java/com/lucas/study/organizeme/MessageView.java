@@ -32,6 +32,8 @@ public class MessageView {
 
     }
 
+
+
     public int getMsg() {
         return msg;
     }
@@ -88,6 +90,24 @@ public class MessageView {
 
         getLayoutAttack().setVisibility(View.VISIBLE);
     }
+
+    public void showMessageViewWithString(String msg){
+
+
+        TextView msgText = getLayoutAttack().findViewById(R.id.textMessageView);
+        msgText.setText(msg);
+
+        Drawable yourDrawable = MaterialDrawableBuilder.with(getLayoutAttack().getContext()) // provide a context
+                .setIcon(getIconValue()) // provide an icon
+                .setColor(getColorIcon()) // set the icon color
+                .setSizeDp(getSizeDpIcon()) // set the icon size
+                .build(); // Finally call build
+        ImageView iconMessageView = getLayoutAttack().findViewById(R.id.iconMessageView);
+        iconMessageView.setImageDrawable(yourDrawable);
+
+        getLayoutAttack().setVisibility(View.VISIBLE);
+    }
+
 
     public void hideMessageView(){
         getLayoutAttack().setVisibility(View.GONE);

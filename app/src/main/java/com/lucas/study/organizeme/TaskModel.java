@@ -3,7 +3,8 @@ package com.lucas.study.organizeme;
 import com.orm.SugarRecord;
 import com.orm.query.Condition;
 import com.orm.query.Select;
-
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TaskModel extends SugarRecord<TaskModel> {
@@ -39,4 +40,5 @@ public class TaskModel extends SugarRecord<TaskModel> {
 
         return listTasks;
     }
+
 }
