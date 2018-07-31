@@ -43,6 +43,8 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     private int numberOfLines;
 
     public List<PointValue> values;
+    List<String> activesHumor;
+    List<Integer> intHumor;
     private boolean hasAxes = false;
     private boolean hasAxesNames = false;
     private boolean hasLines = true;
@@ -55,7 +57,7 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     private boolean pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
     public CoordinatorLayout messageChart, messageBestChoice, chartView;
-
+    public MessageView msgBestChoice, msgNoTasks;
     public List<TaskModel> listTasks = TaskModel.findWithQuery(TaskModel.class,"Select * from Task_Model where status = ? order by id DESC", "1");
     /* END CHART */
 
@@ -78,16 +80,18 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
 
 
-        MessageView msgBestChoice = new MessageView(R.string.message_need_more_counts_bestchoice,
+        msgBestChoice = new MessageView(R.string.message_need_more_counts_bestchoice,
                 MaterialDrawableBuilder.IconValue.INFORMATION,
                 messageBestChoice,
                 R.color.colorPrimaryDark,
                 96);
 
-        MessageView msgNoTasks = new MessageView(R.string.message_no_tasks,
+        msgNoTasks = new MessageView(R.string.message_no_tasks,
                 MaterialDrawableBuilder.IconValue.CHART_LINE,
                 messageChart, R.color.colorPrimaryDark,
                 96);
+
+        Spinner spinnerHumor = (Spinner) rootView.findViewById(R.id.spinnerHumor);
 
         //IF DON`T HAVE ANY TASK ADDED
         if(listTasks.size() != 0){
@@ -97,11 +101,27 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
                 //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
                 chartView.setVisibility(View.VISIBLE);
                 //msgBestChoice.hideMessageView();
+                //msgBestChoice.showMessageViewWithString("Aqui ficara um teste");
+
+
+                activesHumor = new ArrayList<String>();
+                intHumor = new ArrayList<Integer>();
+                spinnerHumor.setVisibility(View.VISIBLE);
+                spinnerHumor.setOnItemSelectedListener(this);
+                activesHumor.add("Feliz"); intHumor.add(2);
+                activesHumor.add("Neutro"); intHumor.add(1);
+                activesHumor.add("Cansado"); intHumor.add(0);
+
+                ArrayAdapter<String> dataAdapterHumor = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, activesHumor);
+                dataAdapterHumor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinnerHumor.setAdapter(dataAdapterHumor);
+
+                /* SPINNER HUMOR **/
 
 
             }
 
-            msgBestChoice.showMessageView();
+
             /* SPINNER CHART */
             Spinner spinnerTaskChart = (Spinner) rootView.findViewById(R.id.spinnerTaskChart);
             spinnerTaskChart.setVisibility(View.VISIBLE);
@@ -116,31 +136,14 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
             dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerTaskChart.setAdapter(dataAdapter);
 
-            /* END SPINNER CHART */
-
-            Spinner spinnerHumor = (Spinner) rootView.findViewById(R.id.spinnerHumor);
-
-            List<String> activesHumor = new ArrayList<String>();
-            List<Integer> intHumor = new ArrayList<Integer>();
-            spinnerHumor.setVisibility(View.VISIBLE);
-            spinnerHumor.setOnItemSelectedListener(this);
-            activesHumor.add("Feliz"); intHumor.add(2);
-            activesHumor.add("Neutro"); intHumor.add(1);
-            activesHumor.add("Cansado"); intHumor.add(0);
-
-            ArrayAdapter<String> dataAdapterHumor = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, activesHumor);
-            dataAdapterHumor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinnerHumor.setAdapter(dataAdapterHumor);
-
-            /* SPINNER HUMOR **/
-
-            Toast.makeText(getContext(), "Teste da função: " + bestProductivity("2",null), Toast.LENGTH_LONG).show();
+            msgBestChoice.showMessageView();
         }
 
         if(listTasks.size() == 0){
 
 
             msgNoTasks.showMessageView();
+            msgBestChoice.showMessageView();
 
         }
 
@@ -250,7 +253,41 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         Spinner spinner = (Spinner) parent;
         if(spinner.getId() == R.id.spinnerHumor) {
 
-        }
+            String itemHumor = parent.getItemAtPosition(pos).toString();
+
+            int minutes = bestProductivity(String.valueOf(intHumor.get(pos)),null);
+
+            if(minutes > 0){
+
+                msgBestChoice.hideMessageView();
+                switch (activesHumor.get(pos)){
+                    case "Feliz":
+                        msgBestChoice.setIconValue(MaterialDrawableBuilder.IconValue.EMOTICON_HAPPY);
+                        msgBestChoice.setColorIcon(R.color.green);
+                        break;
+                    case "Neutro":
+                        msgBestChoice.setIconValue(MaterialDrawableBuilder.IconValue.EMOTICON_NEUTRAL);
+                        msgBestChoice.setColorIcon(R.color.blue);
+                        break;
+                    case "Cansado":
+                        msgBestChoice.setIconValue(MaterialDrawableBuilder.IconValue.EMOTICON_SAD);
+                        msgBestChoice.setColorIcon(R.color.red);
+                        break;
+
+                }
+
+                msgBestChoice.showMessageViewWithString("Com base em suas cronometragens, nos dias em que você sentir-se \"" + activesHumor.get(pos) + "\" e desejaste obter uma boa produtividade, recomendamos " +
+                        "uma duração média de aproximadamente " + minutes + " minutos para suas atividades.");
+
+            }else{
+
+                msgBestChoice.hideMessageView();
+                msgBestChoice.setIconValue(MaterialDrawableBuilder.IconValue.TIMER_SAND_EMPTY);
+                msgBestChoice.showMessageViewWithString("Não há cronometragens suficientes para este estado de espírito. Continue usando o aplicativo ou selecione outro humor.");
+
+            }
+
+        }else
         if(spinner.getId() == R.id.spinnerTaskChart) {
 
             String item = parent.getItemAtPosition(pos).toString();
@@ -311,14 +348,17 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
     }
 
-    private String bestProductivity(String humor, Long task){
+    private int bestProductivity(String humor, Long task){
 
         if(task == null){
             List<TaskTimingModel> timesProductivity = TaskTimingModel.createTaskTimeProductivity("2",humor,"100");
+            //List<TaskTimingModel> timesProductivityMedium = TaskTimingModel.createTaskTimeProductivity("1",humor,"100");
             int sizeList = timesProductivity.size();
+            //int sizeListMedium = timesProductivityMedium.size();
+            int secondsNeutral = 0;
 
             if(sizeList == 0){
-                return "Ainda não temos dados suficientes.";
+                return 0;
             }
 
             int secondsMedium = 0;
@@ -327,16 +367,24 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
                 secondsMedium += timesProductivity.get(i).getTimeSecondsTask();
             }
 
-            //int minutesBest = (secondsMedium /sizeList)/60;
+            /*
+            if(sizeListMedium != 0){
+                for(int i = 0; i< sizeListMedium; i++){
+                    secondsNeutral += timesProductivityMedium.get(i).getTimeSecondsTask();
+                }
 
-            return String.valueOf((secondsMedium/sizeList)/60);
+
+                return (((sizeListMedium*secondsNeutral)+(secondsMedium*sizeList))/sizeList*sizeListMedium)/60;
+            }
+            //int minutesBest = (secondsMedium /sizeList)/60;
+            */
+            return ((secondsMedium/sizeList)/60);
         }
 
 
-        return "Erro ao tentar buscar as cronometragens no banco de dados. Por favor, entre em contado com o desenvolvedor.";
+        return 0;
 
     }
-
 
 
 

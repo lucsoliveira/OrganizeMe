@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 case 2 :
-                    TodoTab tab3 = new TodoTab();
+                    ToDoTab tab3 = new ToDoTab();
                     return tab3;
 
                 default:
