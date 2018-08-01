@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class AddTaskActivity extends AppCompatActivity {
 
@@ -19,11 +20,10 @@ public class AddTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_add_task);
+        setContentView(R.layout.activity_add_task);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id
                 .coordinatorLayout);
-
         editTextTitle   = (EditText)findViewById(R.id.editTextTitle);
 
         // Get the Intent that started this activity and extract the string
@@ -36,20 +36,28 @@ public class AddTaskActivity extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                TaskModel t = new TaskModel(editTextTitle.getText().toString(), 1);
-                t.save();
+                if(editTextTitle.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(), R.string.task_error_create, Toast.LENGTH_SHORT).show();
+                }else{
+                    TaskModel t = new TaskModel(editTextTitle.getText().toString(), 1);
+                    t.save();
+                    final Long idCreated = t.getId();
 
-                Snackbar snackbar = Snackbar
-                        .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
-                        .setAction("DESFAZER", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade deletada!", Snackbar.LENGTH_SHORT);
-                                snackbar1.show();
-                            }
-                        });
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
+                            .setAction("DESFAZER", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    TaskModel toDeleteTask = TaskModel.findById(TaskModel.class, idCreated);
+                                    toDeleteTask.delete();
 
-                snackbar.show();
+                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade desfeita!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();
+                                }
+                            });
+
+                    snackbar.show();
+                }
             }
         });
 

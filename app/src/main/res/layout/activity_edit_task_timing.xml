@@ -6,103 +6,106 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="10dp"
-        android:orientation="vertical"
-        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            >
 
         <TextView
             android:layout_gravity="center"
-        android:id="@+id/txtNameTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:id="@+id/txtNameTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
-        android:textSize="18sp" />
+            android:textSize="18sp" />
 
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="@string/txt_info_productivity"
-        android:textSize="12sp"
-        />
-
-    <RadioGroup
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/optionGood"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/txt_good"/>
-
-        <RadioButton
-            android:id="@+id/optionMedium"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/txt_info_productivity"
+            android:textSize="12sp"
+            />
 
-            android:text="@string/txt_medium"/>
-
-        <RadioButton
-            android:id="@+id/optionBad"
-            android:layout_width="match_parent"
+        <RadioGroup
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            android:text="@string/txt_bad"/>
+            <RadioButton
+                android:id="@+id/optionGood"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/txt_good"/>
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/optionMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="@string/txt_info_humor"
-        android:textSize="12dp"
-        />
+                android:text="@string/txt_medium"/>
 
-    <RadioGroup
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/optionBad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-        <RadioButton
-            android:id="@+id/optionHappy"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/txt_happy"/>
+                android:text="@string/txt_bad"/>
 
-        <RadioButton
-            android:id="@+id/optionNeutral"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/txt_neutral"/>
-
-        <RadioButton
-            android:id="@+id/optionSad"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="@string/txt_sad"/>
-
-    </RadioGroup>
+        </RadioGroup>
 
         <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:text="@string/txt_info_duration"
-        android:textSize="12sp"
-        />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/txt_info_humor"
+            android:textSize="12dp"
+            />
+
+        <RadioGroup
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/optionHappy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/txt_happy"/>
+
+            <RadioButton
+                android:id="@+id/optionNeutral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/txt_neutral"/>
+
+            <RadioButton
+                android:id="@+id/optionSad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:text="@string/txt_sad"/>
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:text="@string/txt_info_duration"
+            android:textSize="12sp"
+            />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_gravity="center"
@@ -116,13 +119,17 @@
 
         </LinearLayout>
 
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/saveTimeTask"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_marginTop="30dp"
             android:text="@string/btn_save" />
+    </RelativeLayout>
 
-    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>

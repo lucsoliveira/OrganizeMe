@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+ <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+     <LinearLayout
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:orientation="vertical"
+         android:paddingLeft="15dp"
+         android:paddingRight="15dp"
+         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+     <EditText
+         android:layout_marginTop="10dp"
+         android:id="@+id/editTextTodoName"
+         android:layout_width="match_parent"
+         android:inputType="textMultiLine"
+         android:scrollbars="vertical"
+         android:maxLines="2"
+         android:layout_height="wrap_content"
+         android:hint="@string/todo_name" />
+
+     <EditText
+         android:layout_marginTop="20dp"
+         android:id="@+id/editTextTodoDescription"
+         android:layout_width="match_parent"
+         android:inputType="textMultiLine"
+         android:lines="6"
+         android:scrollbars="vertical"
+         android:maxLines="6"
+         android:minLines="6"
+         android:layout_height="wrap_content"
+         android:hint="@string/todo_description" />
+
+     </LinearLayout>
+
+     <Button
+         android:layout_marginTop="30dp"
+         android:id="@+id/addToDo"
+         android:layout_width="fill_parent"
+         android:layout_height="wrap_content"
+         android:layout_alignParentBottom="true"
+         android:text="@string/btn_add" />
+
+ </RelativeLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>

@@ -186,7 +186,6 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
 
                     mTasksList.remove(getIdTask());
 
-
                     updateView(t);
 
                     break;

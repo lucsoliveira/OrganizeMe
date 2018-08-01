@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ToDoModel extends SugarRecord<ToDoModel> {
 
+    private String title;
     private String description;
     private int status;
     private String createdAt;
@@ -20,8 +21,9 @@ public class ToDoModel extends SugarRecord<ToDoModel> {
     public ToDoModel(){
     }
 
-    public ToDoModel(String description, int status, String createdAt){
+    public ToDoModel(String title, String description, int status, String createdAt){
 
+        this.title = title;
         this.description = description;
         this.status = status;
         this.createdAt = createdAt;
@@ -61,12 +63,21 @@ public class ToDoModel extends SugarRecord<ToDoModel> {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     /* END GETS AND SETS*/
 
     /* LIST CREATOR */
+
     public static List<ToDoModel> creatListTodo(String status) {
 
-        List<ToDoModel> listToDo = ToDoModel.findWithQuery(ToDoModel.class,"Select * from To_Do_Model where status = ? order by id DESC",status);
+        List<ToDoModel> listToDo = ToDoModel.findWithQuery(ToDoModel.class,"Select * from To_Do_Model where status = ? order by id DESC", status);
         return listToDo;
     }
 }

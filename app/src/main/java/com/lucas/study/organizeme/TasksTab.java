@@ -33,20 +33,24 @@ public class TasksTab extends Fragment {
         listTasks = TaskModel.findWithQuery(TaskModel.class, "Select * from Task_Model where status = ? order by id DESC", "1");
         messageNoActivities = (CoordinatorLayout) rootView.findViewById(R.id.messageActivities);
 
+        MessageView msgNoTasks = new MessageView(R.string.message_no_tasks_tab,
+                MaterialDrawableBuilder.IconValue.TIMETABLE,
+                messageNoActivities, R.color.colorPrimaryDark,
+                96);
+
+
         if (listTasks.size() == 0) {
 
-            MessageView msgNoTasks = new MessageView(R.string.message_no_tasks_tab,
-                    MaterialDrawableBuilder.IconValue.TIMETABLE,
-                    messageNoActivities, R.color.colorPrimaryDark,
-                    96);
 
             msgNoTasks.showMessageView();
 
         } else {
             TasksAdapter adapter = new TasksAdapter(listTasks, getActivity());
             omegaRecyclerView.setAdapter(adapter);
+
         }
 
         return rootView;
     }
+
 }
