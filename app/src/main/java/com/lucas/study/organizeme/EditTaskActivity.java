@@ -19,7 +19,7 @@ public class EditTaskActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_edit_task);
+        setContentView(R.layout.activity_edit_task);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
         editTextTitle   = (EditText)findViewById(R.id.editTextTitle);
