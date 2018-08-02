@@ -23,7 +23,7 @@ public class DialogEditToDo extends Dialog implements View.OnClickListener {
     public EditText description, title;
     private CoordinatorLayout coordinatorLayout;
     public Calendar calendar;
-    public boolean setNotChange = false;;
+    public boolean setNotChange = false;
     public DialogEditToDo(Context a, Long idToDo) {
             super(a);
             // TODO Auto-generated constructor stub

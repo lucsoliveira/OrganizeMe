@@ -2,6 +2,8 @@ package com.lucas.study.organizeme;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,10 +24,12 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
     private Context mcon;
     private boolean stateChronometer;
 
+    public CoordinatorLayout coordinatorLayout;
     public boolean getStateChronometer(View v){
         return stateChronometer;
     }
 
+    public boolean setNotChange = false;
     public void setStateChronometer(View v, boolean state){
         this.stateChronometer = state;
     }
@@ -82,9 +86,13 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
             btnEditTask = findViewById(R.id.btnEditTask);
             btnEditTask.setOnClickListener(this);
 
-
             btnDeleteTask = findViewById(R.id.btnDeleteTask);
             btnDeleteTask.setOnClickListener(this);
+
+
+
+            coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutTasks);
+
 
             txtNameTask = findViewById(R.id.txtNameTask);
 
@@ -176,12 +184,32 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
 
                 case R.id.btnDeleteTask:
 
-                    TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
-                    t.status = 0;
-                    t.save();
-                    findViewById(R.id.itemTask).setVisibility(v.GONE);
-                    findViewById(R.id.swipe_left).setVisibility(v.GONE);
-                    showToast("Atividade deletada!");
+                    final TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
+
+                    /*
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Atividade deletada", Snackbar.LENGTH_LONG)
+                            .setAction("DESFAZER", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    t.status = 1;
+                                    t.save();
+                                    setNotChange = true;
+                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade retornou!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();
+                                }
+                            });
+
+                    snackbar.show();
+
+                    if(!setNotChange){
+                    */
+                        t.status = 0;
+                        t.save();
+                        findViewById(R.id.itemTask).setVisibility(v.GONE);
+                        findViewById(R.id.swipe_left).setVisibility(v.GONE);
+                    //}
 
 
                     mTasksList.remove(getIdTask());
@@ -191,7 +219,14 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                     break;
 
                 case R.id.btnPlay:
-                    startChronometer(v);
+
+                    Intent intentPlay = new Intent(mcon, FocusModeActivity.class);
+                    intentPlay.putExtra("idTask", getIdTask());
+                    mcon.startActivity(intentPlay);
+
+                    //startChronometer(v);
+
+
                     break;
 
                 case R.id.btnPause:

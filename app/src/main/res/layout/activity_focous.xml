@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="Teste"
+        android:id="@+id/titleActivity"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textColor="@color/colorAccent"
+        android:layout_marginBottom="130dp"
+        android:layout_height="wrap_content" />
+
+        <Chronometer
+            android:id="@+id/chronometer_task"
+            android:textColor="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:textSize="100sp"
+            android:layout_gravity="center"
+            android:scaleType="center"
+            android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_height="wrap_content">
+
+            <ImageButton
+                android:id="@+id/btnPlay"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:src="@drawable/ic_baseline_play_arrow_24px"
+
+                android:contentDescription="Play Button" />
+
+            <ImageButton
+                android:id="@+id/btnPause"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_pause_24px"
+                android:contentDescription="Pause Button" />
+
+            <ImageButton
+                android:id="@+id/btnStop"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_stop_24px"
+                android:contentDescription="Stop Button" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>

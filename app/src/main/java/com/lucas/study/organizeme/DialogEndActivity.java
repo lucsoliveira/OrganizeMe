@@ -2,6 +2,7 @@ package com.lucas.study.organizeme;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.View;
@@ -92,7 +93,12 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
 
                     Toast.makeText(getContext(),"Cronometragem Armazenada",Toast.LENGTH_LONG).show();
 
+                    Intent i = new Intent(getContext(), MainActivity.class);
+                    getContext().startActivity(i);
+
                     dismiss();
+
+
 
 
                     break;

@@ -6,6 +6,7 @@
     <string name="activity_times">Cronometragens</string>
     <string name="activity_edit_times">Editar Cronometragem</string>
     <string name="activity_add_todo">Criar Lembrete</string>
+    <string name="activity_focus">Modo Produtividade</string>
 
     <!--BTN-->
     <string name="btn_edit">Editar</string>
@@ -64,6 +65,6 @@
     <string name="message_no_tasks">Você não tem nenhuma atividade cadastrada.</string>
     <string name="message_no_todo">Você não tem nenhuma tarefa a ser realizada.</string>
     <string name="message_no_tasks_tab">Você não tem nenhuma atividade cadastrada. Clique no botão abaixo para cadastar.</string>
-    <string name="message_need_more_counts_chart">Precisamos de mais cronometragens desta atividade para gerar um gráfico. Tente selecionar outra atividade.</string>
+    <string name="message_need_more_counts_chart">Precisamos de mais cronometragens para gerar um gráfico desta atividade. Tente selecionar outra atividade.</string>
     <string name="message_need_more_counts_bestchoice">Opss! É preciso mais cronometragens para gerar uma estatística de produtividade. Volte mais tarde.</string>
 </resources>

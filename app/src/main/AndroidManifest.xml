@@ -45,6 +45,18 @@
         <!--END TASKS-->
 
         <!--TIMING-->
+
+        <activity
+            android:name=".FocusModeActivity"
+            android:label="@string/activity_focus"
+            android:parentActivityName=".MainActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+
+
         <activity
             android:name=".HistoryTasksActivity"
             android:label="@string/activity_times"
