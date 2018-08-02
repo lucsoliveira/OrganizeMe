@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -22,7 +23,7 @@ public class DialogEditToDo extends Dialog implements View.OnClickListener {
     public EditText description, title;
     private CoordinatorLayout coordinatorLayout;
     public Calendar calendar;
-
+    public boolean setNotChange = false;;
     public DialogEditToDo(Context a, Long idToDo) {
             super(a);
             // TODO Auto-generated constructor stub
@@ -63,7 +64,6 @@ public class DialogEditToDo extends Dialog implements View.OnClickListener {
             switch (v.getId()) {
 
 
-
                 case R.id.editToDo:
 
 
@@ -87,19 +87,35 @@ public class DialogEditToDo extends Dialog implements View.OnClickListener {
                 case R.id.deleteToDo:
 
 
-                    ToDoModel t2 = ToDoModel.findById(ToDoModel.class, idToDo);
-                    t2.setStatus(1);
-                    t2.save();
+                    final ToDoModel t2 = ToDoModel.findById(ToDoModel.class, idToDo);
 
-                    Toast.makeText(getContext(),"Lembrete apagado.",Toast.LENGTH_LONG).show();
-                    dismiss();
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Lembrete deletado", Snackbar.LENGTH_LONG)
+                            .setAction("DESFAZER", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
+                                    setNotChange = true;
+                                    t2.setStatus(0);
+                                    t2.save();
+                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Lembrete retornou!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();
+                                }
+                            });
+
+                    snackbar.show();
+
+                    if(!setNotChange){
+                        t2.setStatus(1);
+                        t2.save();
+                    }
 
                     break;
+
                 default:
                     break;
             }
 
-            dismiss();
+            //dismiss();
         }
 }

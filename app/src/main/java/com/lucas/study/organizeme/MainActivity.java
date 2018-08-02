@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_round_done_outline);
         //tabLayout.getTabAt(2).setText(R.string.tab_text_3);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
 
     }
 

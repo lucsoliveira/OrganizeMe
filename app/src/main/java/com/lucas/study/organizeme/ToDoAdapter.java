@@ -64,6 +64,7 @@ public class ToDoAdapter extends OmegaRecyclerView.Adapter<ToDoAdapter.ViewHolde
 
             //TEXT VIEW
             txtNameToDo = (TextView) findViewById(R.id.txtNameToDo);
+            txtNameToDo.setOnClickListener(this);
             //CHECKBOX
             checkToDo= (CheckBox) findViewById(R.id.checkBoxToDo);
             //checkbox click event handling
@@ -107,15 +108,18 @@ public class ToDoAdapter extends OmegaRecyclerView.Adapter<ToDoAdapter.ViewHolde
         }
 
         Long getIdToDo(){ return idToDo;}
-
-
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.editToDo:
+                case R.id.txtNameToDo:
 
                     DialogEditToDo cdd = new DialogEditToDo(itemView.getContext(), getIdToDo());
                     cdd.show();
+                    break;
+                case R.id.editToDo:
+
+                    DialogEditToDo cdd2 = new DialogEditToDo(itemView.getContext(), getIdToDo());
+                    cdd2.show();
                     break;
             }
         }

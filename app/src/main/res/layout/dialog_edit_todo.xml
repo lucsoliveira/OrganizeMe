@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="350dp">
 
 <LinearLayout
     android:layout_width="fill_parent"
@@ -20,7 +20,7 @@
         android:layout_margin="10dp"
         android:text="@string/todo_edit"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="15dp"
+        android:textSize="15sp"
         android:textStyle="bold"/>
 
     <RelativeLayout
@@ -30,11 +30,9 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
 
 
             <TextView
@@ -62,9 +60,9 @@
                 android:id="@+id/editTodoDescription"
                 android:layout_width="match_parent"
                 android:inputType="textMultiLine"
-                android:lines="3"
+                android:lines="4"
                 android:scrollbars="vertical"
-                android:maxLines="3"
+                android:maxLines="4"
                 android:minLines="1"
                 android:layout_height="wrap_content"
                 android:hint="@string/todo_no_description" />
@@ -74,23 +72,22 @@
         <LinearLayout
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
-            android:gravity="right"
+            android:gravity="center"
             android:layout_height="wrap_content">
 
 
             <Button
-                android:layout_marginTop="30dp"
                 android:id="@+id/deleteToDo"
                 android:layout_width="wrap_content"
-                android:layout_alignParentRight="true"
+                android:drawableStart="@android:drawable/ic_delete"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_delete" />
 
 
             <Button
-                android:layout_marginTop="30dp"
                 android:id="@+id/editToDo"
                 android:layout_width="wrap_content"
+                android:drawableStart="@android:drawable/ic_menu_save"
                 android:layout_height="wrap_content"
                 android:text="@string/btn_save" />
 
