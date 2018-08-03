@@ -1,9 +1,11 @@
 package com.lucas.study.organizeme.Activity;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +18,11 @@ import com.lucas.study.organizeme.Dialog.EndActivity;
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
 
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+
 import java.util.Calendar;
+
+import static android.app.Notification.EXTRA_NOTIFICATION_ID;
 
 public class FocusMode extends AppCompatActivity implements View.OnClickListener {
 
@@ -74,6 +80,9 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
         startChronometer(coordinatorLayout);
 
+        if(chronometer().getBase() != 0){
+            chronometer().setBase(chronometer().getBase());
+        }
     }
 
     /* Chronometer */

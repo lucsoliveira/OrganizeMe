@@ -86,8 +86,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <!--END TO DO-->
+
+        <!--FIRST USE-->
+        <activity android:name=".Activity.FirstUse" />
+        <!--END FIRST USE-->
 
         <!--DATABASE-->
         <meta-data android:name="DATABASE" android:value="DB_ORGANIZEME.db" />

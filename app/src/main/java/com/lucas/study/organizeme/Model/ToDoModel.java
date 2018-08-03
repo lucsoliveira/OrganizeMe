@@ -77,6 +77,7 @@ public class ToDoModel extends SugarRecord<ToDoModel> {
 
     public static List<ToDoModel> creatListTodo(String status) {
 
+
         List<ToDoModel> listToDo = ToDoModel.findWithQuery(ToDoModel.class,"Select * from To_Do_Model where status = ? order by id DESC", status);
         return listToDo;
     }

@@ -16,14 +16,18 @@ import android.widget.Toast;
 
 import com.lucas.study.organizeme.Activity.AddTask;
 import com.lucas.study.organizeme.Activity.AddToDo;
+import com.lucas.study.organizeme.Activity.FirstUse;
 import com.lucas.study.organizeme.Activity.HistoryTasks;
 import com.lucas.study.organizeme.Model.AppConfig;
 import com.lucas.study.organizeme.Page.Stats;
 import com.lucas.study.organizeme.Page.Tasks;
 import com.lucas.study.organizeme.Page.ToDos;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
+    public boolean creatConfig;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -38,41 +42,52 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    public boolean doNotCreate = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        if(!doNotCreate){
+            AppConfig aux = new AppConfig(true);
+            aux.save();
+        }
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+        List<AppConfig> appConfig = AppConfig.creatListConfig();
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        if(appConfig.get(0).isFirstUse()){
 
-        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+            doNotCreate = true;
+            Intent intentFirstUse = new Intent(this, FirstUse.class);
+            startActivity(intentFirstUse);
+        }else{
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_round_alarm);
-        //tabLayout.getTabAt(0).setText(R.string.tab_text_1);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_round_stats);
-        //tabLayout.getTabAt(1).setText(R.string.tab_text_2);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_round_done_outline);
-        //tabLayout.getTabAt(2).setText(R.string.tab_text_3);
-
-        AppConfig teste = new AppConfig(true);
-
-        Toast.makeText(this, String.valueOf(teste.isFirstUse), Toast.LENGTH_LONG).show();
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
 
 
+            // Create the adapter that will return a fragment for each of the three
+            // primary sections of the activity.
+            mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
+            // Set up the ViewPager with the sections adapter.
+            mViewPager = (ViewPager) findViewById(R.id.container);
+            mViewPager.setAdapter(mSectionsPagerAdapter);
 
+            TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
 
+            mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+            tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+            tabLayout.getTabAt(0).setIcon(R.drawable.ic_round_alarm);
+            //tabLayout.getTabAt(0).setText(R.string.tab_text_1);
+            tabLayout.getTabAt(1).setIcon(R.drawable.ic_round_stats);
+            //tabLayout.getTabAt(1).setText(R.string.tab_text_2);
+            tabLayout.getTabAt(2).setIcon(R.drawable.ic_round_done_outline);
+            //tabLayout.getTabAt(2).setText(R.string.tab_text_3);
+
+        }
 
     }
 
