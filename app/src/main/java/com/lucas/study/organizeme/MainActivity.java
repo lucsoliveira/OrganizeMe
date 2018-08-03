@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intentFirstUse);
         }else{
 
-            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+            Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarApp);
+            toolbar.setVisibility(View.VISIBLE);
             setSupportActionBar(toolbar);
 
 

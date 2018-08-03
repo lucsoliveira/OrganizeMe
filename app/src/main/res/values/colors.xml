@@ -7,4 +7,9 @@
     <color name="green">#63be75</color>
     <color name="red">#be6363</color>
     <color name="blue">#639ebe</color>
+
+    <!--FIRST USE-->
+    <color name="colorBlueDark">#00bdd4</color>
+    <color name="colorGreenDark">#4caf4f</color>
+    <color name="colorGreyDark">#222222</color>
 </resources>

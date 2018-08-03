@@ -33,23 +33,33 @@ public class FirstUse extends AppIntro {
         // Just create a `SliderPage` and provide title, description, background and image.
         // AppIntro will do the rest.
 
+        SliderPage slider0Page = new SliderPage();
         SliderPage slider1Page = new SliderPage();
         SliderPage slider2Page = new SliderPage();
         SliderPage slider3Page = new SliderPage();
 
+        String headerWelcome = getResources().getString(R.string.message_welcome) + " " + getResources().getString(R.string.app_name);
+        slider0Page.setTitle(headerWelcome);
+        slider0Page.setDescription(getResources().getString(R.string.tab_description));
+        slider0Page.setImageDrawable(R.drawable.ic_launcher);
+        slider0Page.setBgColor(getResources().getColor(R.color.colorGreyDark));
 
-        slider1Page.setTitle("Otimize seu tempo");
-        slider1Page.setDescription("Saiba qual a média de duração para obter uma ótima produtividade em todas as usas atividades.");
-        slider1Page.setBgColor(getResources().getColor(R.color.colorPrimaryDark));
+        slider1Page.setTitle(getResources().getString(R.string.tab_one_title));
+        slider1Page.setDescription(getResources().getString(R.string.tab_one_description));
+        slider1Page.setImageDrawable(R.drawable.ic_baseline_show_chart_24px);
+        slider1Page.setBgColor(getResources().getColor(R.color.colorGreyDark));
 
-        slider2Page.setTitle("Saiba o que lhe incomoda");
-        slider2Page.setDescription("Com base em estatísticas do seu Humor, você saberá qual atividade que mais consome-lhe energia.");
+        slider2Page.setTitle(getResources().getString(R.string.tab_two_title));
+        slider2Page.setImageDrawable(R.drawable.ic_baseline_sentiment_very_satisfied_24px);
+        slider2Page.setDescription(getResources().getString(R.string.tab_two_description));
         slider2Page.setBgColor(getResources().getColor(R.color.colorPrimaryDark));
 
-        slider3Page.setTitle("Solução para esquecimentos");
-        slider3Page.setDescription("Crie uma lista de lembretes e tarefas a fazer e não esqueça de mais nada.");
-        slider3Page.setBgColor(getResources().getColor(R.color.colorPrimaryDark));
+        slider3Page.setTitle(getResources().getString(R.string.tab_three_title));
+        slider3Page.setImageDrawable(R.drawable.ic_baseline_playlist_add_check_24px);
+        slider3Page.setDescription(getResources().getString(R.string.tab_three__description));
+        slider3Page.setBgColor(getResources().getColor(R.color.colorBlueDark));
 
+        addSlide(AppIntroFragment.newInstance(slider0Page));
         addSlide(AppIntroFragment.newInstance(slider1Page));
         addSlide(AppIntroFragment.newInstance(slider2Page));
         addSlide(AppIntroFragment.newInstance(slider3Page));
@@ -57,7 +67,7 @@ public class FirstUse extends AppIntro {
 
         // OPTIONAL METHODS
         // Override bar/separator color.
-        setBarColor(Color.parseColor("#3F51B5"));
+        //setBarColor(Color.parseColor("#3F51B5"));
         //setSeparatorColor(Color.parseColor("#2196F3"));
 
         // Hide Skip/Done button.

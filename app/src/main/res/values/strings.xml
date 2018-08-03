@@ -62,10 +62,23 @@
     <string name="todo_edit_error">Não foi possível alterar oo lembrete!</string>
 
     <!--MESSAGES-->
+    <string name="message_welcome">Bem-vindo(a) ao </string>
     <string name="message_no_tasks">Você não tem nenhuma atividade cadastrada.</string>
     <string name="message_no_timing">Você não tem nenhuma cronometragem cadastrada.</string>
     <string name="message_no_todo">Você não tem nenhuma tarefa a ser realizada.</string>
     <string name="message_no_tasks_tab">Você não tem nenhuma atividade cadastrada. Clique no botão abaixo para cadastar.</string>
     <string name="message_need_more_counts_chart">Precisamos de mais cronometragens para gerar um gráfico desta atividade. Tente selecionar outra atividade.</string>
     <string name="message_need_more_counts_bestchoice">Opss! É preciso mais cronometragens para gerar uma estatística de produtividade. Volte mais tarde.</string>
+
+    <!--TABS FIRST USE-->
+    <string name="tab_description">Software para gerenciamento de atividades.</string>
+
+    <string name="tab_one_title">Otimize seu tempo</string>
+    <string name="tab_one_description">Saiba qual média de duração é necessária para obter uma ótima produtividade em suas atividades.</string>
+
+    <string name="tab_two_title">Saiba o que lhe incomoda</string>
+    <string name="tab_two_description">Com base em estatísticas do seu Humor, você saberá qual atividade que mais consome-lhe energia.</string>
+
+    <string name="tab_three_title">Solução para esquecimentos</string>
+    <string name="tab_three__description">Crie uma lista de lembretes e tarefas a fazer e não esqueça de mais nada.</string>
 </resources>

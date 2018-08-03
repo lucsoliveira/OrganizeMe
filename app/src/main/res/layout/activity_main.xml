@@ -23,9 +23,10 @@
 
         <android.support.v7.widget.Toolbar
             android:layout_height="match_parent"
-            android:id="@+id/toolbar"
+            android:id="@+id/toolbarApp"
             android:layout_width="match_parent"
             android:layout_weight="1"
+            android:visibility="gone"
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:title="@string/app_name">
