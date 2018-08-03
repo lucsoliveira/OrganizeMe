@@ -1,26 +1,31 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Page;
 
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lucas.study.organizeme.View.Message;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.ToDoModel;
+import com.lucas.study.organizeme.Adapter.ToDo;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.List;
 
-public class ToDoTab extends Fragment {
+public class ToDos extends Fragment {
 
     public List<ToDoModel> listToDoDoing;
     public CoordinatorLayout messageNoActivities;
     public FloatingActionButton mFloatingActionButton;
     public CoordinatorLayout coordinatorLayout;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -51,7 +56,7 @@ public class ToDoTab extends Fragment {
 
         if (listToDoDoing.size() == 0) {
 
-            MessageView msgNoToDo = new MessageView(R.string.message_no_todo,
+            Message msgNoToDo = new Message(R.string.message_no_todo,
                     MaterialDrawableBuilder.IconValue.CHECK,
                     messageNoActivities, R.color.colorPrimaryDark,
                     96);
@@ -60,8 +65,10 @@ public class ToDoTab extends Fragment {
 
 
         } else {
-            ToDoAdapter adapter = new ToDoAdapter(listToDoDoing, getActivity());
+
+            ToDo adapter = new ToDo(listToDoDoing, getActivity());
             omegaRecyclerView.setAdapter(adapter);
+
         }
 
         return rootView;

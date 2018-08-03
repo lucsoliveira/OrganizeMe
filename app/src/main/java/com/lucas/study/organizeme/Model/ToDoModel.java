@@ -1,4 +1,4 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Model;
 
 import com.orm.SugarRecord;
 

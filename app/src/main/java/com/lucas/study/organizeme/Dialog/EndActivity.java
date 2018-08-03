@@ -1,4 +1,4 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -12,11 +12,14 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.lucas.study.organizeme.MainActivity;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.TimingModel;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
-public class DialogEndActivity extends Dialog implements android.view.View.OnClickListener {
+public class EndActivity extends Dialog implements View.OnClickListener {
 
     public Context c;
     public Button yes;
@@ -27,7 +30,7 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
     private CoordinatorLayout coordinatorLayout;
     public Calendar calendar;
 
-    public DialogEndActivity(Context a, Long idTask, int secondsTask) {
+    public EndActivity(Context a, Long idTask, int secondsTask) {
             super(a);
             // TODO Auto-generated constructor stub
             this.c = a;
@@ -82,7 +85,7 @@ public class DialogEndActivity extends Dialog implements android.view.View.OnCli
                     //Toast.makeText(getContext(), formattedDate, Toast.LENGTH_SHORT).show();
 
 
-                    TaskTimingModel timer = new TaskTimingModel(idTask,
+                    TimingModel timer = new TimingModel(idTask,
                             secondsTask,
                             optionProductivity,
                             optionHumor,moreInformation.getText().toString(),

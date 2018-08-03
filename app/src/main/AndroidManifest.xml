@@ -25,7 +25,7 @@
         </activity>
 
         <!--TASKS-->
-        <activity android:name="AddTaskActivity"
+        <activity android:name=".Activity.AddTask"
             android:label="@string/activity_add_activi"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -34,7 +34,7 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".EditTaskActivity"
+        <activity android:name=".Activity.EditTask"
             android:label="@string/activity_edit_activi"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -47,7 +47,7 @@
         <!--TIMING-->
 
         <activity
-            android:name=".FocusModeActivity"
+            android:name=".Activity.FocusMode"
             android:label="@string/activity_focus"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -58,7 +58,7 @@
 
 
         <activity
-            android:name=".HistoryTasksActivity"
+            android:name=".Activity.HistoryTasks"
             android:label="@string/activity_times"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
@@ -67,9 +67,9 @@
                 android:value=".MainActivity" />
         </activity>
 
-        <activity android:name=".EditTaskTimingActivity"
+        <activity android:name=".Activity.EditTaskTiming"
             android:label="@string/activity_edit_times"
-            android:parentActivityName=".HistoryTasksActivity" >
+            android:parentActivityName=".sampledata.HistoryTasksActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -78,7 +78,7 @@
         <!--END TIMING-->
 
         <!--TASKS-->
-        <activity android:name=".AddToDoActivity"
+        <activity android:name=".Activity.AddToDo"
             android:label="@string/activity_add_todo"
             android:parentActivityName=".MainActivity" >
             <!-- The meta-data tag is required if you support API level 15 and lower -->

@@ -1,21 +1,25 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Page;
 
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lucas.study.organizeme.View.Message;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.Adapter.Task;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.List;
 
-public class TasksTab extends Fragment {
+public class Tasks extends Fragment {
 
     public List<TaskModel> listTasks;
     public CoordinatorLayout messageNoActivities;
@@ -44,7 +48,7 @@ public class TasksTab extends Fragment {
             }
         });
 
-        MessageView msgNoTasks = new MessageView(R.string.message_no_tasks_tab,
+        Message msgNoTasks = new Message(R.string.message_no_tasks_tab,
                 MaterialDrawableBuilder.IconValue.TIMETABLE,
                 messageNoActivities, R.color.colorPrimaryDark,
                 96);
@@ -56,7 +60,7 @@ public class TasksTab extends Fragment {
             msgNoTasks.showMessageView();
 
         } else {
-            TasksAdapter adapter = new TasksAdapter(listTasks, getActivity());
+            Task adapter = new Task(listTasks, getActivity());
             omegaRecyclerView.setAdapter(adapter);
 
         }

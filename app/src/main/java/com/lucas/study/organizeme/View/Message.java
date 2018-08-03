@@ -1,4 +1,4 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.View;
 
 import android.graphics.drawable.Drawable;
 import android.support.design.widget.CoordinatorLayout;
@@ -6,9 +6,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.lucas.study.organizeme.R;
+
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
-public class MessageView {
+public class Message {
 
     private int msg;
     private MaterialDrawableBuilder.IconValue iconValue;
@@ -16,7 +18,7 @@ public class MessageView {
     private int colorIcon;
     private int sizeDpIcon;
 
-    public MessageView(int msg, MaterialDrawableBuilder.IconValue iconValue, CoordinatorLayout layoutAttack, int colorIcon, int sizeDpIcon){
+    public Message(int msg, MaterialDrawableBuilder.IconValue iconValue, CoordinatorLayout layoutAttack, int colorIcon, int sizeDpIcon){
 
         this.msg = msg;
         this.iconValue = iconValue;
@@ -26,7 +28,7 @@ public class MessageView {
 
     }
 
-    public MessageView(CoordinatorLayout layoutAttack){
+    public Message(CoordinatorLayout layoutAttack){
 
         this.layoutAttack = layoutAttack;
 

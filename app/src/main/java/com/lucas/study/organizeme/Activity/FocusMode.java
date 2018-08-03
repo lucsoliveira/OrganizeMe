@@ -1,10 +1,9 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -12,12 +11,14 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
+import com.lucas.study.organizeme.Dialog.EndActivity;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.TaskModel;
+
 import java.util.Calendar;
 
-public class FocusModeActivity extends AppCompatActivity implements View.OnClickListener {
+public class FocusMode extends AppCompatActivity implements View.OnClickListener {
 
     EditText editTextTodoTitle, editTextTodoDescription;
     private Button addTodo;
@@ -158,7 +159,7 @@ public class FocusModeActivity extends AppCompatActivity implements View.OnClick
             case R.id.btnStop:
 
 
-                DialogEndActivity cdd = new DialogEndActivity(view.getContext(), getIdTask(), getElapsedTime());
+                EndActivity cdd = new EndActivity(view.getContext(), getIdTask(), getElapsedTime());
                 cdd.show();
                 stopChronometer(view);
                 break;

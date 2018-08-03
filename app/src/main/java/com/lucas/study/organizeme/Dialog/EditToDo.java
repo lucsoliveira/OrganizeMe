@@ -1,4 +1,4 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -9,13 +9,14 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Toast;
 
-import java.text.SimpleDateFormat;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.ToDoModel;
+
 import java.util.Calendar;
 
-public class DialogEditToDo extends Dialog implements View.OnClickListener {
+public class EditToDo extends Dialog implements View.OnClickListener {
 
     public Context c;
     public Button editToDo, deleteToDo;
@@ -24,7 +25,7 @@ public class DialogEditToDo extends Dialog implements View.OnClickListener {
     private CoordinatorLayout coordinatorLayout;
     public Calendar calendar;
     public boolean setNotChange = false;
-    public DialogEditToDo(Context a, Long idToDo) {
+    public EditToDo(Context a, Long idToDo) {
             super(a);
             // TODO Auto-generated constructor stub
             this.c = a;

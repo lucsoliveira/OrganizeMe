@@ -1,4 +1,5 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Adapter;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -7,19 +8,24 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lucas.study.organizeme.Activity.EditTaskTiming;
+import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.Model.TimingModel;
+import com.lucas.study.organizeme.R;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
+
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapter.ViewHolder> {
+public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
     private Context mcon;
 
-    private List<TaskTimingModel> mTasksTimeList = new ArrayList<>();
+    private List<TimingModel> mTasksTimeList = new ArrayList<>();
 
-    public TaskTimingAdapter(List<TaskTimingModel> tasksList, Context con) {
+    public Timing(List<TimingModel> tasksList, Context con) {
 
         mcon = con;
         mTasksTimeList = tasksList;
@@ -67,7 +73,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
 
         }
 
-        void updateView(TaskTimingModel time) {
+        void updateView(TimingModel time) {
 
             idTime = time.getId();
             idTask = time.getIdTask();
@@ -118,7 +124,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
             switch (v.getId()) {
                 case R.id.editTime:
 
-                    Intent i = new Intent(mcon, EditTaskTimingActivity.class);
+                    Intent i = new Intent(mcon, EditTaskTiming.class);
                     i.putExtra("idTime", getIdTime());
                     mcon.startActivity(i);
 
@@ -126,7 +132,7 @@ public class TaskTimingAdapter extends OmegaRecyclerView.Adapter<TaskTimingAdapt
 
                 case R.id.deleteTime:
 
-                    TaskTimingModel timing = TaskTimingModel.findById(TaskTimingModel.class, getIdTime());
+                    TimingModel timing = TimingModel.findById(TimingModel.class, getIdTime());
                     timing.delete();
 
                     findViewById(R.id.itemTiming).setVisibility(v.GONE);

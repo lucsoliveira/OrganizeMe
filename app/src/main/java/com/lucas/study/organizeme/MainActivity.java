@@ -1,19 +1,26 @@
 package com.lucas.study.organizeme;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.design.widget.TabLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import com.lucas.study.organizeme.Activity.AddTask;
+import com.lucas.study.organizeme.Activity.AddToDo;
+import com.lucas.study.organizeme.Activity.HistoryTasks;
+import com.lucas.study.organizeme.Model.AppConfig;
+import com.lucas.study.organizeme.Page.Stats;
+import com.lucas.study.organizeme.Page.Tasks;
+import com.lucas.study.organizeme.Page.ToDos;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,17 +58,6 @@ public class MainActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-        /*
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        */
-
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_round_alarm);
         //tabLayout.getTabAt(0).setText(R.string.tab_text_1);
         tabLayout.getTabAt(1).setIcon(R.drawable.ic_round_stats);
@@ -69,17 +65,25 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(2).setIcon(R.drawable.ic_round_done_outline);
         //tabLayout.getTabAt(2).setText(R.string.tab_text_3);
 
+        AppConfig teste = new AppConfig(true);
+
+        Toast.makeText(this, String.valueOf(teste.isFirstUse), Toast.LENGTH_LONG).show();
+
+
+
+
+
 
     }
 
 
     public void openAddTaskActivity(View view) {
-        Intent intent = new Intent(this, AddTaskActivity.class);
+        Intent intent = new Intent(this, AddTask.class);
         startActivity(intent);
     }
 
     public void openAddToDoActivity(View view) {
-        Intent intent = new Intent(this, AddToDoActivity.class);
+        Intent intent = new Intent(this, AddToDo.class);
         startActivity(intent);
     }
 
@@ -104,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_history_tasks) {
-            Intent intent = new Intent(MainActivity.this, HistoryTasksActivity.class);
+            Intent intent = new Intent(MainActivity.this, HistoryTasks.class);
             startActivity(intent);
         }
 
@@ -126,16 +130,16 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch (position) {
                 case 0 :
-                    TasksTab tab1 = new TasksTab();
+                    Tasks tab1 = new Tasks();
                     return tab1;
 
                 case 1 :
-                    StatsTab tab2 = new StatsTab();
+                    Stats tab2 = new Stats();
                     return tab2;
 
 
                 case 2 :
-                    ToDoTab tab3 = new ToDoTab();
+                    ToDos tab3 = new ToDos();
                     return tab3;
 
                 default:

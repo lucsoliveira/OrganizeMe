@@ -1,29 +1,24 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Page;
 
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.lucas.study.organizeme.View.Message;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.Model.TimingModel;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import lecho.lib.hellocharts.formatter.SimpleAxisValueFormatter;
 import lecho.lib.hellocharts.model.Axis;
@@ -35,7 +30,7 @@ import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
 
-public class StatsTab extends Fragment implements AdapterView.OnItemSelectedListener {
+public class Stats extends Fragment implements AdapterView.OnItemSelectedListener {
 
     /* CHART */
     private LineChartView chart;
@@ -57,11 +52,11 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     private boolean pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
     public CoordinatorLayout messageChart, messageBestChoice, chartView;
-    public MessageView msgBestChoice, msgNoTasks;
+    public Message msgBestChoice, msgNoTasks;
     public List<TaskModel> listTasks = TaskModel.findWithQuery(TaskModel.class,"Select * from Task_Model where status = ? order by id DESC", "1");
     /* END CHART */
 
-    final List<TaskTimingModel> times = TaskTimingModel.createTaskTimeListWithLimit("6");
+    final List<TimingModel> times = TimingModel.createTaskTimeListWithLimit("6");
 
     List<Long> idActiveTasks = new ArrayList<Long>();
 
@@ -80,13 +75,13 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
 
 
-        msgBestChoice = new MessageView(R.string.message_need_more_counts_bestchoice,
+        msgBestChoice = new Message(R.string.message_need_more_counts_bestchoice,
                 MaterialDrawableBuilder.IconValue.INFORMATION,
                 messageBestChoice,
                 R.color.colorPrimaryDark,
                 96);
 
-        msgNoTasks = new MessageView(R.string.message_no_tasks,
+        msgNoTasks = new Message(R.string.message_no_tasks,
                 MaterialDrawableBuilder.IconValue.CHART_LINE,
                 messageChart, R.color.colorPrimaryDark,
                 96);
@@ -294,9 +289,9 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
 
             /* CHART */
             //generateValues();
-            List<TaskTimingModel> list = TaskTimingModel.createTaskTimeListWithLimit("6", String.valueOf(idActiveTasks.get(pos)));
+            List<TimingModel> list = TimingModel.createTaskTimeListWithLimit("6", String.valueOf(idActiveTasks.get(pos)));
 
-            MessageView msgNeedMoreCountsChart = new MessageView(R.string.message_need_more_counts_chart,
+            Message msgNeedMoreCountsChart = new Message(R.string.message_need_more_counts_chart,
                     MaterialDrawableBuilder.IconValue.CHART_LINE,
                     messageChart,
                     R.color.colorPrimaryDark,
@@ -335,7 +330,7 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
         }
         */
 
-    private void generateTimingValues(List<TaskTimingModel> list) {
+    private void generateTimingValues(List<TimingModel> list) {
 
         int sizeList = list.size() - 1;
         values = new ArrayList<PointValue>();
@@ -351,7 +346,7 @@ public class StatsTab extends Fragment implements AdapterView.OnItemSelectedList
     private int bestProductivity(String humor, Long task){
 
         if(task == null){
-            List<TaskTimingModel> timesProductivity = TaskTimingModel.createTaskTimeProductivity("2",humor,"100");
+            List<TimingModel> timesProductivity = TimingModel.createTaskTimeProductivity("2",humor,"100");
             //List<TaskTimingModel> timesProductivityMedium = TaskTimingModel.createTaskTimeProductivity("1",humor,"100");
             int sizeList = timesProductivity.size();
             //int sizeListMedium = timesProductivityMedium.size();

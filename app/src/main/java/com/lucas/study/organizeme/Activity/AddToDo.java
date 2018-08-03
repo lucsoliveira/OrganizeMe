@@ -1,4 +1,4 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,10 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.ToDoModel;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class AddToDoActivity extends AppCompatActivity {
+public class AddToDo extends AppCompatActivity {
 
     EditText editTextTodoTitle, editTextTodoDescription;
     private Button addTodo;
@@ -59,7 +62,6 @@ public class AddToDoActivity extends AppCompatActivity {
                         .setAction("DESFAZER", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
 
                                 Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade deletada!", Snackbar.LENGTH_SHORT);
                                 snackbar1.show();

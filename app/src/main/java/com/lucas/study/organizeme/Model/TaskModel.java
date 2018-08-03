@@ -1,16 +1,13 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Model;
 
 import com.orm.SugarRecord;
-import com.orm.query.Condition;
-import com.orm.query.Select;
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.List;
 
 public class TaskModel extends SugarRecord<TaskModel> {
 
-    String titleTask;
-    int status;//1 - Active ,  0 - Not
+    public String titleTask;
+    public int status;//1 - Active ,  0 - Not
 
     public int getStatusTask() {
         return status;

@@ -1,4 +1,4 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,11 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class EditTaskTimingActivity extends AppCompatActivity {
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.Model.TimingModel;
+
+public class EditTaskTiming extends AppCompatActivity {
 
     private Button editTask;
     public RadioButton optionGood, optionMedium, optionBad, optionHappy, optionNeutral, optionSad;
@@ -40,7 +44,7 @@ public class EditTaskTimingActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         // Capture the DB title and set the string as its text
-        final TaskTimingModel time = TaskTimingModel.findById(TaskTimingModel.class, intent.getLongExtra("idTime", 0));
+        final TimingModel time = TimingModel.findById(TimingModel.class, intent.getLongExtra("idTime", 0));
         final TaskModel task = TaskModel.findById(TaskModel.class, time.getIdTask());
 
         txtTitleTime.setText("#" + time.getId() + " " + task.getTitleTask());

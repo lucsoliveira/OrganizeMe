@@ -1,9 +1,8 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -12,6 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lucas.study.organizeme.Dialog.EndActivity;
+import com.lucas.study.organizeme.Activity.EditTask;
+import com.lucas.study.organizeme.Activity.FocusMode;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.TaskModel;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
@@ -19,12 +23,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHolder> {
+public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
     private Context mcon;
     private boolean stateChronometer;
 
     public CoordinatorLayout coordinatorLayout;
+
+
     public boolean getStateChronometer(View v){
         return stateChronometer;
     }
@@ -37,7 +43,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
 
     private List<TaskModel> mTasksList = new ArrayList<>();
 
-    public TasksAdapter(List<TaskModel> tasksList, Context con) {
+    public Task(List<TaskModel> tasksList, Context con) {
 
         mcon = con;
         mTasksList = tasksList;
@@ -176,7 +182,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
             switch (v.getId()) {
                 case R.id.btnEditTask:
 
-                    Intent i = new Intent(mcon, EditTaskActivity.class);
+                    Intent i = new Intent(mcon, EditTask.class);
                     i.putExtra("idTask", getIdTask());
                     mcon.startActivity(i);
 
@@ -220,7 +226,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
 
                 case R.id.btnPlay:
 
-                    Intent intentPlay = new Intent(mcon, FocusModeActivity.class);
+                    Intent intentPlay = new Intent(mcon, FocusMode.class);
                     intentPlay.putExtra("idTask", getIdTask());
                     mcon.startActivity(intentPlay);
 
@@ -236,7 +242,7 @@ public class TasksAdapter extends OmegaRecyclerView.Adapter<TasksAdapter.ViewHol
                 case R.id.btnStop:
 
 
-                    DialogEndActivity cdd = new DialogEndActivity(itemView.getContext(), getIdTask(), getElapsedTime());
+                    EndActivity cdd = new EndActivity(itemView.getContext(), getIdTask(), getElapsedTime());
                     cdd.show();
                     stopChronometer(v);
                     setSwipeEnable(true);

@@ -1,17 +1,17 @@
-package com.lucas.study.organizeme;
+package com.lucas.study.organizeme.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.lucas.study.organizeme.Dialog.EditToDo;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.Model.ToDoModel;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
@@ -19,13 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ToDoAdapter extends OmegaRecyclerView.Adapter<ToDoAdapter.ViewHolder> {
+public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
 
     private Context mcon;
 
     private List<ToDoModel> mTodoList = new ArrayList<>();
 
-    public ToDoAdapter(List<ToDoModel> todoList, Context con) {
+    public ToDo(List<ToDoModel> todoList, Context con) {
 
         mcon = con;
         mTodoList = todoList;
@@ -113,12 +113,12 @@ public class ToDoAdapter extends OmegaRecyclerView.Adapter<ToDoAdapter.ViewHolde
             switch (view.getId()) {
                 case R.id.txtNameToDo:
 
-                    DialogEditToDo cdd = new DialogEditToDo(itemView.getContext(), getIdToDo());
+                    EditToDo cdd = new EditToDo(itemView.getContext(), getIdToDo());
                     cdd.show();
                     break;
                 case R.id.editToDo:
 
-                    DialogEditToDo cdd2 = new DialogEditToDo(itemView.getContext(), getIdToDo());
+                    EditToDo cdd2 = new EditToDo(itemView.getContext(), getIdToDo());
                     cdd2.show();
                     break;
             }
