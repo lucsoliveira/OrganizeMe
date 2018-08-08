@@ -29,13 +29,15 @@ public class EndActivity extends Dialog implements View.OnClickListener {
     public RadioButton optionGood, optionMedium, optionBad, optionHappy, optionNeutral, optionSad;
     private CoordinatorLayout coordinatorLayout;
     public Calendar calendar;
+    final String startedAt;
 
-    public EndActivity(Context a, Long idTask, int secondsTask) {
+    public EndActivity(Context a, Long idTask, int secondsTask, String startedAt) {
             super(a);
             // TODO Auto-generated constructor stub
             this.c = a;
             this.idTask = idTask;
             this.secondsTask = secondsTask;
+            this.startedAt = startedAt;
         }
 
         @Override
@@ -88,8 +90,10 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     TimingModel timer = new TimingModel(idTask,
                             secondsTask,
                             optionProductivity,
-                            optionHumor,moreInformation.getText().toString(),
-                            formattedDate
+                            optionHumor,
+                            moreInformation.getText().toString(),
+                            formattedDate,
+                            startedAt
                     );
                     timer.save();
 

@@ -27,8 +27,7 @@ public class FirstUse extends AppIntro {
 
         // Add your slide fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
-        //addSlide(TestSlide.newInstance(R.layout.fragment_intro2));
-
+      
         // Instead of fragments, you can also use our default slide.
         // Just create a `SliderPage` and provide title, description, background and image.
         // AppIntro will do the rest.
@@ -64,11 +63,6 @@ public class FirstUse extends AppIntro {
         addSlide(AppIntroFragment.newInstance(slider2Page));
         addSlide(AppIntroFragment.newInstance(slider3Page));
 
-
-        // OPTIONAL METHODS
-        // Override bar/separator color.
-        //setBarColor(Color.parseColor("#3F51B5"));
-        //setSeparatorColor(Color.parseColor("#2196F3"));
 
         // Hide Skip/Done button.
         showSkipButton(true);

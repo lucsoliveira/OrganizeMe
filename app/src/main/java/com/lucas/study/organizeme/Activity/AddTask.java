@@ -28,8 +28,11 @@ public class AddTask extends AppCompatActivity {
                 .coordinatorLayout);
         editTextTitle   = (EditText)findViewById(R.id.editTextTitle);
 
-        // Get the Intent that started this activity and extract the string
+        // Get the Intent that started
+        // this activity and extract the string
         Intent intent = getIntent();
+
+
 
         addTask = (Button) findViewById(R.id.addTask);
 

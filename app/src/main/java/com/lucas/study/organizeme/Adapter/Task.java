@@ -242,10 +242,13 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                 case R.id.btnStop:
 
 
-                    EndActivity cdd = new EndActivity(itemView.getContext(), getIdTask(), getElapsedTime());
+                    /*
+                    EndActivity cdd = new EndActivity(itemView.getContext(), getIdTask(), getElapsedTime(), startAt);
                     cdd.show();
                     stopChronometer(v);
                     setSwipeEnable(true);
+
+                    */
 
                     break;
             }

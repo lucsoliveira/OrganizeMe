@@ -9,9 +9,11 @@ public class TimingModel extends SugarRecord<TimingModel> {
     private Long idTask;
     private String createdAt;
     private String updatedAt;
+    private String startAt;
     private int timeSecondsTask;
     private int productivity;
     private int humor;
+    private int humorBefore;
     private String moreInformation;
     /*
 
@@ -30,7 +32,13 @@ public class TimingModel extends SugarRecord<TimingModel> {
     public TimingModel(){
     }
 
-    public TimingModel(Long idTask, int timeSecondsTask, int productivity, int humor, String moreInformation, String createdAt){
+    public TimingModel(Long idTask,
+                       int timeSecondsTask,
+                       int productivity,
+                       int humor,
+                       String moreInformation,
+                       String createdAt,
+                       String startAt){
 
         this.idTask = idTask;
         this.timeSecondsTask = timeSecondsTask;
@@ -38,6 +46,26 @@ public class TimingModel extends SugarRecord<TimingModel> {
         this.humor = humor;
         this.moreInformation = moreInformation;
         this.createdAt = createdAt;
+        this.startAt = startAt;
+
+    }
+
+    public TimingModel(Long idTask,
+                       int timeSecondsTask,
+                       int productivity,
+                       int humorBefore,
+                       int humor,
+                       String moreInformation,
+                       String createdAt,
+                       String startAt){
+
+        this.idTask = idTask;
+        this.timeSecondsTask = timeSecondsTask;
+        this.productivity = productivity;
+        this.humor = humor;
+        this.moreInformation = moreInformation;
+        this.createdAt = createdAt;
+        this.startAt = startAt;
 
     }
 
@@ -80,6 +108,14 @@ public class TimingModel extends SugarRecord<TimingModel> {
 
     public void setMoreInformation(String moreInformation) {
         this.moreInformation = moreInformation;
+    }
+
+    public int getHumorBefore() {
+        return humorBefore;
+    }
+
+    public void setHumorBefore(int humorBefore) {
+        this.humorBefore = humorBefore;
     }
     /* END GETS AND SETS*/
 
@@ -125,5 +161,13 @@ public class TimingModel extends SugarRecord<TimingModel> {
 
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getStartAt() {
+        return startAt;
+    }
+
+    public void setStartAt(String startAt) {
+        this.startAt = startAt;
     }
 }

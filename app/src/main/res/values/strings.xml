@@ -45,6 +45,7 @@
 
     <!--END TIMING-->
     <string name="txt_info_productivity">Como você avalia seu rendimento?</string>
+    <string name="txt_info_humor_before">Qual era seu estado de espírito antes de realizar essa atividade?</string>
     <string name="txt_info_humor">Como você se sente agora?</string>
     <string name="txt_info_duration">Duração em Minutos</string>
 
@@ -69,7 +70,7 @@
     <string name="message_no_tasks_tab">Você não tem nenhuma atividade cadastrada. Clique no botão abaixo para cadastar.</string>
     <string name="message_need_more_counts_chart">Precisamos de mais cronometragens para gerar um gráfico desta atividade. Tente selecionar outra atividade.</string>
     <string name="message_need_more_counts_bestchoice">Opss! É preciso mais cronometragens para gerar uma estatística de produtividade. Volte mais tarde.</string>
-
+    <string name="message_need_more_for_interval">Necessitamos de mais cronometragens para encontrar o intervalo do seu dia em que você é mais produtivo.</string>
     <!--TABS FIRST USE-->
     <string name="tab_description">Software para gerenciamento de atividades.</string>
 

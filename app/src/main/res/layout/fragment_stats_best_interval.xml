@@ -21,9 +21,15 @@
             android:layout_margin="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Intervalo de produtividade"
+            android:text="Horário Mais Produtivo"
             android:textSize="@dimen/title_card"
             />
+
+
+        <include
+            android:visibility="gone"
+            android:id="@+id/messageBestInterval"
+            layout="@layout/fragment_message" />
 
     </android.support.v7.widget.CardView>
 

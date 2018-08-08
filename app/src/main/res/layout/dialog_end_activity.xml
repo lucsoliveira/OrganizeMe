@@ -69,6 +69,45 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:text="@string/txt_info_humor_before"
+        android:textColor="@android:color/white"
+        android:textSize="12dp"
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/optionHappyBefore"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/colorTerciary"
+            android:text="@string/txt_happy"/>
+
+        <RadioButton
+            android:id="@+id/optionNeutralBefore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTerciary"
+            android:text="@string/txt_neutral"/>
+
+        <RadioButton
+            android:id="@+id/optionSadBefore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTerciary"
+
+            android:text="@string/txt_sad"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
         android:text="@string/txt_info_humor"
         android:textColor="@android:color/white"
         android:textSize="12dp"

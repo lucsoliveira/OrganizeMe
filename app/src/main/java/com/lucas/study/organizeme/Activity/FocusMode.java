@@ -20,6 +20,7 @@ import com.lucas.study.organizeme.Model.TaskModel;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import static android.app.Notification.EXTRA_NOTIFICATION_ID;
@@ -41,6 +42,8 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         this.stateChronometer = state;
     }
     private boolean stateChronometer;
+
+    public String startedAt;
 
     public boolean getStateChronometer(View v){
         return stateChronometer;
@@ -83,6 +86,14 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         if(chronometer().getBase() != 0){
             chronometer().setBase(chronometer().getBase());
         }
+
+        //GET TIME CREATED
+        Calendar c = Calendar.getInstance();
+
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        startedAt = df.format(c.getTime());
+
+
     }
 
     /* Chronometer */
@@ -168,7 +179,8 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
             case R.id.btnStop:
 
 
-                EndActivity cdd = new EndActivity(view.getContext(), getIdTask(), getElapsedTime());
+
+                EndActivity cdd = new EndActivity(view.getContext(), getIdTask(), getElapsedTime(), startedAt);
                 cdd.show();
                 stopChronometer(view);
                 break;

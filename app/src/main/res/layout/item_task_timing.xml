@@ -33,7 +33,7 @@
         </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_date"
+        android:id="@+id/linear_date_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtNameTask">
@@ -43,7 +43,32 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="@string/txt_date"
+            android:text="Finalizado:"
+            android:textColor="#333"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/txtDateEnd"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/colorAccent"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearCreate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linear_date_end">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="Criado: :"
             android:textColor="#333"
             android:textSize="16dp" />
 
@@ -55,15 +80,14 @@
             android:textColor="@color/colorAccent"
             android:textSize="16dp" />
 
-
-
     </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linear_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/linear_date">
+            android:layout_below="@id/linearCreate">
 
 
             <TextView

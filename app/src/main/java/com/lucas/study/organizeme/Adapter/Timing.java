@@ -48,7 +48,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private TextView txtNameTask, txtDuration, txtProductivity, txtHumor, txtMoreInfo, txtDate;
+        private TextView txtNameTask, txtDuration, txtProductivity, txtHumor, txtMoreInfo, txtDate, txtCreated;
         private ImageButton editTime, deleteTime;
         private long idTime, idTask;
         private int durationTime;
@@ -69,7 +69,10 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             txtProductivity = findViewById(R.id.txtProductivity);
             txtHumor = findViewById(R.id.txtHumor);
             txtMoreInfo = findViewById(R.id.txtMoreInfo);
-            txtDate = findViewById(R.id.txtDate);
+            txtDate = findViewById(R.id.txtDateEnd);
+            txtCreated = findViewById(R.id.txtDate);
+
+
 
         }
 
@@ -91,6 +94,9 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
             txtDuration.setText(getDurationString(durationTime));
             txtDate.setText(dateCreate);
+            txtCreated.setText(time.getStartAt());
+
+
 
             switch (time.getProductivity() ){
                 case 2:

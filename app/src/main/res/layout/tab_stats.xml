@@ -18,9 +18,12 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
 
-            <include layout="@layout/fragment_stats_best_choice"></include>
-            <include layout="@layout/fragment_chart_productivity"></include>
-            <include layout="@layout/fragment_stats_humor"></include>
+            <include layout="@layout/fragment_stats_best_choice" />
+
+            <include layout="@layout/fragment_chart_productivity" />
+
+
+            <include layout="@layout/fragment_stats_best_interval" />
 
         </LinearLayout>
 

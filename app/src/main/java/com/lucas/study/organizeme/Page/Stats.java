@@ -51,8 +51,8 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
     private boolean hasLabelForSelected = false;
     private boolean pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
-    public CoordinatorLayout messageChart, messageBestChoice, chartView;
-    public Message msgBestChoice, msgNoTasks;
+    public CoordinatorLayout messageChart, messageBestChoice, chartView, messageBestInterval;
+    public Message msgBestChoice, msgNoTasks, msgBestInterval;
     public List<TaskModel> listTasks = TaskModel.findWithQuery(TaskModel.class,"Select * from Task_Model where status = ? order by id DESC", "1");
     /* END CHART */
 
@@ -69,6 +69,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
         chartView = (CoordinatorLayout) rootView.findViewById(R.id.chartView);
         messageChart = (CoordinatorLayout) rootView.findViewById(R.id.messageChart);
         messageBestChoice = (CoordinatorLayout) rootView.findViewById(R.id.messageBestChoice);
+        messageBestInterval = (CoordinatorLayout) rootView.findViewById(R.id.messageBestInterval);
 
 
 
@@ -85,6 +86,12 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
                 MaterialDrawableBuilder.IconValue.CHART_LINE,
                 messageChart, R.color.colorPrimaryDark,
                 96);
+
+        msgBestInterval = new Message(R.string.message_need_more_for_interval,
+                MaterialDrawableBuilder.IconValue.TIMELAPSE,
+                messageBestInterval, R.color.colorPrimaryDark,
+                96);
+
 
         Spinner spinnerHumor = (Spinner) rootView.findViewById(R.id.spinnerHumor);
 
@@ -113,6 +120,9 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
                 /* SPINNER HUMOR **/
 
+                msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
+                msgBestInterval.showMessageViewWithString("Com base em suas estatísticas, o intervalo do dia em que você é mais produtivo é entre 19:00 às 20:00.");
+
 
             }
 
@@ -132,6 +142,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
             spinnerTaskChart.setAdapter(dataAdapter);
 
             msgBestChoice.showMessageView();
+
         }
 
         if(listTasks.size() == 0){
@@ -141,6 +152,8 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
             msgBestChoice.showMessageView();
 
         }
+
+
 
 
 
@@ -271,7 +284,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
                 }
 
-                msgBestChoice.showMessageViewWithString("Com base em suas cronometragens, nos dias em que você sentir-se \"" + activesHumor.get(pos) + "\" e desejaste obter uma boa produtividade, recomendamos " +
+                msgBestChoice.showMessageViewWithString("Com base em suas cronometragens, nos dias em que você está \"" + activesHumor.get(pos) + "\" e desejaste obter uma boa produtividade, recomendamos " +
                         "uma duração média de aproximadamente " + minutes + " minutos para suas atividades.");
 
             }else{
