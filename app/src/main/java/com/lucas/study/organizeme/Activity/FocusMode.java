@@ -90,7 +90,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         //GET TIME CREATED
         Calendar c = Calendar.getInstance();
 
-        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
         startedAt = df.format(c.getTime());
 
 

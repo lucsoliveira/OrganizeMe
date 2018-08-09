@@ -24,9 +24,11 @@ public class EndActivity extends Dialog implements View.OnClickListener {
     public Context c;
     public Button yes;
     public Long idTask;
-    public int secondsTask, optionProductivity, optionHumor;
+    public int secondsTask, optionProductivity, optionHumor, optionHumorBefore;
     public EditText moreInformation;
-    public RadioButton optionGood, optionMedium, optionBad, optionHappy, optionNeutral, optionSad;
+    public RadioButton optionGood, optionMedium, optionBad,
+            optionHappyBefore, optionNeutralBefore, optionSadBefore,
+            optionHappy, optionNeutral, optionSad;
     private CoordinatorLayout coordinatorLayout;
     public Calendar calendar;
     final String startedAt;
@@ -50,13 +52,26 @@ public class EndActivity extends Dialog implements View.OnClickListener {
             yes.setOnClickListener(this);
 
             /* RADIO BUTTONS */
+
             optionGood = (RadioButton) findViewById(R.id.optionGood);
             optionMedium = (RadioButton) findViewById(R.id.optionMedium);
             optionBad = (RadioButton) findViewById(R.id.optionBad);
 
+            /* BEFORE ACTIVITY */
+
+            optionHappyBefore = (RadioButton) findViewById(R.id.optionHappyBefore);
+            optionNeutralBefore = (RadioButton) findViewById(R.id.optionNeutralBefore);
+            optionSadBefore = (RadioButton) findViewById(R.id.optionSadBefore);
+
+
+            /* END BEFOR */
+
+            /* AFTER ACTIVITY */
             optionHappy = (RadioButton) findViewById(R.id.optionHappy);
             optionNeutral = (RadioButton) findViewById(R.id.optionNeutral);
             optionSad = (RadioButton) findViewById(R.id.optionSad);
+            /* END AFTER */
+
 
             moreInformation = (EditText)findViewById(R.id.moreInformation);
 
@@ -77,12 +92,16 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     if(optionHappy.isChecked()){ optionHumor = 2;}
                     else if(optionNeutral.isChecked()){ optionHumor = 1;}
                     else if(optionSad.isChecked()){ optionHumor = 0;}
+
+                    if(optionHappyBefore.isChecked()){ optionHumorBefore = 2;}
+                    else if(optionNeutralBefore.isChecked()){ optionHumorBefore = 1;}
+                    else if(optionSadBefore.isChecked()){ optionHumorBefore = 0;}
                     /* END RADIO BUTTONS */
 
                     //GET TIME NOW
                     Calendar c = Calendar.getInstance();
                     //System.out.println("Current time =&gt; "+c.getTime());
-                    SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+                    SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
                     String formattedDate = df.format(c.getTime());
                     //Toast.makeText(getContext(), formattedDate, Toast.LENGTH_SHORT).show();
 
@@ -90,6 +109,7 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     TimingModel timer = new TimingModel(idTask,
                             secondsTask,
                             optionProductivity,
+                            optionHumorBefore,
                             optionHumor,
                             moreInformation.getText().toString(),
                             formattedDate,

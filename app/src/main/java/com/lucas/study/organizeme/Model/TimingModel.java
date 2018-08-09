@@ -12,7 +12,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
     private String startAt;
     private int timeSecondsTask;
     private int productivity;
-    private int humor;
+    private int humorAfter;
     private int humorBefore;
     private String moreInformation;
     /*
@@ -35,26 +35,8 @@ public class TimingModel extends SugarRecord<TimingModel> {
     public TimingModel(Long idTask,
                        int timeSecondsTask,
                        int productivity,
-                       int humor,
-                       String moreInformation,
-                       String createdAt,
-                       String startAt){
-
-        this.idTask = idTask;
-        this.timeSecondsTask = timeSecondsTask;
-        this.productivity = productivity;
-        this.humor = humor;
-        this.moreInformation = moreInformation;
-        this.createdAt = createdAt;
-        this.startAt = startAt;
-
-    }
-
-    public TimingModel(Long idTask,
-                       int timeSecondsTask,
-                       int productivity,
                        int humorBefore,
-                       int humor,
+                       int humorAfter,
                        String moreInformation,
                        String createdAt,
                        String startAt){
@@ -62,7 +44,8 @@ public class TimingModel extends SugarRecord<TimingModel> {
         this.idTask = idTask;
         this.timeSecondsTask = timeSecondsTask;
         this.productivity = productivity;
-        this.humor = humor;
+        this.humorBefore = humorBefore;
+        this.humorAfter = humorAfter;
         this.moreInformation = moreInformation;
         this.createdAt = createdAt;
         this.startAt = startAt;
@@ -70,6 +53,15 @@ public class TimingModel extends SugarRecord<TimingModel> {
     }
 
     /* GETS AND SETS*/
+
+    public int getHumorAfter() {
+        return humorAfter;
+    }
+
+    public void setHumorAfter(int humorAfter) {
+        this.humorAfter = humorAfter;
+    }
+
     public Long getIdTask() {
         return idTask;
     }
@@ -92,14 +84,6 @@ public class TimingModel extends SugarRecord<TimingModel> {
 
     public void setProductivity(int productivity) {
         this.productivity = productivity;
-    }
-
-    public int getHumor() {
-        return humor;
-    }
-
-    public void setHumor(int humor) {
-        this.humor = humor;
     }
 
     public String getMoreInformation() {

@@ -70,7 +70,7 @@ public class EditTaskTiming extends AppCompatActivity {
 
         }
 
-        switch (time.getHumor()) {
+        switch (time.getHumorAfter()) {
             case 2:
                 optionHappy.setChecked(true);
                 break;
@@ -89,7 +89,7 @@ public class EditTaskTiming extends AppCompatActivity {
             public void onClick(View view) {
 
                 int oldProductivity = time.getProductivity();
-                int oldHumor = time.getHumor();
+                int oldHumor = time.getHumorAfter();
                 int oldMinute = time.getTimeSecondsTask()/60;
 
 
@@ -115,7 +115,7 @@ public class EditTaskTiming extends AppCompatActivity {
                 if(newHumor == oldHumor){
 
                 }else{
-                    time.setHumor(newHumor);
+                    time.setHumorAfter(newHumor);
                 }
 
                 if(oldMinute == newMinute){

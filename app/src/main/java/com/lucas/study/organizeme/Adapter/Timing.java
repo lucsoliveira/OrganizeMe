@@ -48,7 +48,8 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private TextView txtNameTask, txtDuration, txtProductivity, txtHumor, txtMoreInfo, txtDate, txtCreated;
+        private TextView txtNameTask, txtDuration, txtProductivity,
+                txtHumorAfter, txtHumorBefore, txtMoreInfo, txtDate, txtCreated;
         private ImageButton editTime, deleteTime;
         private long idTime, idTask;
         private int durationTime;
@@ -67,7 +68,8 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             txtNameTask = findViewById(R.id.txtNameTask);
             txtDuration = findViewById(R.id.txtDuration);
             txtProductivity = findViewById(R.id.txtProductivity);
-            txtHumor = findViewById(R.id.txtHumor);
+            txtHumorAfter = findViewById(R.id.txtHumorAfter);
+            txtHumorBefore= findViewById(R.id.txtHumorBefore);
             txtMoreInfo = findViewById(R.id.txtMoreInfo);
             txtDate = findViewById(R.id.txtDateEnd);
             txtCreated = findViewById(R.id.txtDate);
@@ -111,15 +113,27 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
             }
 
-            switch (time.getHumor() ){
+            switch (time.getHumorAfter() ){
                 case 2:
-                    txtHumor.setText(R.string.txt_happy);
+                    txtHumorAfter.setText(R.string.txt_happy);
                     break;
                 case 1:
-                    txtHumor.setText(R.string.txt_neutral);
+                    txtHumorAfter.setText(R.string.txt_neutral);
                     break;
                 case 0:
-                    txtHumor.setText(R.string.txt_sad);
+                    txtHumorAfter.setText(R.string.txt_sad);
+                    break;
+            }
+
+            switch (time.getHumorBefore() ){
+                case 2:
+                    txtHumorBefore.setText(R.string.txt_happy);
+                    break;
+                case 1:
+                    txtHumorBefore.setText(R.string.txt_neutral);
+                    break;
+                case 0:
+                    txtHumorBefore.setText(R.string.txt_sad);
                     break;
             }
 
