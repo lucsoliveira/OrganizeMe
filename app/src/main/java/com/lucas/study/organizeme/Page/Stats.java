@@ -285,7 +285,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
                 }
 
                 msgBestChoice.showMessageViewWithString("Com base em suas cronometragens, nos dias em que você está \"" + activesHumor.get(pos) + "\" e desejaste obter uma boa produtividade, recomendamos " +
-                        "uma duração média de aproximadamente " + minutes + " minutos para suas atividades.");
+                        "uma duração maxima de aproximadamente " + minutes + " minutos para realizar suas atividades.");
 
             }else{
 

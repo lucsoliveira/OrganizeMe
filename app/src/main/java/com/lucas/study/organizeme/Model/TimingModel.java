@@ -125,7 +125,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
     }
     public static List<TimingModel> createTaskTimeProductivity(String productivity, String humor, String limit) {
 
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? and humor = ? order by id DESC limit ?", productivity, humor, limit);
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? and humor_Before = ? order by id DESC limit ?", productivity, humor, limit);
 
         return listTimeProductivity;
     }

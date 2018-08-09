@@ -8,6 +8,9 @@
     <string name="activity_add_todo">Criar Lembrete</string>
     <string name="activity_focus">Modo Produtividade</string>
 
+    <!--WIDGETS-->
+    <string name="widget_tittle_best_choice">Melhor Produtividade</string>
+
     <!--BTN-->
     <string name="btn_edit">Editar</string>
     <string name="btn_delete">Deletar</string>
