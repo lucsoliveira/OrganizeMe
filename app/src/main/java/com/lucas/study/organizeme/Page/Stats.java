@@ -3,12 +3,14 @@ package com.lucas.study.organizeme.Page;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.lucas.study.organizeme.View.Message;
 import com.lucas.study.organizeme.R;
@@ -71,11 +73,6 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
         messageBestChoice = (CoordinatorLayout) rootView.findViewById(R.id.messageBestChoice);
         messageBestInterval = (CoordinatorLayout) rootView.findViewById(R.id.messageBestInterval);
 
-
-
-        //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
-
-
         msgBestChoice = new Message(R.string.message_need_more_counts_bestchoice,
                 MaterialDrawableBuilder.IconValue.INFORMATION,
                 messageBestChoice,
@@ -97,6 +94,17 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
         //IF DON`T HAVE ANY TASK ADDED
         if(listTasks.size() != 0){
+            Toast.makeText(getContext(), "Best Interval: " + bestInterval(), Toast.LENGTH_SHORT).show();
+
+            msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
+
+            if(bestInterval() == "0"){
+                msgBestInterval.showMessageViewWithString("Nao ha cronometragens suficientes. Continue usando o aplicativo.");
+                msgBestInterval.showMessageView();
+            }else{
+                msgBestInterval.showMessageViewWithString("Com base em suas estatísticas, o intervalo do dia em que você é mais produtivo ocorre entre " + bestInterval());
+
+            }
 
             if(times.size() >= 5){
 
@@ -119,11 +127,6 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
                 spinnerHumor.setAdapter(dataAdapterHumor);
 
                 /* SPINNER HUMOR **/
-
-                msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
-                msgBestInterval.showMessageViewWithString("Com base em suas estatísticas, o intervalo do dia em que você é mais produtivo é entre 19:00 às 20:00.");
-
-
             }
 
 
@@ -151,11 +154,11 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
             msgNoTasks.showMessageView();
             msgBestChoice.showMessageView();
 
+            msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
+            msgBestInterval.showMessageViewWithString("Nao ha cronometragens suficientes. Continue usando o aplicativo.");
+            msgBestInterval.showMessageView();
+
         }
-
-
-
-
 
         return rootView;
     }
@@ -360,9 +363,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
         if(task == null){
             List<TimingModel> timesProductivity = TimingModel.createTaskTimeProductivity("2",humor,"100");
-            //List<TaskTimingModel> timesProductivityMedium = TaskTimingModel.createTaskTimeProductivity("1",humor,"100");
             int sizeList = timesProductivity.size();
-            //int sizeListMedium = timesProductivityMedium.size();
             int secondsNeutral = 0;
 
             if(sizeList == 0){
@@ -375,17 +376,6 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
                 secondsMedium += timesProductivity.get(i).getTimeSecondsTask();
             }
 
-            /*
-            if(sizeListMedium != 0){
-                for(int i = 0; i< sizeListMedium; i++){
-                    secondsNeutral += timesProductivityMedium.get(i).getTimeSecondsTask();
-                }
-
-
-                return (((sizeListMedium*secondsNeutral)+(secondsMedium*sizeList))/sizeList*sizeListMedium)/60;
-            }
-            //int minutesBest = (secondsMedium /sizeList)/60;
-            */
             return ((secondsMedium/sizeList)/60);
         }
 
@@ -394,6 +384,26 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
     }
 
+    private String bestInterval(){
+        List<TimingModel> timesInterval = TimingModel.createTaskTimeProductivity("2","50");
+        List<String> createdAt = new ArrayList<String>();
+        List<String> finishedAt = new ArrayList<String>();
+        List<Integer> arrayIntCreatedAt = new ArrayList<Integer>();
 
+        for(int i = 0; i < timesInterval.size(); i++){
+            createdAt.add(timesInterval.get(i).getStartAt());
+            finishedAt.add(timesInterval.get(i).getCreatedAt());
+        }
 
+        for(int i = 0; i < createdAt.size(); i++){
+
+        }
+        //verification what interval
+        if(timesInterval.size() != 0){
+            return "19:00 às 20:00";
+        }else{
+            return "0";
+        }
+
+    }
 }
