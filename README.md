@@ -1,8 +1,5 @@
 
 # OrganizeMe
-TODO: Write a project description
-
-## Description//Descrição
 Essa aplicação faz parte do desenvolvimento de um projeto para o Protagonismo Estudantil da Universidade Tecnológica Federal do Paraná - UTFPR.
 ## Installation//Instalação
 Baixe o APK dentro da pasta Debug e instale no dispositivo Android.
