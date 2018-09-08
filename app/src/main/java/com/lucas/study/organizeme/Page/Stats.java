@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lucas.study.organizeme.View.Message;
@@ -18,6 +20,8 @@ import com.lucas.study.organizeme.Model.TaskModel;
 import com.lucas.study.organizeme.Model.TimingModel;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,19 +46,14 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
     public List<PointValue> values;
     List<String> activesHumor;
     List<Integer> intHumor;
-    private boolean hasAxes = false;
-    private boolean hasAxesNames = false;
-    private boolean hasLines = true;
-    private boolean hasPoints = false;
+    private boolean hasAxes = false, hasAxesNames = false, hasLines = true, hasPoints = false;
     private ValueShape shape = ValueShape.CIRCLE;
-    private boolean isFilled = false;
-    private boolean hasLabels = false;
-    private boolean isCubic = false;
-    private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+    private boolean isFilled = false, hasLabels = false, isCubic = false, hasLabelForSelected = false, pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
     public CoordinatorLayout messageChart, messageBestChoice, chartView, messageBestInterval;
     public Message msgBestChoice, msgNoTasks, msgBestInterval;
+    public ImageView iconCardBest1, iconCardBest2, iconCardBest3;
+    public TextView textCardBest1, textCardBest2, textCardBest3;
     public List<TaskModel> listTasks = TaskModel.findWithQuery(TaskModel.class,"Select * from Task_Model where status = ? order by id DESC", "1");
     /* END CHART */
 
@@ -72,6 +71,21 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
         messageChart = (CoordinatorLayout) rootView.findViewById(R.id.messageChart);
         messageBestChoice = (CoordinatorLayout) rootView.findViewById(R.id.messageBestChoice);
         messageBestInterval = (CoordinatorLayout) rootView.findViewById(R.id.messageBestInterval);
+
+        /* CARD BEST CHOICE */
+        textCardBest1 = (TextView) rootView.findViewById(R.id.text1CardBestChoide);
+        textCardBest2 = (TextView) rootView.findViewById(R.id.text2CardBestChoide);
+        textCardBest3 = (TextView) rootView.findViewById(R.id.text3CardBestChoide);
+
+        iconCardBest1 = (ImageView) rootView.findViewById(R.id.icon1CadBestChoice);
+        iconCardBest2 = (ImageView) rootView.findViewById(R.id.icon2CardBestChoice);
+        iconCardBest3 = (ImageView) rootView.findViewById(R.id.icon3CardBestChoice);
+
+        iconCardBest1.setImageResource(R.drawable.ic_happy);
+        iconCardBest2.setImageResource(R.drawable.ic_neutral);
+        iconCardBest3.setImageResource(R.drawable.ic_sad);
+
+
 
         msgBestChoice = new Message(R.string.message_need_more_counts_bestchoice,
                 MaterialDrawableBuilder.IconValue.INFORMATION,
@@ -94,7 +108,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
         //IF DON`T HAVE ANY TASK ADDED
         if(listTasks.size() != 0){
-            Toast.makeText(getContext(), "Best Interval: " + bestInterval(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Best Interval: " + bestInterval(), Toast.LENGTH_SHORT).show();
 
             msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
 
@@ -108,10 +122,7 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
 
             if(times.size() >= 5){
 
-                //messageView(R.string.message_need_more_counts_bestchoice,MaterialDrawableBuilder.IconValue.WEATHER_RAINY, messageBestChoice);
                 chartView.setVisibility(View.VISIBLE);
-                //msgBestChoice.hideMessageView();
-                //msgBestChoice.showMessageViewWithString("Aqui ficara um teste");
 
 
                 activesHumor = new ArrayList<String>();
@@ -127,6 +138,20 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
                 spinnerHumor.setAdapter(dataAdapterHumor);
 
                 /* SPINNER HUMOR **/
+
+                /* BETA */
+
+                int minutesHappy = bestProductivity(String.valueOf(2),null);
+                int minutesNeutral = bestProductivity(String.valueOf(1),null);
+                int minutesSad = bestProductivity(String.valueOf(0),null);
+
+                if(minutesHappy > 0){ textCardBest1.setText(minutesHappy + " m."); }
+                if(minutesHappy != 0){ textCardBest2.setText(minutesNeutral + " m."); }
+                if(minutesHappy != 0){ textCardBest3.setText(minutesSad + " m."); }
+
+                /* END BETA */
+
+
             }
 
 
@@ -145,6 +170,8 @@ public class Stats extends Fragment implements AdapterView.OnItemSelectedListene
             spinnerTaskChart.setAdapter(dataAdapter);
 
             msgBestChoice.showMessageView();
+
+
 
         }
 

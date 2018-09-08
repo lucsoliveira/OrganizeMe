@@ -18,6 +18,8 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
 
+            <include layout="@layout/card_stats_best_choice" />
+
             <include layout="@layout/fragment_stats_best_choice" />
 
             <include layout="@layout/fragment_chart_productivity" />
