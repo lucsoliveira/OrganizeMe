@@ -6,6 +6,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -45,6 +46,7 @@ public class EditTask extends AppCompatActivity {
                 //verify if the old title dont have change
                 String newTitle = editTextTitle.getText().toString();
 
+                closeKeyboard();
                 if(oldTitle.equals(newTitle)){
 
                 }else{
@@ -75,6 +77,14 @@ public class EditTask extends AppCompatActivity {
         });
 
 
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }
