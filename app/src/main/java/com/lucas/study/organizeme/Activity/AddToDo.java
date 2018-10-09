@@ -1,14 +1,19 @@
 package com.lucas.study.organizeme.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.lucas.study.organizeme.Model.TaskModel;
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.ToDoModel;
 
@@ -49,29 +54,46 @@ public class AddToDo extends AppCompatActivity {
                 String formattedDate = df.format(c.getTime());
                 //Toast.makeText(getContext(), formattedDate, Toast.LENGTH_SHORT).show();
 
+                closeKeyboard();
 
+                if (editTextTodoTitle.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "Preencha todos os campos.", Toast.LENGTH_SHORT).show();
+                } else {
+                    ToDoModel t = new ToDoModel(editTextTodoTitle.getText().toString(),
+                            editTextTodoDescription.getText().toString(),
+                            0,
+                            formattedDate);
+                    t.save();
 
-                ToDoModel t = new ToDoModel(editTextTodoTitle.getText().toString(),
-                        editTextTodoDescription.getText().toString(),
-                        0,
-                        formattedDate);
-                t.save();
+                    final Long idCreated = t.getId();
 
-                Snackbar snackbar = Snackbar
-                        .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
-                        .setAction("DESFAZER", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
+                            .setAction("DESFAZER", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
 
-                                Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade deletada!", Snackbar.LENGTH_SHORT);
-                                snackbar1.show();
-                            }
-                        });
+                                    ToDoModel toDeleteToDo = ToDoModel.findById(ToDoModel.class, idCreated);
+                                    toDeleteToDo.delete();
 
-                snackbar.show();
+                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade deletada!", Snackbar.LENGTH_SHORT);
+                                    snackbar1.show();
+                                }
+                            });
+
+                    snackbar.show();
+                }
             }
         });
 
+    }
+
+    private void closeKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
     }
 
 }
