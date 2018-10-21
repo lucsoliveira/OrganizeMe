@@ -192,6 +192,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                 case R.id.btnDeleteTask:
 
                     final TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
+                    Toast.makeText(mcon, "Atividade deletada!", Toast.LENGTH_SHORT).show();
 
                     /*
                     Snackbar snackbar = Snackbar
