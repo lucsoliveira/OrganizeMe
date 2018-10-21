@@ -126,8 +126,6 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     dismiss();
 
 
-
-
                     break;
                 default:
                     break;

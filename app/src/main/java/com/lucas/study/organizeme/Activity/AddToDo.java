@@ -68,7 +68,7 @@ public class AddToDo extends AppCompatActivity {
                     final Long idCreated = t.getId();
 
                     Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
+                            .make(coordinatorLayout, "Lembrete criado", Snackbar.LENGTH_LONG)
                             .setAction("DESFAZER", new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -76,11 +76,10 @@ public class AddToDo extends AppCompatActivity {
                                     ToDoModel toDeleteToDo = ToDoModel.findById(ToDoModel.class, idCreated);
                                     toDeleteToDo.delete();
 
-                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade deletada!", Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Lembrete desfeito!", Snackbar.LENGTH_SHORT);
                                     snackbar1.show();
                                 }
                             });
-
                     snackbar.show();
                 }
             }

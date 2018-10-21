@@ -60,8 +60,8 @@ public class EditTask extends AppCompatActivity {
                                 @Override
                                 public void onClick(View view) {
 
-
                                     t.titleTask = oldTitle; // revert the title
+                                    t.save();
                                     Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade revertida!", Snackbar.LENGTH_SHORT);
                                     snackbar1.show();
                                 }
@@ -70,8 +70,6 @@ public class EditTask extends AppCompatActivity {
                     snackbar.show();
 
                 }
-
-
 
             }
         });

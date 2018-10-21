@@ -135,26 +135,12 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         timeWhenStopped = chronometer().getBase() - SystemClock.elapsedRealtime();
     }
 
-    public void stopChronometer(View view) {
-        pauseChronometer(view);
-        setStateChronometer(view, false);
-        clearChronometer(view);
-    }
-
     public String getChronometer(View view) {
         return chronometer().getFormat();
     }
 
     public void showChronometer(View view) {
         chronometer().setVisibility(View.VISIBLE);
-    }
-
-    public void clearChronometer(View view) {
-
-        chronometer().setVisibility(View.GONE);
-        btnPause.setVisibility(View.GONE);
-        btnStop.setVisibility(View.GONE);
-        btnPlay.setVisibility(View.VISIBLE);
     }
 
     private int getElapsedTime() {
@@ -182,7 +168,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
                 EndActivity cdd = new EndActivity(view.getContext(), getIdTask(), getElapsedTime(), startedAt);
                 cdd.show();
-                stopChronometer(view);
+                pauseChronometer(view);
                 break;
         }
     }

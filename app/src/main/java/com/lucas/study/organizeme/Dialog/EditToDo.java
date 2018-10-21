@@ -67,8 +67,6 @@ public class EditToDo extends Dialog implements View.OnClickListener {
 
                 case R.id.editToDo:
 
-
-
                     ToDoModel t = ToDoModel.findById(ToDoModel.class, idToDo);
 
                     if(title.getText().toString().equals("")){
