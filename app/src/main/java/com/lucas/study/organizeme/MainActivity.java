@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.lucas.study.organizeme.Activity.About;
 import com.lucas.study.organizeme.Activity.AddTask;
 import com.lucas.study.organizeme.Activity.AddToDo;
 import com.lucas.study.organizeme.Activity.FirstUse;
@@ -120,6 +121,11 @@ public class MainActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+
+        if (id == R.id.action_about) {
+            Intent intent = new Intent(MainActivity.this, About.class);
+            startActivity(intent);
         }
 
         //noinspection SimplifiableIfStatement

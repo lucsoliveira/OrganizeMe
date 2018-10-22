@@ -36,6 +36,7 @@
 
     <RadioGroup
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -44,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/colorTerciary"
-            android:text="@string/txt_good"/>
+            android:text="@string/txt_good" />
 
         <RadioButton
             android:id="@+id/optionMedium"
@@ -71,11 +72,12 @@
         android:layout_margin="10dp"
         android:text="@string/txt_info_humor_before"
         android:textColor="@android:color/white"
-        android:textSize="12dp"
+        android:textSize="12sp"
         />
 
     <RadioGroup
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -83,15 +85,17 @@
             android:id="@+id/optionHappyBefore"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:drawableEnd="@drawable/ic_happy"
             android:textColor="@color/colorTerciary"
-            android:text="@string/txt_happy"/>
+            />
 
         <RadioButton
             android:id="@+id/optionNeutralBefore"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
-            android:text="@string/txt_neutral"/>
+
+            android:drawableEnd="@drawable/ic_neutral"/>
 
         <RadioButton
             android:id="@+id/optionSadBefore"
@@ -99,7 +103,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
 
-            android:text="@string/txt_sad"/>
+            android:drawableEnd="@drawable/ic_sad" />
 
     </RadioGroup>
 
@@ -110,11 +114,12 @@
         android:layout_margin="10dp"
         android:text="@string/txt_info_humor"
         android:textColor="@android:color/white"
-        android:textSize="12dp"
+        android:textSize="12sp"
         />
 
     <RadioGroup
         android:layout_width="wrap_content"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -122,15 +127,17 @@
             android:id="@+id/optionHappy"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/colorTerciary"
-            android:text="@string/txt_happy"/>
+
+            android:drawableEnd="@drawable/ic_happy"
+            android:textColor="@color/colorTerciary"/>
 
         <RadioButton
             android:id="@+id/optionNeutral"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
-            android:text="@string/txt_neutral"/>
+            android:drawableEnd="@drawable/ic_neutral"
+            />
 
         <RadioButton
             android:id="@+id/optionSad"
@@ -138,7 +145,9 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTerciary"
 
-            android:text="@string/txt_sad"/>
+
+            android:drawableEnd="@drawable/ic_sad"
+            />
 
     </RadioGroup>
 
@@ -174,7 +183,7 @@
             android:text="@string/btn_save"
             android:textColor="#5DBCD2"
             android:textStyle="bold"
-            />
+            android:focusable="true" />
 
     </LinearLayout>
 

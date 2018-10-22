@@ -88,6 +88,17 @@
         </activity>
         <!--END TO DO-->
 
+        <!--TASKS-->
+        <activity android:name=".Activity.About"
+            android:label="Sobre"
+            android:parentActivityName=".MainActivity" >
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <!--END TO DO-->
+
         <!--FIRST USE-->
         <activity android:name=".Activity.FirstUse" />
         <!--END FIRST USE-->

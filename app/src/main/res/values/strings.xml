@@ -48,13 +48,13 @@
 
     <!--END TIMING-->
     <string name="txt_info_productivity">Como você avalia seu rendimento?</string>
-    <string name="txt_info_humor_before">Qual era seu estado de espírito antes de realizar essa atividade?</string>
+    <string name="txt_info_humor_before">Como você estava antes de realizar essa atividade?</string>
     <string name="txt_info_humor">Como você se sente agora?</string>
     <string name="txt_info_duration">Duração em Minutos</string>
 
     <!--Cards-->
     <string name="title_card_productivity">Gráfico de rendimento</string>
-    <string name="title_card_best_time">Duração Máxima por Humor</string>
+    <string name="title_card_best_time">Melhor Produtividade por Humor</string>
 
     <!--TODO-->
     <string name="todo_name">Título do lembrete</string>

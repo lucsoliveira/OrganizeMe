@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
@@ -49,6 +50,8 @@ public class EditTask extends AppCompatActivity {
                 closeKeyboard();
                 if(oldTitle.equals(newTitle)){
 
+                    showToast("Não houve nenhuma alteração.");
+
                 }else{
 
                     t.titleTask = newTitle; // modify the values
@@ -83,6 +86,10 @@ public class EditTask extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
 }

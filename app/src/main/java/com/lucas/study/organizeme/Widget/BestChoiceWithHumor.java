@@ -72,7 +72,6 @@ public class BestChoiceWithHumor {
         if(task == null){
             List<TimingModel> timesProductivity = TimingModel.createTaskTimeProductivity("2",humor,"100");
             int sizeList = timesProductivity.size();
-            int secondsNeutral = 0;
 
             if(sizeList == 0){
                 return 0;
