@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:text="Criado: :"
+            android:text="Criado:"
             android:textColor="#333"
             android:textSize="16dp" />
 
@@ -87,6 +87,7 @@
             android:id="@+id/linear_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_below="@id/linearCreate">
 
 
@@ -94,8 +95,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
-                android:text="@string/txt_duration"
+                android:drawableLeft="@drawable/ic_clock"
                 android:textColor="#333"
+                android:text=" "
                 android:textSize="16dp" />
 
             <TextView
@@ -120,8 +122,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-
-        android:text="@string/txt_productivity"
+        android:text=" "
+        android:drawableLeft="@drawable/ic_chart"
         android:textColor="#333"
         android:textSize="16dp" />
 
@@ -151,6 +153,11 @@
                 android:textColor="#333"
                 android:textSize="16dp" />
 
+            <ImageView
+                android:id="@+id/drwHumorBefore"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
+
             <TextView
                 android:id="@+id/txtHumorBefore"
                 android:layout_width="60dp"
@@ -158,6 +165,8 @@
                 android:layout_alignParentRight="true"
                 android:textColor="@color/colorAccent"
                 android:textSize="16dp" />
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -167,6 +176,11 @@
                 android:text="Humor Depois:"
                 android:textColor="#333"
                 android:textSize="16dp" />
+
+            <ImageView
+                android:id="@+id/drwHumorAfter"
+                android:layout_width="32dp"
+                android:layout_height="32dp"/>
 
             <TextView
                 android:id="@+id/txtHumorAfter"

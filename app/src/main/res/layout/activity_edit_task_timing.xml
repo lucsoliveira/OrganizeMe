@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:text="@string/txt_info_humor"
+            android:text="Humor ao término da atividade:"
             android:textSize="12dp"
             />
 
@@ -81,20 +81,19 @@
                 android:id="@+id/optionHappy"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/txt_happy"/>
+                android:drawableEnd="@drawable/ic_happy" />
 
             <RadioButton
                 android:id="@+id/optionNeutral"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/txt_neutral"/>
+                android:drawableEnd="@drawable/ic_neutral" />
 
             <RadioButton
                 android:id="@+id/optionSad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
-                android:text="@string/txt_sad"/>
+                android:drawableEnd="@drawable/ic_sad" />
 
         </RadioGroup>
 

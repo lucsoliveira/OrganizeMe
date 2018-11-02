@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +55,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
         private long idTime, idTask;
         private int durationTime;
         private String nameTask, dateCreate;
+        private ImageView drwHumorBefore, drwHumorAfter;
 
         public ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_task_timing);
@@ -69,7 +71,10 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             txtDuration = findViewById(R.id.txtDuration);
             txtProductivity = findViewById(R.id.txtProductivity);
             txtHumorAfter = findViewById(R.id.txtHumorAfter);
+            drwHumorAfter= findViewById(R.id.drwHumorAfter);
+
             txtHumorBefore= findViewById(R.id.txtHumorBefore);
+            drwHumorBefore= findViewById(R.id.drwHumorBefore);
             txtMoreInfo = findViewById(R.id.txtMoreInfo);
             txtDate = findViewById(R.id.txtDateEnd);
             txtCreated = findViewById(R.id.txtDate);
@@ -115,25 +120,26 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
             switch (time.getHumorAfter() ){
                 case 2:
-                    txtHumorAfter.setText(R.string.txt_happy);
+                    drwHumorAfter.setImageResource(R.drawable.ic_happy);
                     break;
                 case 1:
-                    txtHumorAfter.setText(R.string.txt_neutral);
+                    drwHumorAfter.setImageResource(R.drawable.ic_neutral);
                     break;
                 case 0:
-                    txtHumorAfter.setText(R.string.txt_sad);
+                    drwHumorAfter.setImageResource(R.drawable.ic_sad);
                     break;
             }
 
             switch (time.getHumorBefore() ){
                 case 2:
-                    txtHumorBefore.setText(R.string.txt_happy);
+                    drwHumorBefore.setImageResource(R.drawable.ic_happy);
+
                     break;
                 case 1:
-                    txtHumorBefore.setText(R.string.txt_neutral);
+                    drwHumorBefore.setImageResource(R.drawable.ic_neutral);
                     break;
                 case 0:
-                    txtHumorBefore.setText(R.string.txt_sad);
+                    drwHumorBefore.setImageResource(R.drawable.ic_sad);
                     break;
             }
 
