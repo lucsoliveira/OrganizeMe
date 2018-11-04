@@ -15,7 +15,8 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         View aboutPage = new AboutPage(this)
                 .isRTL(false)
-                .setImage(R.drawable.ic_happy)
+                .setImage(R.drawable.ic_launcher)
+                .setDescription(getResources().getString(R.string.about_page))
                 .addGroup("Contato")
                 .addEmail("olucas1998@gmail.com")
                 .addWebsite("http://medyo.github.io/")

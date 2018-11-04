@@ -77,12 +77,15 @@
     <string name="message_need_more_for_interval">Necessitamos de mais cronometragens para encontrar o intervalo do seu dia em que você é mais produtivo.</string>
 
     <!--TABS FIRST USE-->
-    <string name="tab_description">Software para gerenciamento de atividades.</string>
-    <string name="tab_one_title">Otimize seu tempo</string>
-    <string name="tab_one_description">Saiba qual média de duração é necessária para obter uma ótima produtividade em suas atividades.</string>
-    <string name="tab_two_title">Saiba o que lhe incomoda</string>
-    <string name="tab_two_description">Com base em estatísticas do seu Humor, você saberá qual atividade que mais consome-lhe energia.</string>
-    <string name="tab_three_title">Solução para esquecimentos</string>
-    <string name="tab_three__description">Crie uma lista de lembretes e tarefas a fazer e não esqueça de mais nada.</string>
+    <string name="tab_description">Software para gerenciamento e qualificação do tempo.</string>
+    <string name="tab_one_title">Auxilio para organização</string>
+    <string name="tab_one_description">Comece agora a organizar suas atividades e tenha uma rotina produtiva.</string>
+    <string name="tab_two_title">Estatísticas úteis</string>
+    <string name="tab_two_description">Você terá em mãos suas estatísticas que o ajudarão a obter uma melhor produtividade.</string>
+    <string name="tab_three_title">Esqueceu de fazer algo?</string>
+    <string name="tab_three__description">Você poderá utilizar a lista de tarefas que App dispõe para acrescentar algo que não queira esquecer.</string>
+
+    <!--ABOUT PAGE-->
+    <string name="about_page">Desenvolvi esse aplicativo para auxiliar os estudantes na organização do seu tempo de estudo. O presente trabalho foi realizado com o apoio da Universidade Tecnológica Federal do Paraná - UTFPR - Brasil.</string>
 
 </resources>

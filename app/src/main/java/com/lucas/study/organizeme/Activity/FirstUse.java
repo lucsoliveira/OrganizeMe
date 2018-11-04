@@ -37,7 +37,7 @@ public class FirstUse extends AppIntro {
         SliderPage slider2Page = new SliderPage();
         SliderPage slider3Page = new SliderPage();
 
-        String headerWelcome = getResources().getString(R.string.message_welcome) + " " + getResources().getString(R.string.app_name);
+        String headerWelcome = getResources().getString(R.string.message_welcome) + " " + getResources().getString(R.string.app_name) + "!";
         slider0Page.setTitle(headerWelcome);
         slider0Page.setDescription(getResources().getString(R.string.tab_description));
         slider0Page.setImageDrawable(R.drawable.ic_launcher);
@@ -45,11 +45,11 @@ public class FirstUse extends AppIntro {
 
         slider1Page.setTitle(getResources().getString(R.string.tab_one_title));
         slider1Page.setDescription(getResources().getString(R.string.tab_one_description));
-        slider1Page.setImageDrawable(R.drawable.ic_baseline_show_chart_24px);
+        slider1Page.setImageDrawable(R.drawable.ic_baseline_sentiment_very_satisfied_24px);
         slider1Page.setBgColor(getResources().getColor(R.color.colorGreyDark));
 
         slider2Page.setTitle(getResources().getString(R.string.tab_two_title));
-        slider2Page.setImageDrawable(R.drawable.ic_baseline_sentiment_very_satisfied_24px);
+        slider2Page.setImageDrawable(R.drawable.ic_baseline_show_chart_24px);
         slider2Page.setDescription(getResources().getString(R.string.tab_two_description));
         slider2Page.setBgColor(getResources().getColor(R.color.colorPrimaryDark));
 
