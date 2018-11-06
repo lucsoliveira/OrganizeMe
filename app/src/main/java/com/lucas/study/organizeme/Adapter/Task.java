@@ -1,9 +1,14 @@
 package com.lucas.study.organizeme.Adapter;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -22,6 +27,8 @@ import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.provider.Settings.Global.getString;
 
 
 public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
@@ -230,6 +237,18 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
                     Intent intentPlay = new Intent(mcon, FocusMode.class);
                     intentPlay.putExtra("idTask", getIdTask());
+
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(mcon, "sd")
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle(getTitleTask())
+                            .setContentText("00:00")
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mcon);
+
+// notificationId is a unique int for each notification that you must define
+                    notificationManager.notify(1, mBuilder.build());
+
+
                     mcon.startActivity(intentPlay);
 
                     //startChronometer(v);
@@ -264,8 +283,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
         Long getIdTask(){ return idTask; }
         String getTitleTask(){ return nameTask; }
     }
-
-
 
 
 }

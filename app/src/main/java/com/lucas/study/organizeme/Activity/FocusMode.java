@@ -1,13 +1,17 @@
 package com.lucas.study.organizeme.Activity;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -95,6 +99,33 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
         startedAt = df.format(c.getTime());
 
+        final String stringElapsedTime = getDurationString(getElapsedTime());
+
+        Thread thread = new Thread() {
+
+            @Override
+            public void run() {
+                try { Thread.sleep(1000); }
+                catch (InterruptedException e) {}
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "sd")
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle(t.getTitleTask())
+                            .setContentText(getDurationString(getElapsedTime()))
+                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+
+
+                        notificationManager.notify(1,mBuilder.build());
+                    }
+                });
+            }
+        };
+        thread.start();
 
     }
 
@@ -166,8 +197,6 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
             case R.id.btnStop:
 
-
-
                 EndActivity cdd = new EndActivity(view.getContext(), getIdTask(), getElapsedTime(), startedAt);
                 cdd.show();
                 pauseChronometer(view);
@@ -176,7 +205,6 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
     }
 
     public void onBackPressed() {
-
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.app_name);
         builder.setIcon(R.mipmap.ic_launcher);
@@ -197,6 +225,21 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
     }
 
+
+    private String getDurationString(int seconds) {
+
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        seconds = seconds % 60;
+
+        return twoDigitString(hours) + " : " + twoDigitString(minutes) + " : " + twoDigitString(seconds);
+    }
+
+    private String twoDigitString(int number) {
+        if (number == 0) { return "00"; }
+        if (number / 10 == 0) { return "0" + number; }
+        return String.valueOf(number);
+    }
     /* end Chronometer */
 
 }

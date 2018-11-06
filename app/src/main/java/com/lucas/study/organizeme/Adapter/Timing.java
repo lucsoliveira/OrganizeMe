@@ -100,7 +100,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             }
 
             txtDuration.setText(getDurationString(durationTime));
-            txtDate.setText(dateCreate);
+            txtDate.setText(dateCreate + time.getStartAt());
             txtCreated.setText(time.getStartAt());
 
 
