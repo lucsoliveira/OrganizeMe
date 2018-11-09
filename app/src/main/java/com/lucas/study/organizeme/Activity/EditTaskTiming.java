@@ -15,6 +15,10 @@ import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
 import com.lucas.study.organizeme.Model.TimingModel;
 
+import org.joda.time.DateTime;
+
+import java.text.SimpleDateFormat;
+
 public class EditTaskTiming extends AppCompatActivity {
 
     private Button editTask;
@@ -121,6 +125,10 @@ public class EditTaskTiming extends AppCompatActivity {
                 if(oldMinute == newMinute){
 
                 }else{
+
+                    DateTime dateTime = new DateTime();
+                    
+
                     time.setTimeSecondsTask(newMinute*60);
                 }
                 time.save();

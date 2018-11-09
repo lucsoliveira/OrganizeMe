@@ -69,8 +69,8 @@
     <!--MESSAGES-->
     <string name="message_welcome">Bem-vindo(a) ao </string>
     <string name="message_no_tasks">Você não tem atividade cadastrada.</string>
-    <string name="message_no_timing">Você não tem cronometragens cadastrada.</string>
-    <string name="message_no_todo">Você não tem tarefa a ser realizada.</string>
+    <string name="message_no_timing">Opss! Você ainda não cronometrou seu tempo.</string>
+    <string name="message_no_todo">Você concluiu todas as tarefas. Descanse um pouco.</string>
     <string name="message_no_tasks_tab">Você não tem atividade cadastrada. Clique no botão abaixo para cadastar.</string>
     <string name="message_need_more_counts_chart">Precisamos de mais cronometragens para gerar um gráfico desta atividade. Tente selecionar outra atividade.</string>
     <string name="message_need_more_counts_bestchoice">Opss! É preciso mais cronometragens para gerar uma estatística de produtividade. Volte mais tarde.</string>

@@ -7,9 +7,10 @@ import java.util.List;
 public class TimingModel extends SugarRecord<TimingModel> {
 
     private Long idTask;
-    private String createdAt;
     private String updatedAt;
     private String startAt;
+    private String createdAt;
+    private String finishedAt;
     private int timeSecondsTask;
     private int productivity;
     private int humorAfter;
@@ -39,7 +40,8 @@ public class TimingModel extends SugarRecord<TimingModel> {
                        int humorAfter,
                        String moreInformation,
                        String createdAt,
-                       String startAt){
+                       String startAt,
+                       String finishedAt){
 
         this.idTask = idTask;
         this.timeSecondsTask = timeSecondsTask;
@@ -49,6 +51,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
         this.moreInformation = moreInformation;
         this.createdAt = createdAt;
         this.startAt = startAt;
+        this.finishedAt = finishedAt;
 
     }
 
@@ -90,9 +93,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
         return moreInformation;
     }
 
-    public void setMoreInformation(String moreInformation) {
-        this.moreInformation = moreInformation;
-    }
+    public void setMoreInformation(String moreInformation) { this.moreInformation = moreInformation; }
 
     public int getHumorBefore() {
         return humorBefore;
@@ -101,6 +102,36 @@ public class TimingModel extends SugarRecord<TimingModel> {
     public void setHumorBefore(int humorBefore) {
         this.humorBefore = humorBefore;
     }
+
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
+    }
+
+    public String getStartAt() {
+        return startAt;
+    }
+
+    public void setStartAt(String startAt) {
+        this.startAt = startAt;
+    }
+
+    public String getFinishedAt() { return finishedAt; }
+
+    public void setFinishedAt(String finishedAt) { this.finishedAt = finishedAt; }
+
     /* END GETS AND SETS*/
 
     /* LIST CREATOR */
@@ -138,27 +169,4 @@ public class TimingModel extends SugarRecord<TimingModel> {
     }
 
     /* END LIST CREATOR */
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getStartAt() {
-        return startAt;
-    }
-
-    public void setStartAt(String startAt) {
-        this.startAt = startAt;
-    }
 }

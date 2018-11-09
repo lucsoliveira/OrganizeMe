@@ -101,7 +101,7 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     //GET TIME NOW
                     Calendar c = Calendar.getInstance();
                     //System.out.println("Current time =&gt; "+c.getTime());
-                    SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
+                    SimpleDateFormat df = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
                     String formattedDate = df.format(c.getTime());
                     //Toast.makeText(getContext(), formattedDate, Toast.LENGTH_SHORT).show();
 
@@ -113,7 +113,8 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                             optionHumor,
                             moreInformation.getText().toString(),
                             formattedDate,
-                            startedAt
+                            startedAt,
+                            formattedDate
                     );
                     timer.save();
 
