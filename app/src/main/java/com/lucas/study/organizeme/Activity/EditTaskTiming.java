@@ -128,7 +128,6 @@ public class EditTaskTiming extends AppCompatActivity {
 
                 }else{
 
-                    DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-mm-dd HH:mm:ss");
                     DateTime dt = DateTime.parse(time.getFinishedAt());
 
 

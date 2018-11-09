@@ -16,6 +16,7 @@ import com.lucas.study.organizeme.R;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
+import org.joda.time.DateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,8 +100,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             }
 
             txtDuration.setText(getDurationString(durationTime));
-
-            txtCreated.setText(time.getFinishedAt());
+            txtCreated.setText(dateFormatString(time.getFinishedAt()));
 
 
 
@@ -185,13 +185,23 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
         int minutes = (seconds % 3600) / 60;
         seconds = seconds % 60;
 
-        return twoDigitString(hours) + " : " + twoDigitString(minutes) + " : " + twoDigitString(seconds);
+        return twoDigitString(hours) + ":" + twoDigitString(minutes) + ":" + twoDigitString(seconds);
     }
 
     private String twoDigitString(int number) {
         if (number == 0) { return "00"; }
         if (number / 10 == 0) { return "0" + number; }
         return String.valueOf(number);
+    }
+
+    private String dateFormatString(String date){
+        // Parsing the date
+        DateTime dt = new DateTime(date);  // current time
+        String finishedDate = String.valueOf(dt.getDayOfMonth()) + "/" + String.valueOf(dt.getMonthOfYear()) + "/" + String.valueOf(dt.getYear()) + " - "
+                + String.valueOf(dt.getHourOfDay()) + ":" + String.valueOf(dt.getMinuteOfHour()) + ":" + String.valueOf(dt.getSecondOfMinute());
+        // gets the month name
+
+        return finishedDate;
     }
 
 }

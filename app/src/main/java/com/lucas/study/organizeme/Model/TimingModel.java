@@ -138,7 +138,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
     public static List<TimingModel> createTaskTimeList() {
 
         //List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
-        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model order by id DESC");
+        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model order by finished_At DESC");
         return listTasksTiming;
     }
 

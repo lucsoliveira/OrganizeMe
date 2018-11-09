@@ -104,7 +104,7 @@ public class EndActivity extends Dialog implements View.OnClickListener {
 
                     //GET TIME NOW
                     Calendar c = Calendar.getInstance();
-                    //System.out.println("Current time =&gt; "+c.getTime());
+
                     SimpleDateFormat df = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
                     String formattedDate = df.format(c.getTime());
 
