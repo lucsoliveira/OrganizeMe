@@ -16,6 +16,8 @@ import com.lucas.study.organizeme.Model.TaskModel;
 import com.lucas.study.organizeme.Model.TimingModel;
 
 import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import java.text.SimpleDateFormat;
 
@@ -57,7 +59,7 @@ public class EditTaskTiming extends AppCompatActivity {
 
         numberPicker.setMinValue(0);
         numberPicker.setMaxValue(120);
-        int minutes = time.getTimeSecondsTask() / 60;
+        final int minutes = time.getTimeSecondsTask() / 60;
 
         numberPicker.setValue(minutes);
 
@@ -126,13 +128,20 @@ public class EditTaskTiming extends AppCompatActivity {
 
                 }else{
 
-                    DateTime dateTime = new DateTime();
-                    
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-mm-dd HH:mm:ss");
+                    DateTime dt = DateTime.parse(time.getFinishedAt());
 
-                    time.setTimeSecondsTask(newMinute*60);
+
+                    time.setTimeSecondsTask(newMinute*60);//set the seconds duration;
+                    // clear the minutes before
+                    time.setFinishedAt(dt.minusMinutes(minutes).plusMinutes(newMinute).toString());//set the finshedAt time
                 }
+
                 time.save();
+
                 Toast.makeText(getApplicationContext(), "Alterações salvas", Toast.LENGTH_LONG).show();
+
+                finish();
 
             }
 

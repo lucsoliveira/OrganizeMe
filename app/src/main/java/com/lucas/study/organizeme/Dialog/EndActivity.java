@@ -16,6 +16,10 @@ import com.lucas.study.organizeme.MainActivity;
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TimingModel;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -103,6 +107,11 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     //System.out.println("Current time =&gt; "+c.getTime());
                     SimpleDateFormat df = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
                     String formattedDate = df.format(c.getTime());
+
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-mm-dd HH:mm:ss");
+                    DateTime dt = formatter.parseDateTime(formattedDate);
+
+
                     //Toast.makeText(getContext(), formattedDate, Toast.LENGTH_SHORT).show();
 
 
@@ -112,9 +121,9 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                             optionHumorBefore,
                             optionHumor,
                             moreInformation.getText().toString(),
-                            formattedDate,
+                            dt.toString(),
                             startedAt,
-                            formattedDate
+                            dt.toString()
                     );
                     timer.save();
 

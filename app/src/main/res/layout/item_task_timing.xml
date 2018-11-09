@@ -33,7 +33,7 @@
         </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linear_date_end"
+        android:id="@+id/linearCreate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/txtNameTask">
@@ -43,31 +43,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:textColor="#333"
-            android:textSize="16dp" />
-
-        <TextView
-            android:id="@+id/txtDateEnd"
-            android:layout_width="96dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:textColor="@color/colorAccent"
-            android:textSize="16dp" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearCreate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/linear_date_end">
-
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:text="Criado:"
+            android:text=" "
+            android:drawableLeft="@drawable/ic_small_calendar"
             android:textColor="#333"
             android:textSize="16dp" />
 
@@ -92,6 +69,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
+                android:layout_marginTop="2dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:drawableLeft="@drawable/ic_clock"
@@ -120,6 +98,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
         android:layout_alignParentLeft="true"
         android:text=" "
         android:drawableLeft="@drawable/ic_chart"
