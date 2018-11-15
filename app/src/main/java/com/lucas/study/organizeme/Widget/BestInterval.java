@@ -1,14 +1,21 @@
 package com.lucas.study.organizeme.Widget;
 
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.design.widget.CoordinatorLayout;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.LegendRenderer;
+import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
+import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 import com.lucas.study.organizeme.MainActivity;
 import com.lucas.study.organizeme.Model.TimingModel;
 import com.lucas.study.organizeme.R;
@@ -27,6 +34,8 @@ public class BestInterval {
     private CoordinatorLayout layoutAttack;
     public Message msgBestInterval;
     public GraphView chart;
+
+    public LineGraphSeries<DataPoint> series;
 
 
     Vector<Float> vectorHoursOfDay = new Vector<Float>();//vector for save the points of best time
@@ -51,12 +60,19 @@ public class BestInterval {
 
         clearVector(vectorHoursOfDay);
 
+        float biggerNumber = 0;
+
         for(int i = 0; i < timesInterval.size(); i++) {
 
             DateTime dt = new DateTime(timesInterval.get(i).getFinishedAt());
 
             float previousValue = vectorHoursOfDay.get(dt.getHourOfDay());
-            vectorHoursOfDay.add(dt.getHourOfDay(), (float) 1 + previousValue);
+            float sumValue = (float) 1 + previousValue;
+            vectorHoursOfDay.add(dt.getHourOfDay(), sumValue);
+
+            if(sumValue > biggerNumber){
+                biggerNumber = sumValue;
+            }
         }
 
         DataPoint[] values = new DataPoint[vectorHoursOfDay.size()];
@@ -67,20 +83,39 @@ public class BestInterval {
             values[i] = v;
         }
 
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<DataPoint>(values);
+        series = new LineGraphSeries<DataPoint>(values);
         series.setDataPointsRadius(10);
         series.setThickness(8);
 
         chart.addSeries(series);
-        // activate horizontal zooming and scrolling
-        chart.getViewport().setScalable(true);
-        // activate horizontal scrolling
-        chart.getViewport().setScrollable(true);
-        // activate horizontal and vertical zooming and scrolling
-        chart.getViewport().setScalableY(true);
-        // activate vertical scrolling
-        chart.getViewport().setScrollableY(true);
 
+
+        chart.getViewport().setYAxisBoundsManual(true);
+        chart.getViewport().setMinY(0);
+        chart.getViewport().setMaxY(biggerNumber);
+
+
+        chart.getViewport().setXAxisBoundsManual(true);
+        chart.getViewport().setMinX(0);
+        chart.getViewport().setMaxX(24);
+
+        StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(chart);
+        staticLabelsFormatter.setVerticalLabels(new String[] {"Ruim", "Média", "Boa"});
+        chart.getGridLabelRenderer().setHumanRounding(false);
+
+        chart.getGridLabelRenderer().setHorizontalLabelsVisible(false);//hide de X-axis labels
+        chart.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
+        chart.getGridLabelRenderer().setVerticalAxisTitle("Produtividade");
+
+
+        chart.getViewport().setScrollable(false);
+
+        series.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Toast.makeText(getLayoutAttack().getContext(), "Horário: "+ dataPoint.getX() + "h", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -121,10 +156,12 @@ public class BestInterval {
     void clearVector(Vector<Float> vector){
 
         for(int i = 0; i < 24; i++){
-            vector.add(i, (float) 0);
+            vector.add(i, (float) 0.1);
         }
 
     }
+
+
 
 
 }
