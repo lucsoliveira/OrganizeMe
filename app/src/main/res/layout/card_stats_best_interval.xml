@@ -17,20 +17,33 @@
         card_view:cardElevation="@dimen/card_elevation"
         card_view:cardCornerRadius="@dimen/card_corner_radius">
 
-        <TextView
-            android:textColor="@color/colorPrimaryDark"
-            android:layout_margin="10dp"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Horário Mais Produtivo"
-            android:textSize="@dimen/title_card"
-            />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:textColor="@color/colorPrimaryDark"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estatística de Produtividade"
+                android:textSize="@dimen/title_card"
+                />
 
 
-        <include
-            android:visibility="gone"
-            android:id="@+id/messageBestInterval"
-            layout="@layout/fragment_message" />
+            <com.jjoe64.graphview.GraphView
+                android:id="@+id/chartProductivityByHour"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <include
+                android:visibility="gone"
+                android:id="@+id/messageBestInterval"
+                layout="@layout/fragment_message" />
+
+        </LinearLayout>
+
 
     </android.support.v7.widget.CardView>
 

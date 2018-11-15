@@ -20,8 +20,6 @@
 
             <include layout="@layout/card_stats_best_choice" />
 
-            <include layout="@layout/fragment_chart_productivity" />
-
             <include layout="@layout/card_stats_best_interval" />
 
         </LinearLayout>

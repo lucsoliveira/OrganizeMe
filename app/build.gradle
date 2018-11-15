@@ -36,7 +36,7 @@ dependencies {
     //LIBS FOR CUSTOM FONTS
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     //LIBS FOR CHARTS
-    implementation 'com.github.lecho:hellocharts-library:1.5.8@aar'
+    implementation 'com.jjoe64:graphview:4.2.2'
     //LIBS FOR CUSTOM FONTS
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'

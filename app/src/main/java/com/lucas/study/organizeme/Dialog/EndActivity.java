@@ -105,10 +105,10 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     //GET TIME NOW
                     Calendar c = Calendar.getInstance();
 
-                    SimpleDateFormat df = new SimpleDateFormat("YYYY-mm-dd hh:mm:ss");
+                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                     String formattedDate = df.format(c.getTime());
 
-                    DateTimeFormatter formatter = DateTimeFormat.forPattern("YYYY-mm-dd HH:mm:ss");
+                    DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss");
                     DateTime dt = formatter.parseDateTime(formattedDate);
 
 
