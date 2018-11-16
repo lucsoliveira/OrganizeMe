@@ -58,25 +58,30 @@ public class Stats extends Fragment{
 
                 Date topDate = dateRange.get(DateSwitcher.DateRange.TOP_DATE);
                 Date bottomDate = dateRange.get(DateSwitcher.DateRange.BOTTOM_DATE);
+
+                String[] intervalDate = new String[2];
                 String formattedDateMin = df.format(bottomDate);
                 String formattedDateMax = df.format(topDate);
 
+                intervalDate[0] = formattedDateMin;
+                intervalDate[1] = formattedDateMax;
+                Log.i("FormattedDateMin", formattedDateMin);
 
                 widgetBestChoiceForHumor.widgetShow();
-                widgetChartProductivity.widgetShow(formattedDateMin, formattedDateMax);
+                widgetChartProductivity.widgetShow(intervalDate);
             }
         });
 
         Date now = c.getTime();
 
-        String dateMin = df.format(now);
-        String dateMax = df.format(now);
+        String dateNow = df.format(now);
+        String[] dNow = new String[1];
+        dNow[0] = dateNow;
 
-        Log.i("DateMin: ", dateMin);
-        Log.i("DateMax: ", dateMax);
+        Log.i("DateNow", dateNow);
 
         widgetBestChoiceForHumor.widgetShow();
-        widgetChartProductivity.widgetShow(dateMin, dateMax);
+        widgetChartProductivity.widgetShow(dNow);
 
 
         return rootView;

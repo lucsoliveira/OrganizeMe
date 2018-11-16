@@ -20,6 +20,8 @@ import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import org.joda.time.DateTime;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Vector;
 
@@ -31,10 +33,12 @@ public class ChartProductivity {
     private CoordinatorLayout layoutAttack;
     public Message msgBestInterval;
     public GraphView chart;
-
+    public DataPoint[] valuesChart;
     public LineGraphSeries<DataPoint> series;
     Vector<Float> vectorHoursOfDay = new Vector<Float>();//vector for save the points of best time
-
+    public DataPoint[] values;
+    public List<TimingModel> timesInterval;
+    public String actualDate;
     public ChartProductivity(){
 
     }
@@ -49,7 +53,11 @@ public class ChartProductivity {
 
         this.layoutAttack = layoutAttack;
 
-        chart = (GraphView) layoutAttack.findViewById(R.id.chartProductivityByHour);;
+        chart = (GraphView) layoutAttack.findViewById(R.id.chartProductivityByHour);
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String formattedDate = df.format(c.getTime());
+        actualDate = formattedDate;
 
         /* Here i start to generate date */
 
@@ -66,20 +74,29 @@ public class ChartProductivity {
         this.layoutAttack = layoutAttack;
     }
 
-    public void widgetShow(String minDate, String maxDate){
+    public void widgetShow(String[] args){
 
         msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
 
 
-        //here i get the points
-        DataPoint[] values = generatePoints(minDate, maxDate);
+        valuesChart = generatePoints(args);
 
-        series = new LineGraphSeries<DataPoint>(values);
+
+
+
+        series = new LineGraphSeries<DataPoint>(valuesChart);
+        if(actualDate!=args[0]){
+            Log.i("actualDate","Entrou aqui");
+            chart.removeAllSeries();
+        }
+
+        actualDate = args[0];
         series.setDataPointsRadius(10);
         series.setThickness(8);
 
-        series.resetData(values);
+       // series.resetData(values);
         chart.addSeries(series);
+
 
 
         chart.getViewport().setXAxisBoundsManual(true);
@@ -88,12 +105,13 @@ public class ChartProductivity {
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(chart);
         staticLabelsFormatter.setVerticalLabels(new String[] {"Ruim", "Média", "Boa"});
+        staticLabelsFormatter.setHorizontalLabels(new String[] {"Madrugada", "Manhã", "Tarde", "Noite"});
         chart.getGridLabelRenderer().setHumanRounding(false);
 
-        chart.getGridLabelRenderer().setHorizontalLabelsVisible(false);//hide de X-axis labels
+        chart.getGridLabelRenderer().setHorizontalLabelsVisible(true);//hide de X-axis labels
         chart.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         chart.getGridLabelRenderer().setVerticalAxisTitle("Produtividade");
-        chart.getGridLabelRenderer().setHorizontalAxisTitle("Horário");
+        chart.getGridLabelRenderer().setHorizontalAxisTitle("Período");
 
 
         chart.getViewport().setScrollable(false);
@@ -103,6 +121,7 @@ public class ChartProductivity {
             public void onTap(Series series, DataPointInterface dataPoint) {
                 Toast.makeText(getLayoutAttack().getContext(), "Horário: "+ dataPoint.getX() + "h", Toast.LENGTH_SHORT).show();
             }
+
         });
         /*
         if(bestInterval() == "0"){
@@ -115,6 +134,7 @@ public class ChartProductivity {
         }
 
 */
+        series.resetData(values);
         getLayoutAttack().setVisibility(View.VISIBLE);
     }
 
@@ -123,15 +143,22 @@ public class ChartProductivity {
         getLayoutAttack().setVisibility(View.GONE);
     }
 
+    public DataPoint[] generatePoints(String[] args){
 
-    public DataPoint[] generatePoints(String minDate, String maxDate){
 
-        List<TimingModel> timesInterval = TimingModel.createTaskTimeProductivity("2",minDate,maxDate,"teste");
-        Log.i("Data Inicial",minDate);
-        Log.i("Data final",maxDate);
+        if(args.length == 1){
+
+            timesInterval = TimingModel.createTaskTimeProductivity("2",args[0]);
+        }else{
+
+            timesInterval = TimingModel.createTaskTimeProductivity("2",args[0],args[1],"teste");
+        }
         Log.i("Tamanho do chart",String.valueOf(timesInterval.size()));
 
         clearVector(vectorHoursOfDay);
+        Log.i("Tamanho do vectorHour",String.valueOf(vectorHoursOfDay.size()));
+
+
 
         float biggerNumber = 0;
 
@@ -148,7 +175,10 @@ public class ChartProductivity {
             }
         }
 
-        DataPoint[] values = new DataPoint[vectorHoursOfDay.size()];
+        values = new DataPoint[vectorHoursOfDay.size()];
+        Log.i("Tamanho do ValuesCHart", String.valueOf(values.length));
+
+
         for (int i=0; i<vectorHoursOfDay.size(); i++) {
             Integer xi = i;
             Float yi = vectorHoursOfDay.get(i);
@@ -156,11 +186,9 @@ public class ChartProductivity {
             values[i] = v;
         }
 
-
         chart.getViewport().setYAxisBoundsManual(true);
         chart.getViewport().setMinY(0);
         chart.getViewport().setMaxY(biggerNumber);
-
 
         return values;
     }
@@ -168,10 +196,16 @@ public class ChartProductivity {
 
     void clearVector(Vector<Float> vector){
 
-        for(int i = 0; i < 24; i++){
-            vector.add(i, (float) 0);
-        }
+        if (vector.size() == 0) {
 
+            for(int i = 0; i < 24; i++){
+                vector.add(i, (float) 0);
+            }
+
+        }else{
+                vector.clear();
+
+        }
 
     }
 
