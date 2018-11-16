@@ -148,10 +148,10 @@ public class ChartProductivity {
 
         if(args.length == 1){
 
-            timesInterval = TimingModel.createTaskTimeProductivity("2",args[0]);
+            timesInterval = TimingModel.createTaskTime(args[0]);
         }else{
 
-            timesInterval = TimingModel.createTaskTimeProductivity("2",args[0],args[1],"teste");
+            timesInterval = TimingModel.createTaskTime(args[0],args[1]);
         }
         Log.i("Tamanho do chart",String.valueOf(timesInterval.size()));
 
@@ -167,7 +167,7 @@ public class ChartProductivity {
             DateTime dt = new DateTime(timesInterval.get(i).getFinishedAt());
 
             float previousValue = vectorHoursOfDay.get(dt.getHourOfDay());
-            float sumValue = (float) 1 + previousValue;
+            float sumValue = (float) timesInterval.get(i).getProductivity() + previousValue;
             vectorHoursOfDay.add(dt.getHourOfDay(), sumValue);
 
             if(sumValue > biggerNumber){
