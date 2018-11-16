@@ -161,6 +161,14 @@ public class TimingModel extends SugarRecord<TimingModel> {
         return listTimeProductivity;
     }
 
+
+    public static List<TimingModel> createTaskTimeProductivity(String productivity, String minDate, String maxDate, String apagar) {
+
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? and finished_At between ? and ? order by id DESC", productivity, minDate, maxDate);
+
+        return listTimeProductivity;
+    }
+
     public static List<TimingModel> createTaskTimeProductivity(String productivity, String limit) {
 
         List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? order by id DESC limit ?", productivity, limit);

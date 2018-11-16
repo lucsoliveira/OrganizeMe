@@ -47,6 +47,7 @@ dependencies {
     implementation 'com.github.apl-devs:appintro:v4.2.3'
     //LIB FOR ABOUT PAGE
     implementation 'com.github.medyo:android-about-page:1.2.4'
-    //LIB FOR TRATAMENT WITH DATA
+    //LIB FOR TRATAMENT WITH DATE
     implementation 'joda-time:joda-time:2.10.1'
+    implementation 'com.github.sayemkcn:aDateSwitcher:rc~1.1'
 }

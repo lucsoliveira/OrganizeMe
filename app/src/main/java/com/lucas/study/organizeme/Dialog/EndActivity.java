@@ -112,6 +112,7 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     DateTime dt = formatter.parseDateTime(formattedDate);
 
 
+
                     //Toast.makeText(getContext(), formattedDate, Toast.LENGTH_SHORT).show();
 
 
