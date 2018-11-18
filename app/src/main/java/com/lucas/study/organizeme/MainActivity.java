@@ -3,7 +3,6 @@ package com.lucas.study.organizeme;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -12,11 +11,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.lucas.study.organizeme.Activity.About;
 import com.lucas.study.organizeme.Activity.AddTask;
@@ -33,6 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public boolean creatConfig;
+    public boolean doNotCreate = false;
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -42,31 +40,30 @@ public class MainActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
     /**
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
-    public boolean doNotCreate = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!doNotCreate){
+        if (!doNotCreate) {
             AppConfig aux = new AppConfig(true);
             aux.save();
         }
 
         List<AppConfig> appConfig = AppConfig.creatListConfig();
 
-        if(appConfig.get(0).isFirstUse()){
+        if (appConfig.get(0).isFirstUse()) {
 
             doNotCreate = true;
             Intent intentFirstUse = new Intent(this, FirstUse.class);
             startActivity(intentFirstUse);
-        }else{
+        } else {
 
             Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarApp);
             toolbar.setVisibility(View.VISIBLE);
@@ -112,12 +109,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void openAddToDoActivity(View view) {
         Intent intent = new Intent(this, AddToDo.class);
         startActivity(intent);
     }
-
 
 
     @Override
@@ -149,6 +144,23 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.ic_launcher)
+                .setTitle(R.string.app_name)
+                .setMessage("Você deseja sair da aplicação?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Não", null)
+                .show();
+    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
@@ -163,16 +175,16 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             switch (position) {
-                case 0 :
+                case 0:
                     Tasks tab1 = new Tasks();
                     return tab1;
 
-                case 1 :
+                case 1:
                     Stats tab2 = new Stats();
                     return tab2;
 
 
-                case 2 :
+                case 2:
                     ToDos tab3 = new ToDos();
                     return tab3;
 
@@ -182,30 +194,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public int getCount() { return 3; }
+        public int getCount() {
+            return 3;
+        }
 
 
     }
-
-    @Override
-    public void onBackPressed() {
-        // Do Here what ever you want do on back press;
-        new AlertDialog.Builder(this)
-                .setIcon(R.drawable.ic_launcher)
-                .setTitle(R.string.app_name)
-                .setMessage("Você deseja sair da aplicação?")
-                .setPositiveButton("Sim", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-
-                })
-                .setNegativeButton("Não", null)
-                .show();
-    }
-
 
 
 }

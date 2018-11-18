@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.R;
 
 public class EditTask extends AppCompatActivity {
 
@@ -20,14 +20,14 @@ public class EditTask extends AppCompatActivity {
     private Button editTask;
 
     private CoordinatorLayout coordinatorLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_task);
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayout);
-        editTextTitle   = (EditText)findViewById(R.id.editTextTitle);
-
+        editTextTitle = (EditText) findViewById(R.id.editTextTitle);
 
 
         Intent intent = getIntent();
@@ -49,11 +49,11 @@ public class EditTask extends AppCompatActivity {
                 String newTitle = editTextTitle.getText().toString();
 
                 closeKeyboard();
-                if(oldTitle.equals(newTitle)){
+                if (oldTitle.equals(newTitle)) {
 
                     showToast("Não houve nenhuma alteração.");
 
-                }else{
+                } else {
 
                     t.titleTask = newTitle; // modify the values
                     t.save(); // updates the previous entry with new values.

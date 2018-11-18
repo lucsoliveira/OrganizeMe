@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Widget.BestChoiceWithHumor;
 import com.lucas.study.organizeme.Widget.ChartProductivity;
@@ -22,7 +23,7 @@ import java.util.Map;
 
 import xyz.rimon.adateswitcher.DateSwitcher;
 
-public class Stats extends Fragment{
+public class Stats extends Fragment {
 
     public CoordinatorLayout chartView, layoutWidgetBestChoice, layoutWidgetBestInterval;
     public BestChoiceWithHumor widgetBestChoiceForHumor;

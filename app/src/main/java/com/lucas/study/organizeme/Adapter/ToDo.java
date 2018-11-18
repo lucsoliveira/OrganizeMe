@@ -10,8 +10,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lucas.study.organizeme.Dialog.EditToDo;
-import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.ToDoModel;
+import com.lucas.study.organizeme.R;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
@@ -33,7 +33,7 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
         mTodoList = todoList;
     }
 
-    public ToDo(){
+    public ToDo() {
 
     }
 
@@ -52,10 +52,10 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
         return mTodoList.size();
     }
 
-    public class ViewHolder extends SwipeViewHolder implements View.OnClickListener{
+    public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private TextView txtNameToDo, txtDescription;
         public ImageButton editToDo;
+        private TextView txtNameToDo, txtDescription;
         private long idToDo;
         private String dateCreate, description, title;
         private CheckBox checkToDo;
@@ -72,7 +72,7 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
             txtNameToDo = (TextView) findViewById(R.id.txtNameToDo);
             txtNameToDo.setOnClickListener(this);
             //CHECKBOX
-            checkToDo= (CheckBox) findViewById(R.id.checkBoxToDo);
+            checkToDo = (CheckBox) findViewById(R.id.checkBoxToDo);
             //checkbox click event handling
             checkToDo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
@@ -87,7 +87,7 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
                     } else {
                         t.setStatus(0);
                         t.save();
-                        txtNameToDo.setPaintFlags(txtNameToDo.getPaintFlags() & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+                        txtNameToDo.setPaintFlags(txtNameToDo.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
                     }
                 }
             });
@@ -104,16 +104,19 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
 
             statusToDo = todo.getStatus();
 
-            if(statusToDo == 0){
+            if (statusToDo == 0) {
                 checkToDo.setChecked(false);
             }
 
-            if(statusToDo == 1){
+            if (statusToDo == 1) {
                 checkToDo.setChecked(true);
             }
         }
 
-        Long getIdToDo(){ return idToDo;}
+        Long getIdToDo() {
+            return idToDo;
+        }
+
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
@@ -130,7 +133,6 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
             }
         }
     }
-
 
 
 }

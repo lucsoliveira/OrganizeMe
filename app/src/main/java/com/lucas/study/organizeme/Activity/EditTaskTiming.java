@@ -11,25 +11,21 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
 import com.lucas.study.organizeme.Model.TimingModel;
+import com.lucas.study.organizeme.R;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import java.text.SimpleDateFormat;
 
 public class EditTaskTiming extends AppCompatActivity {
 
-    private Button editTask;
     public RadioButton optionGood, optionMedium, optionBad, optionHappy, optionNeutral, optionSad;
     public TextView txtTitleTime;
     public NumberPicker numberPicker;
     public int newProductivity, newHumor;
-
+    private Button editTask;
     private CoordinatorLayout coordinatorLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,42 +92,50 @@ public class EditTaskTiming extends AppCompatActivity {
 
                 int oldProductivity = time.getProductivity();
                 int oldHumor = time.getHumorAfter();
-                int oldMinute = time.getTimeSecondsTask()/60;
+                int oldMinute = time.getTimeSecondsTask() / 60;
 
 
                 /* RADIO BUTTONS */
-                if(optionGood.isChecked()){ newProductivity = 2;}
-                else if(optionMedium.isChecked()){ newProductivity = 1;}
-                else if(optionBad.isChecked()){ newProductivity = 0;}
+                if (optionGood.isChecked()) {
+                    newProductivity = 2;
+                } else if (optionMedium.isChecked()) {
+                    newProductivity = 1;
+                } else if (optionBad.isChecked()) {
+                    newProductivity = 0;
+                }
 
-                if(optionHappy.isChecked()){ newHumor = 2;}
-                else if(optionNeutral.isChecked()){ newHumor = 1;}
-                else if(optionSad.isChecked()){ newHumor = 0;}
+                if (optionHappy.isChecked()) {
+                    newHumor = 2;
+                } else if (optionNeutral.isChecked()) {
+                    newHumor = 1;
+                } else if (optionSad.isChecked()) {
+                    newHumor = 0;
+                }
                 /* END RADIO BUTTONS */
 
                 int newMinute = numberPicker.getValue();
 
 
-                if(newProductivity == oldProductivity){
+                if (newProductivity == oldProductivity) {
 
-                }else{
+                } else {
                     time.setProductivity(newProductivity);
                 }
 
-                if(newHumor == oldHumor){
+                if (newHumor == oldHumor) {
 
-                }else{
+                } else {
                     time.setHumorAfter(newHumor);
                 }
 
-                if(oldMinute == newMinute){
+                if (oldMinute == newMinute) {
 
-                }else{
+                } else {
 
                     DateTime dt = DateTime.parse(time.getFinishedAt());
 
 
-                    time.setTimeSecondsTask(newMinute*60);//set the seconds duration;
+                    time.setTimeSecondsTask(newMinute * 60);//set the seconds duration;
                     // clear the minutes before
                     time.setFinishedAt(dt.minusMinutes(minutes).plusMinutes(newMinute).toString());//set the finshedAt time
                 }

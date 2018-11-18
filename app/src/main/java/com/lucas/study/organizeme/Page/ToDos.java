@@ -10,10 +10,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lucas.study.organizeme.View.Message;
-import com.lucas.study.organizeme.R;
-import com.lucas.study.organizeme.Model.ToDoModel;
 import com.lucas.study.organizeme.Adapter.ToDo;
+import com.lucas.study.organizeme.Model.ToDoModel;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.View.Message;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;

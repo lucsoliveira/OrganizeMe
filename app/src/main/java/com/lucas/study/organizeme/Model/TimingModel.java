@@ -2,10 +2,6 @@ package com.lucas.study.organizeme.Model;
 
 import com.orm.SugarRecord;
 
-import org.joda.time.DateTime;
-
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class TimingModel extends SugarRecord<TimingModel> {
@@ -34,7 +30,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
 
      */
 
-    public TimingModel(){
+    public TimingModel() {
     }
 
     public TimingModel(Long idTask,
@@ -45,7 +41,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
                        String moreInformation,
                        String createdAt,
                        String startAt,
-                       String finishedAt){
+                       String finishedAt) {
 
         this.idTask = idTask;
         this.timeSecondsTask = timeSecondsTask;
@@ -60,6 +56,64 @@ public class TimingModel extends SugarRecord<TimingModel> {
     }
 
     /* GETS AND SETS*/
+
+    /* LIST CREATOR */
+    public static List<TimingModel> createTaskTimeList() {
+
+        //List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
+        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model order by finished_At DESC");
+        return listTasksTiming;
+    }
+
+    /* LIST CREATOR */
+    public static List<TimingModel> createTaskTimeListWithLimit(String limit) {
+
+        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model order by id DESC limit ?", limit);
+        return listTasksTiming;
+    }
+
+    public static List<TimingModel> createTaskTimeListWithLimit(String limit, String id) {
+
+        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where id_Task = ? order by id DESC limit ?", id, limit);
+
+        return listTasksTiming;
+    }
+
+    public static List<TimingModel> createTaskTimeProductivity(String productivity, String humor, String limit) {
+
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where productivity = ? and humor_Before = ? order by id DESC limit ?", productivity, humor, limit);
+
+        return listTimeProductivity;
+    }
+
+    public static List<TimingModel> createTaskTimeProductivity(String productivity, String minDate, String maxDate, String apagar) {
+
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where productivity = ? and finished_At between ? and ? order by id DESC", productivity, minDate, maxDate);
+
+        return listTimeProductivity;
+    }
+
+    public static List<TimingModel> createTaskTime(String minDate, String maxDate) {
+
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where finished_At between ? and ? order by id DESC", minDate, maxDate);
+
+        return listTimeProductivity;
+    }
+
+    public static List<TimingModel> createTaskTime(String minDate) {
+
+        // List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At < ? order by id",minDate);
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where finished_At < ? order by id", minDate);
+
+        return listTimeProductivity;
+    }
+
+    public static List<TimingModel> createTaskTimeProductivity(String productivity, String dateNow) {
+
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where productivity = ? and finished_At < ? order by id DESC LIMIT 100", productivity, dateNow);
+
+        return listTimeProductivity;
+    }
 
     public int getHumorAfter() {
         return humorAfter;
@@ -97,7 +151,9 @@ public class TimingModel extends SugarRecord<TimingModel> {
         return moreInformation;
     }
 
-    public void setMoreInformation(String moreInformation) { this.moreInformation = moreInformation; }
+    public void setMoreInformation(String moreInformation) {
+        this.moreInformation = moreInformation;
+    }
 
     public int getHumorBefore() {
         return humorBefore;
@@ -132,68 +188,12 @@ public class TimingModel extends SugarRecord<TimingModel> {
         this.startAt = startAt;
     }
 
-    public String getFinishedAt() { return finishedAt; }
-
-    public void setFinishedAt(String finishedAt) { this.finishedAt = finishedAt; }
-
-    /* END GETS AND SETS*/
-
-    /* LIST CREATOR */
-    public static List<TimingModel> createTaskTimeList() {
-
-        //List<TaskTimingModel> listTasksTiming= TaskTimingModel.find(TaskTimingModel.class,"");
-        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model order by finished_At DESC");
-        return listTasksTiming;
+    public String getFinishedAt() {
+        return finishedAt;
     }
 
-    /* LIST CREATOR */
-    public static List<TimingModel> createTaskTimeListWithLimit(String limit) {
-
-        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model order by id DESC limit ?",limit);
-        return listTasksTiming;
-    }
-    public static List<TimingModel> createTaskTimeListWithLimit(String limit, String id) {
-
-        List<TimingModel> listTasksTiming = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where id_Task = ? order by id DESC limit ?", id, limit);
-
-        return listTasksTiming;
-    }
-    public static List<TimingModel> createTaskTimeProductivity(String productivity, String humor, String limit) {
-
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? and humor_Before = ? order by id DESC limit ?", productivity, humor, limit);
-
-        return listTimeProductivity;
-    }
-
-
-    public static List<TimingModel> createTaskTimeProductivity(String productivity, String minDate, String maxDate, String apagar) {
-
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? and finished_At between ? and ? order by id DESC", productivity, minDate, maxDate);
-
-        return listTimeProductivity;
-    }
-
-    public static List<TimingModel> createTaskTime(String minDate, String maxDate) {
-
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At between ? and ? order by id DESC", minDate, maxDate);
-
-        return listTimeProductivity;
-    }
-
-    public static List<TimingModel> createTaskTime(String minDate) {
-
-       // List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At < ? order by id",minDate);
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At < ? order by id",minDate);
-
-        return listTimeProductivity;
-    }
-
-
-    public static List<TimingModel> createTaskTimeProductivity(String productivity, String dateNow) {
-
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where productivity = ? and finished_At < ? order by id DESC LIMIT 100", productivity, dateNow);
-
-        return listTimeProductivity;
+    public void setFinishedAt(String finishedAt) {
+        this.finishedAt = finishedAt;
     }
 
 

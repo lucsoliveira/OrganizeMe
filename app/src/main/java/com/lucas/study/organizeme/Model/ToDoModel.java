@@ -18,10 +18,10 @@ public class ToDoModel extends SugarRecord<ToDoModel> {
         1 - Finished
      */
 
-    public ToDoModel(){
+    public ToDoModel() {
     }
 
-    public ToDoModel(String title, String description, int status, String createdAt){
+    public ToDoModel(String title, String description, int status, String createdAt) {
 
         this.title = title;
         this.description = description;
@@ -31,6 +31,13 @@ public class ToDoModel extends SugarRecord<ToDoModel> {
     }
 
     /* GETS AND SETS*/
+
+    public static List<ToDoModel> creatListTodo(String status) {
+
+
+        List<ToDoModel> listToDo = ToDoModel.findWithQuery(ToDoModel.class, "Select * from To_Do_Model where status = ? order by id DESC", status);
+        return listToDo;
+    }
 
     public String getDescription() {
         return description;
@@ -63,22 +70,16 @@ public class ToDoModel extends SugarRecord<ToDoModel> {
     public void setUpdatedAt(String updatedAt) {
         this.updatedAt = updatedAt;
     }
+
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     /* END GETS AND SETS*/
 
     /* LIST CREATOR */
 
-    public static List<ToDoModel> creatListTodo(String status) {
-
-
-        List<ToDoModel> listToDo = ToDoModel.findWithQuery(ToDoModel.class,"Select * from To_Do_Model where status = ? order by id DESC", status);
-        return listToDo;
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

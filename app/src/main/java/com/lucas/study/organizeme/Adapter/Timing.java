@@ -17,6 +17,7 @@ import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
 
 import org.joda.time.DateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,6 +49,35 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
         return mTasksTimeList.size();
     }
 
+    private String getDurationString(int seconds) {
+
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        seconds = seconds % 60;
+
+        return twoDigitString(hours) + ":" + twoDigitString(minutes) + ":" + twoDigitString(seconds);
+    }
+
+    private String twoDigitString(int number) {
+        if (number == 0) {
+            return "00";
+        }
+        if (number / 10 == 0) {
+            return "0" + number;
+        }
+        return String.valueOf(number);
+    }
+
+    private String dateFormatString(String date) {
+        // Parsing the date
+        DateTime dt = new DateTime(date);  // current time
+        String finishedDate = String.valueOf(dt.getDayOfMonth()) + "/" + String.valueOf(dt.getMonthOfYear()) + "/" + String.valueOf(dt.getYear()) + " - "
+                + String.valueOf(dt.getHourOfDay()) + ":" + String.valueOf(dt.getMinuteOfHour()) + ":" + String.valueOf(dt.getSecondOfMinute());
+        // gets the month name
+
+        return finishedDate;
+    }
+
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
         private TextView txtNameTask, txtDuration, txtProductivity,
@@ -72,13 +102,12 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             txtDuration = findViewById(R.id.txtDuration);
             txtProductivity = findViewById(R.id.txtProductivity);
             txtHumorAfter = findViewById(R.id.txtHumorAfter);
-            drwHumorAfter= findViewById(R.id.drwHumorAfter);
+            drwHumorAfter = findViewById(R.id.drwHumorAfter);
 
-            txtHumorBefore= findViewById(R.id.txtHumorBefore);
-            drwHumorBefore= findViewById(R.id.drwHumorBefore);
+            txtHumorBefore = findViewById(R.id.txtHumorBefore);
+            drwHumorBefore = findViewById(R.id.drwHumorBefore);
             txtMoreInfo = findViewById(R.id.txtMoreInfo);
             txtCreated = findViewById(R.id.txtDate);
-
 
 
         }
@@ -93,9 +122,9 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             TaskModel task = TaskModel.findById(TaskModel.class, idTask);
             txtNameTask.setText("#" + idTime + " " + task.getTitleTask());
 
-            if(time.getMoreInformation().equals("")){
+            if (time.getMoreInformation().equals("")) {
                 findViewById(R.id.linear_more_information).setVisibility(View.GONE);
-            }else{
+            } else {
                 txtMoreInfo.setText(time.getMoreInformation());
             }
 
@@ -103,8 +132,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
             txtCreated.setText(dateFormatString(time.getFinishedAt()));
 
 
-
-            switch (time.getProductivity() ){
+            switch (time.getProductivity()) {
                 case 2:
                     txtProductivity.setText(R.string.txt_good);
                     break;
@@ -117,7 +145,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
 
             }
 
-            switch (time.getHumorAfter() ){
+            switch (time.getHumorAfter()) {
                 case 2:
                     drwHumorAfter.setImageResource(R.drawable.ic_happy);
                     break;
@@ -129,7 +157,7 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
                     break;
             }
 
-            switch (time.getHumorBefore() ){
+            switch (time.getHumorBefore()) {
                 case 2:
                     drwHumorBefore.setImageResource(R.drawable.ic_happy);
 
@@ -173,35 +201,11 @@ public class Timing extends OmegaRecyclerView.Adapter<Timing.ViewHolder> {
         }
 
 
-        Long getIdTime(){ return idTime; }
+        Long getIdTime() {
+            return idTime;
+        }
 
 
-
-    }
-
-    private String getDurationString(int seconds) {
-
-        int hours = seconds / 3600;
-        int minutes = (seconds % 3600) / 60;
-        seconds = seconds % 60;
-
-        return twoDigitString(hours) + ":" + twoDigitString(minutes) + ":" + twoDigitString(seconds);
-    }
-
-    private String twoDigitString(int number) {
-        if (number == 0) { return "00"; }
-        if (number / 10 == 0) { return "0" + number; }
-        return String.valueOf(number);
-    }
-
-    private String dateFormatString(String date){
-        // Parsing the date
-        DateTime dt = new DateTime(date);  // current time
-        String finishedDate = String.valueOf(dt.getDayOfMonth()) + "/" + String.valueOf(dt.getMonthOfYear()) + "/" + String.valueOf(dt.getYear()) + " - "
-                + String.valueOf(dt.getHourOfDay()) + ":" + String.valueOf(dt.getMinuteOfHour()) + ":" + String.valueOf(dt.getSecondOfMinute());
-        // gets the month name
-
-        return finishedDate;
     }
 
 }

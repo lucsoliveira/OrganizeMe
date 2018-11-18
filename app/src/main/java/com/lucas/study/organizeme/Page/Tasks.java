@@ -5,18 +5,15 @@ import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.lucas.study.organizeme.View.Message;
-import com.lucas.study.organizeme.R;
-import com.lucas.study.organizeme.Model.TaskModel;
 import com.lucas.study.organizeme.Adapter.Task;
+import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.R;
+import com.lucas.study.organizeme.View.Message;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
@@ -26,6 +23,7 @@ import java.util.concurrent.Future;
 
 public class Tasks extends Fragment {
 
+    public static String s = "A";
     public List<TaskModel> listTasks;
     public CoordinatorLayout messageNoActivities;
     public Task adapter;
@@ -33,10 +31,10 @@ public class Tasks extends Fragment {
     public String startedAt;
     public Runnable r;
     public Message msgNoTasks;
-    Future longRunningTaskFuture;
-    public static String s = "A";
     public OmegaRecyclerView omegaRecyclerView;
     public FloatingActionButton mFloatingActionButtonTasks;
+    Future longRunningTaskFuture;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

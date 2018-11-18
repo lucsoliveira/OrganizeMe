@@ -6,10 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.lucas.study.organizeme.Adapter.Task;
-import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Adapter.Timing;
 import com.lucas.study.organizeme.Model.TimingModel;
+import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.View.Message;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 
@@ -17,10 +16,9 @@ import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 public class HistoryTasks extends AppCompatActivity {
 
+    public CoordinatorLayout layoutMessageNoTiming, coordinatorLayout;
     EditText editTextTitle;
     private Button editTask;
-
-    public CoordinatorLayout layoutMessageNoTiming, coordinatorLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class HistoryTasks extends AppCompatActivity {
             messageNoTiming.showMessageView();
 
         } else {
-            Timing adapter = new Timing(TimingModel.createTaskTimeList(),this);
+            Timing adapter = new Timing(TimingModel.createTaskTimeList(), this);
             omegaRecyclerView.setAdapter(adapter);
         }
 

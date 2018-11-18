@@ -1,8 +1,6 @@
 package com.lucas.study.organizeme.Activity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,12 +8,9 @@ import android.support.v4.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
-import com.lucas.study.organizeme.Adapter.ToDo;
 import com.lucas.study.organizeme.MainActivity;
 import com.lucas.study.organizeme.Model.AppConfig;
 import com.lucas.study.organizeme.R;
-
-import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.List;
 
@@ -28,7 +23,7 @@ public class FirstUse extends AppIntro {
 
         // Add your slide fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
-      
+
         // Instead of fragments, you can also use our default slide.
         // Just create a `SliderPage` and provide title, description, background and image.
         // AppIntro will do the rest.
@@ -95,7 +90,7 @@ public class FirstUse extends AppIntro {
         // Do something when the slide changes.
     }
 
-    public void getMainActivity(){
+    public void getMainActivity() {
 
         List<AppConfig> appConfig = AppConfig.creatListConfig();
         appConfig.get(0).setFirstUse(false);

@@ -1,7 +1,6 @@
 package com.lucas.study.organizeme.Widget;
 
 import android.support.design.widget.CoordinatorLayout;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -26,24 +25,24 @@ import java.util.List;
 import java.util.Vector;
 
 
-
 public class ChartProductivity {
 
-    private int msg;
-    private CoordinatorLayout layoutAttack;
     public Message msgBestInterval;
     public GraphView chart;
     public DataPoint[] valuesChart;
     public LineGraphSeries<DataPoint> series;
-    Vector<Float> vectorHoursOfDay = new Vector<Float>();//vector for save the points of best time
     public DataPoint[] values;
     public List<TimingModel> timesInterval;
     public String actualDate;
-    public ChartProductivity(){
+    Vector<Float> vectorHoursOfDay = new Vector<Float>();//vector for save the points of best time
+    private int msg;
+    private CoordinatorLayout layoutAttack;
+
+    public ChartProductivity() {
 
     }
 
-    public ChartProductivity(CoordinatorLayout layoutAttack){
+    public ChartProductivity(CoordinatorLayout layoutAttack) {
 
         msgBestInterval = new Message(R.string.message_need_more_for_interval,
                 MaterialDrawableBuilder.IconValue.TIMELAPSE,
@@ -63,7 +62,6 @@ public class ChartProductivity {
     }
 
 
-
     public CoordinatorLayout getLayoutAttack() {
         return layoutAttack;
     }
@@ -72,7 +70,7 @@ public class ChartProductivity {
         this.layoutAttack = layoutAttack;
     }
 
-    public void widgetShow(String[] args){
+    public void widgetShow(String[] args) {
 
         msgBestInterval.setIconValue(MaterialDrawableBuilder.IconValue.TIMER);
 
@@ -80,7 +78,7 @@ public class ChartProductivity {
         valuesChart = generatePoints(args);
 
         series = new LineGraphSeries<DataPoint>(valuesChart);
-        if(actualDate!=args[0]){
+        if (actualDate != args[0]) {
             chart.removeAllSeries();
         }
 
@@ -88,9 +86,8 @@ public class ChartProductivity {
         series.setDataPointsRadius(10);
         series.setThickness(8);
 
-       // series.resetData(values);
+        // series.resetData(values);
         chart.addSeries(series);
-
 
 
         chart.getViewport().setXAxisBoundsManual(true);
@@ -98,8 +95,8 @@ public class ChartProductivity {
         chart.getViewport().setMaxX(24);
 
         StaticLabelsFormatter staticLabelsFormatter = new StaticLabelsFormatter(chart);
-        staticLabelsFormatter.setVerticalLabels(new String[] {"Ruim", "Média", "Boa"});
-        staticLabelsFormatter.setHorizontalLabels(new String[] {"Madrugada", "Manhã", "Tarde", "Noite"});
+        staticLabelsFormatter.setVerticalLabels(new String[]{"Ruim", "Média", "Boa"});
+        staticLabelsFormatter.setHorizontalLabels(new String[]{"Madrugada", "Manhã", "Tarde", "Noite"});
         chart.getGridLabelRenderer().setHumanRounding(false);
 
         chart.getGridLabelRenderer().setHorizontalLabelsVisible(true);
@@ -115,7 +112,7 @@ public class ChartProductivity {
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
-                Toast.makeText(getLayoutAttack().getContext(), "Horário: "+ dataPoint.getX() + "h", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getLayoutAttack().getContext(), "Horário: " + dataPoint.getX() + "h", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -135,28 +132,27 @@ public class ChartProductivity {
     }
 
 
-    public void widgetHide(){
+    public void widgetHide() {
         getLayoutAttack().setVisibility(View.GONE);
     }
 
-    public DataPoint[] generatePoints(String[] args){
+    public DataPoint[] generatePoints(String[] args) {
 
 
-        if(args.length == 1){
+        if (args.length == 1) {
 
             timesInterval = TimingModel.createTaskTime(args[0]);
-        }else{
+        } else {
 
-            timesInterval = TimingModel.createTaskTime(args[0],args[1]);
+            timesInterval = TimingModel.createTaskTime(args[0], args[1]);
         }
 
         clearVector(vectorHoursOfDay);
 
 
-
         float biggerNumber = 0;
 
-        for(int i = 0; i < timesInterval.size(); i++) {
+        for (int i = 0; i < timesInterval.size(); i++) {
 
             DateTime dt = new DateTime(timesInterval.get(i).getFinishedAt());
 
@@ -164,13 +160,13 @@ public class ChartProductivity {
             float sumValue = (float) timesInterval.get(i).getProductivity() + previousValue;
             vectorHoursOfDay.add(dt.getHourOfDay(), sumValue);
 
-            if(sumValue > biggerNumber){
+            if (sumValue > biggerNumber) {
                 biggerNumber = sumValue;
             }
         }
 
         values = new DataPoint[vectorHoursOfDay.size()];
-        for (int i=0; i<vectorHoursOfDay.size(); i++) {
+        for (int i = 0; i < vectorHoursOfDay.size(); i++) {
             Integer xi = i;
             Float yi = vectorHoursOfDay.get(i);
             DataPoint v = new DataPoint(xi, yi);
@@ -185,22 +181,20 @@ public class ChartProductivity {
     }
 
 
-    void clearVector(Vector<Float> vector){
+    void clearVector(Vector<Float> vector) {
 
         if (vector.size() == 0) {
 
-            for(int i = 0; i < 24; i++){
+            for (int i = 0; i < 24; i++) {
                 vector.add(i, (float) 0);
             }
 
-        }else{
-                vector.clear();
+        } else {
+            vector.clear();
 
         }
 
     }
-
-
 
 
 }

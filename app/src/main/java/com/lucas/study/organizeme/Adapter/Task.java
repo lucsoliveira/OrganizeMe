@@ -1,16 +1,11 @@
 package com.lucas.study.organizeme.Adapter;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Build;
-import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,44 +14,24 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.lucas.study.organizeme.Dialog.EndActivity;
 import com.lucas.study.organizeme.Activity.EditTask;
 import com.lucas.study.organizeme.Activity.FocusMode;
-import com.lucas.study.organizeme.MainActivity;
-import com.lucas.study.organizeme.Page.Tasks;
-import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
-import com.lucas.study.organizeme.View.Message;
+import com.lucas.study.organizeme.R;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
-
-import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.provider.Settings.Global.getString;
-
 
 public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
-    private Context mcon;
-    private boolean stateChronometer;
-
     public int sizeList;
     public CoordinatorLayout coordinatorLayout;
-
-
-    public boolean getStateChronometer(View v){
-        return stateChronometer;
-    }
-
     public boolean setNotChange = false;
-    public void setStateChronometer(View v, boolean state){
-        this.stateChronometer = state;
-    }
-
-
+    private Context mcon;
+    private boolean stateChronometer;
     private List<TaskModel> mTasksList = new ArrayList<>();
 
     public Task(List<TaskModel> tasksList, Context con) {
@@ -64,6 +39,14 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
         mcon = con;
         mTasksList = tasksList;
         sizeList = mTasksList.size();
+    }
+
+    public boolean getStateChronometer(View v) {
+        return stateChronometer;
+    }
+
+    public void setStateChronometer(View v, boolean state) {
+        this.stateChronometer = state;
     }
 
     @Override
@@ -88,10 +71,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
         private Button btnEditTask, btnDeleteTask, btnBack;
         private long idTask;
         private String nameTask;
-
-        public Chronometer chronometer(){
-            return ((Chronometer) findViewById(R.id.chronometer_task));
-        }
 
         public ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_task, R.layout.item_left_swipe_menu);
@@ -129,6 +108,10 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             });
         }
 
+        public Chronometer chronometer() {
+            return ((Chronometer) findViewById(R.id.chronometer_task));
+        }
+
         void updateView(TaskModel task) {
             txtNameTask.setText(task.getTitleTask());
             idTask = task.getId();
@@ -150,15 +133,15 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                 case R.id.btnDeleteTask:
 
                     final TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
-                        t.status = 0;
-                        t.save();
+                    t.status = 0;
+                    t.save();
 
-                        txtNameTask.setPaintFlags(txtNameTask.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                        btnPlay.setVisibility(v.GONE);
+                    txtNameTask.setPaintFlags(txtNameTask.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                    btnPlay.setVisibility(v.GONE);
 
-                        btnDeleteTask.setVisibility(v.GONE);
-                        btnEditTask.setVisibility(v.GONE);
-                        btnBack.setVisibility(v.VISIBLE);
+                    btnDeleteTask.setVisibility(v.GONE);
+                    btnEditTask.setVisibility(v.GONE);
+                    btnBack.setVisibility(v.VISIBLE);
 
                     smoothCloseMenu();
 
@@ -175,7 +158,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                     tBack.status = 1;
                     tBack.save();
 
-                    txtNameTask.setPaintFlags(txtNameTask.getPaintFlags()  & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+                    txtNameTask.setPaintFlags(txtNameTask.getPaintFlags() & (~Paint.STRIKE_THRU_TEXT_FLAG));
                     btnPlay.setVisibility(v.VISIBLE);
                     btnDeleteTask.setVisibility(v.VISIBLE);
                     btnEditTask.setVisibility(v.VISIBLE);
@@ -213,8 +196,13 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             Toast.makeText(itemView.getContext(), message, Toast.LENGTH_SHORT).show();
         }
 
-        Long getIdTask(){ return idTask; }
-        String getTitleTask(){ return nameTask; }
+        Long getIdTask() {
+            return idTask;
+        }
+
+        String getTitleTask() {
+            return nameTask;
+        }
     }
 
 }

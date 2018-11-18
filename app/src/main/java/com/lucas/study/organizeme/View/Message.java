@@ -18,7 +18,7 @@ public class Message {
     private int colorIcon;
     private int sizeDpIcon;
 
-    public Message(int msg, MaterialDrawableBuilder.IconValue iconValue, CoordinatorLayout layoutAttack, int colorIcon, int sizeDpIcon){
+    public Message(int msg, MaterialDrawableBuilder.IconValue iconValue, CoordinatorLayout layoutAttack, int colorIcon, int sizeDpIcon) {
 
         this.msg = msg;
         this.iconValue = iconValue;
@@ -28,12 +28,11 @@ public class Message {
 
     }
 
-    public Message(CoordinatorLayout layoutAttack){
+    public Message(CoordinatorLayout layoutAttack) {
 
         this.layoutAttack = layoutAttack;
 
     }
-
 
 
     public int getMsg() {
@@ -76,7 +75,7 @@ public class Message {
         this.sizeDpIcon = sizeDpIcon;
     }
 
-    public void showMessageView(){
+    public void showMessageView() {
 
 
         TextView msgText = getLayoutAttack().findViewById(R.id.textMessageView);
@@ -93,7 +92,7 @@ public class Message {
         getLayoutAttack().setVisibility(View.VISIBLE);
     }
 
-    public void showMessageViewWithString(String msg){
+    public void showMessageViewWithString(String msg) {
 
 
         TextView msgText = getLayoutAttack().findViewById(R.id.textMessageView);
@@ -111,7 +110,7 @@ public class Message {
     }
 
 
-    public void hideMessageView(){
+    public void hideMessageView() {
         getLayoutAttack().setVisibility(View.GONE);
     }
 

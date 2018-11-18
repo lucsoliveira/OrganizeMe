@@ -1,10 +1,7 @@
 package com.lucas.study.organizeme.Activity;
 
 import android.app.AlertDialog;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,10 +20,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lucas.study.organizeme.Dialog.EndActivity;
-import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
-
-import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+import com.lucas.study.organizeme.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -34,38 +29,36 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import static android.app.Notification.EXTRA_NOTIFICATION_ID;
-
 public class FocusMode extends AppCompatActivity implements View.OnClickListener {
 
-    EditText editTextTodoTitle, editTextTodoDescription;
-    private Button addTodo;
-
     public Calendar calendar;
-    private CoordinatorLayout coordinatorLayout;
-
-    public  Intent notifyIntent;
-    private ImageButton btnPlay, btnPause, btnStop;
-    private TextView titleActivity;
-    private long idTask;
-    private String nameTask;
-    long timeWhenStopped = 0;
-    public void setStateChronometer(View v, boolean state){
-        this.stateChronometer = state;
-    }
-    private boolean stateChronometer;
+    public Intent notifyIntent;
     public Handler handler;
     public String startedAt;
     public Runnable r;
     public int secondsTask;
-    Future longRunningTaskFuture;
-
     public String stringElapsedTime;
-    public boolean getStateChronometer(View v){
+    EditText editTextTodoTitle, editTextTodoDescription;
+    long timeWhenStopped = 0;
+    Future longRunningTaskFuture;
+    ExecutorService executorService;
+    private Button addTodo;
+    private CoordinatorLayout coordinatorLayout;
+    private ImageButton btnPlay, btnPause, btnStop;
+    private TextView titleActivity;
+    private long idTask;
+    private String nameTask;
+    private boolean stateChronometer;
+
+    public void setStateChronometer(View v, boolean state) {
+        this.stateChronometer = state;
+    }
+
+    public boolean getStateChronometer(View v) {
         return stateChronometer;
     }
-    ExecutorService executorService;
-    public Chronometer chronometer(){
+
+    public Chronometer chronometer() {
         return ((Chronometer) findViewById(R.id.chronometer_task));
     }
 
@@ -110,7 +103,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
         startChronometer(coordinatorLayout);
 
-        if(chronometer().getBase() != 0){
+        if (chronometer().getBase() != 0) {
             chronometer().setBase(chronometer().getBase());
         }
 
@@ -128,8 +121,8 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         notifyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         notifyIntent.putExtra("idTask", getIdTask());
         final PendingIntent notifyPendingIntent = PendingIntent.getActivity(
-                this, 0, notifyIntent,0);
-         r = new Runnable() {
+                this, 0, notifyIntent, 0);
+        r = new Runnable() {
             public void run() {
 
                 notifyIntent.putExtra("secondTask", getElapsedTime());
@@ -143,7 +136,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
 
-                notificationManager.notify(1,mBuilder.build());
+                notificationManager.notify(1, mBuilder.build());
                 handler.postDelayed(this, 1000);
             }
         };
@@ -156,8 +149,13 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
     /* Chronometer */
 
-    Long getIdTask(){ return idTask; }
-    String getTitleTask(){ return nameTask; }
+    Long getIdTask() {
+        return idTask;
+    }
+
+    String getTitleTask() {
+        return nameTask;
+    }
 
     public void startChronometer(View view) {
         setStateChronometer(view, true);
@@ -174,7 +172,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
     public void playChronometer(View view) {
         setStateChronometer(view, true);
-        chronometer().setBase(SystemClock.elapsedRealtime()+timeWhenStopped);
+        chronometer().setBase(SystemClock.elapsedRealtime() + timeWhenStopped);
         chronometer().start();
 
         btnPause.setVisibility(View.VISIBLE);
@@ -197,17 +195,13 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         timeWhenStopped = chronometer().getBase() - SystemClock.elapsedRealtime();
     }
 
-    public String getChronometer(View view) {
-        return chronometer().getFormat();
-    }
-
     public void showChronometer(View view) {
         chronometer().setVisibility(View.VISIBLE);
     }
 
     private int getElapsedTime() {
         //Duration in seconds
-        int elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase())/1000;
+        int elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase()) / 1000;
         return elapsedTime;
     }
 
@@ -308,8 +302,12 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
     }
 
     private String twoDigitString(int number) {
-        if (number == 0) { return "00"; }
-        if (number / 10 == 0) { return "0" + number; }
+        if (number == 0) {
+            return "00";
+        }
+        if (number / 10 == 0) {
+            return "0" + number;
+        }
         return String.valueOf(number);
     }
     /* end Chronometer */
