@@ -44,6 +44,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
     public Calendar calendar;
     private CoordinatorLayout coordinatorLayout;
 
+    public  Intent notifyIntent;
     private ImageButton btnPlay, btnPause, btnStop;
     private TextView titleActivity;
     private long idTask;
@@ -56,6 +57,7 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
     public Handler handler;
     public String startedAt;
     public Runnable r;
+    public int secondsTask;
     Future longRunningTaskFuture;
 
     public String stringElapsedTime;
@@ -80,6 +82,17 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
         Intent intent = getIntent();
         idTask = intent.getLongExtra("idTask", 0);
+
+        if (intent.hasExtra("secondTask")) {
+
+            chronometer().setBase(intent.getIntExtra("secondTask", 1));
+            intent.getIntExtra("secondTask", 1);
+
+            Log.i("o que passou", String.valueOf(intent.getIntExtra("secondTask", 1)));
+        } else {
+            // Do something else
+        }
+
         // Capture the DB title and set the string as its text
         final TaskModel t = TaskModel.findById(TaskModel.class, idTask);
 
@@ -108,18 +121,27 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         startedAt = df.format(c.getTime());
         handler = new Handler();
 
+
+        notifyIntent = new Intent(this, FocusMode.class);
+        notifyIntent.setAction(Intent.ACTION_MAIN);
+        notifyIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notifyIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        notifyIntent.putExtra("idTask", getIdTask());
+        final PendingIntent notifyPendingIntent = PendingIntent.getActivity(
+                this, 0, notifyIntent,0);
          r = new Runnable() {
             public void run() {
-                Log.i("Runable seconds:", "aqui");
+
+                notifyIntent.putExtra("secondTask", getElapsedTime());
+
                 stringElapsedTime = getDurationString(getElapsedTime());
                 NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "sd")
                         .setSmallIcon(R.drawable.ic_launcher)
                         .setContentTitle(t.getTitleTask())
+                        .setContentIntent(notifyPendingIntent)
                         .setContentText(stringElapsedTime)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                 NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-
-                Log.i("String notification:", stringElapsedTime);
 
                 notificationManager.notify(1,mBuilder.build());
                 handler.postDelayed(this, 1000);
