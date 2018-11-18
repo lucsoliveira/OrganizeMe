@@ -37,6 +37,7 @@ dependencies {
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     //LIBS FOR CHARTS
     implementation 'com.jjoe64:graphview:4.2.2'
+    implementation 'com.github.lecho:hellocharts-android:v1.5.8'
     //LIBS FOR CUSTOM FONTS
     implementation 'io.github.inflationx:calligraphy3:3.0.0'
     implementation 'io.github.inflationx:viewpump:1.0.0'

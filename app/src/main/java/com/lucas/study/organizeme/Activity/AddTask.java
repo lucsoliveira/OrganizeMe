@@ -67,24 +67,6 @@ public class AddTask extends AppCompatActivity {
                     }else{
                         Toast.makeText(getApplicationContext(),"Já existe uma atividade com esse nome.", Toast.LENGTH_SHORT).show();
                     }
-                    /*
-
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
-                            .setAction("DESFAZER", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    TaskModel toDeleteTask = TaskModel.findById(TaskModel.class, idCreated);
-                                    toDeleteTask.delete();
-
-                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade desfeita!", Snackbar.LENGTH_SHORT);
-                                    snackbar1.show();
-                                }
-                            });
-
-                    snackbar.show();
-
-                    */
                 }
             }
         });

@@ -77,6 +77,7 @@
 
             <Button
                 android:id="@+id/deleteToDo"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:drawableStart="@android:drawable/ic_delete"
                 android:layout_height="wrap_content"

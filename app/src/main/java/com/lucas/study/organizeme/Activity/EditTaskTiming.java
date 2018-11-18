@@ -140,6 +140,8 @@ public class EditTaskTiming extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Alterações salvas", Toast.LENGTH_LONG).show();
 
+                Intent i = new Intent(getApplicationContext(), HistoryTasks.class);
+                startActivity(i);
                 finish();
 
             }

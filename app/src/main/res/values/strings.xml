@@ -25,7 +25,7 @@
 
     <!--MENU-->
     <string name="action_settings">Configurações</string>
-    <string name="action_history_timing_tasks">Histórico de Cronometragens</string>
+    <string name="action_history_timing_tasks">Cronometragens</string>
     <string name="action_about">Sobre</string>
 
     <!--TASKS-->
