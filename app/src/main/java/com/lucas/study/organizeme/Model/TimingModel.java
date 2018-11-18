@@ -2,6 +2,10 @@ package com.lucas.study.organizeme.Model;
 
 import com.orm.SugarRecord;
 
+import org.joda.time.DateTime;
+
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class TimingModel extends SugarRecord<TimingModel> {
@@ -178,7 +182,8 @@ public class TimingModel extends SugarRecord<TimingModel> {
 
     public static List<TimingModel> createTaskTime(String minDate) {
 
-        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At < ? order by id DESC LIMIT 100", minDate);
+       // List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At < ? order by id",minDate);
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class,"Select * from Timing_Model where finished_At < ? order by id",minDate);
 
         return listTimeProductivity;
     }

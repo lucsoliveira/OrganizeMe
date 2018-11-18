@@ -5,6 +5,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ public class ToDos extends Fragment {
     public CoordinatorLayout messageNoActivities;
     public FloatingActionButton mFloatingActionButton;
     public CoordinatorLayout coordinatorLayout;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,8 +52,6 @@ public class ToDos extends Fragment {
         listToDoDoing = ToDoModel.creatListTodo("0");
 
 
-
-
         if (listToDoDoing.size() == 0) {
 
             Message msgNoToDo = new Message(R.string.message_no_todo,
@@ -65,11 +63,12 @@ public class ToDos extends Fragment {
 
 
         } else {
-
             ToDo adapter = new ToDo(listToDoDoing, getActivity());
+            Log.i("SizeList Todo", String.valueOf(adapter.actualListToDoSize));
             omegaRecyclerView.setAdapter(adapter);
 
         }
+
 
         return rootView;
     }

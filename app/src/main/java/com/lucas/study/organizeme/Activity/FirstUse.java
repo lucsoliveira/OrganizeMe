@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import com.github.paolorotolo.appintro.AppIntro;
 import com.github.paolorotolo.appintro.AppIntroFragment;
 import com.github.paolorotolo.appintro.model.SliderPage;
+import com.lucas.study.organizeme.Adapter.ToDo;
 import com.lucas.study.organizeme.MainActivity;
 import com.lucas.study.organizeme.Model.AppConfig;
 import com.lucas.study.organizeme.R;

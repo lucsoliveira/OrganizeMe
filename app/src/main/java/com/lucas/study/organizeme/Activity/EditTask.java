@@ -31,6 +31,7 @@ public class EditTask extends AppCompatActivity {
 
 
         Intent intent = getIntent();
+
         // Capture the DB title and set the string as its text
         final TaskModel t = TaskModel.findById(TaskModel.class, intent.getLongExtra("idTask", 0));
         final String oldTitle = t.getTitleTask();

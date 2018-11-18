@@ -25,10 +25,16 @@ public class ToDo extends OmegaRecyclerView.Adapter<ToDo.ViewHolder> {
 
     private List<ToDoModel> mTodoList = new ArrayList<>();
 
+    public int actualListToDoSize = mTodoList.size();
+
     public ToDo(List<ToDoModel> todoList, Context con) {
 
         mcon = con;
         mTodoList = todoList;
+    }
+
+    public ToDo(){
+
     }
 
     @Override

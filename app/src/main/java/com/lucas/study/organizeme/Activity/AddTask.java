@@ -5,14 +5,19 @@ import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.lucas.study.organizeme.Adapter.Task;
+import com.lucas.study.organizeme.MainActivity;
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
+
+import java.util.List;
 
 public class AddTask extends AppCompatActivity {
 
@@ -46,9 +51,23 @@ public class AddTask extends AppCompatActivity {
                 if(editTextTitle.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(), R.string.task_error_create, Toast.LENGTH_SHORT).show();
                 }else{
-                    TaskModel t = new TaskModel(editTextTitle.getText().toString(), 1);
-                    t.save();
-                    final Long idCreated = t.getId();
+
+                    List<TaskModel> tasksFindSameTitle = TaskModel.find(TaskModel.class, "title_Task = ? and status = 1", editTextTitle.getText().toString());
+                    if(tasksFindSameTitle.size() ==0){
+
+                        TaskModel t = new TaskModel(editTextTitle.getText().toString(), 1);
+                        t.save();
+                        final Long idCreated = t.getId();
+
+                        Toast.makeText(getApplicationContext(),"Atividade criada com sucesso.",Toast.LENGTH_LONG).show();
+
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }else{
+                        Toast.makeText(getApplicationContext(),"Já existe uma atividade com esse nome.", Toast.LENGTH_SHORT).show();
+                    }
+                    /*
 
                     Snackbar snackbar = Snackbar
                             .make(coordinatorLayout, "Atividade criada", Snackbar.LENGTH_LONG)
@@ -64,6 +83,8 @@ public class AddTask extends AppCompatActivity {
                             });
 
                     snackbar.show();
+
+                    */
                 }
             }
         });

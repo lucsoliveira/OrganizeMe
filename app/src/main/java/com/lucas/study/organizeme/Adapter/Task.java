@@ -3,12 +3,14 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Build;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -20,10 +22,15 @@ import android.widget.Toast;
 import com.lucas.study.organizeme.Dialog.EndActivity;
 import com.lucas.study.organizeme.Activity.EditTask;
 import com.lucas.study.organizeme.Activity.FocusMode;
+import com.lucas.study.organizeme.MainActivity;
+import com.lucas.study.organizeme.Page.Tasks;
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.View.Message;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
+
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +43,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
     private Context mcon;
     private boolean stateChronometer;
 
+    public int sizeList;
     public CoordinatorLayout coordinatorLayout;
 
 
@@ -55,6 +63,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
         mcon = con;
         mTasksList = tasksList;
+        sizeList = mTasksList.size();
     }
 
     @Override
@@ -76,7 +85,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
         private ImageButton btnPlay, btnPause, btnStop;
         private TextView txtNameTask;
-        private Button btnEditTask, btnDeleteTask;
+        private Button btnEditTask, btnDeleteTask, btnBack;
         private long idTask;
         private String nameTask;
 
@@ -97,15 +106,14 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             btnStop = findViewById(R.id.btnStop);
             btnStop.setOnClickListener(this);
 
+            btnBack = findViewById(R.id.btnBack);
+            btnBack.setOnClickListener(this);
+
             btnEditTask = findViewById(R.id.btnEditTask);
             btnEditTask.setOnClickListener(this);
 
             btnDeleteTask = findViewById(R.id.btnDeleteTask);
             btnDeleteTask.setOnClickListener(this);
-
-
-
-            coordinatorLayout = (CoordinatorLayout) findViewById(R.id.coordinatorLayoutTasks);
 
 
             txtNameTask = findViewById(R.id.txtNameTask);
@@ -127,63 +135,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             nameTask = task.getTitleTask();
         }
 
-        /* Chronometer */
-
-        public void startChronometer(View view) {
-
-            if(getStateChronometer(view)){
-
-                Toast.makeText(mcon, "Termine sua atividade antes de iniciar outra.", Toast.LENGTH_LONG).show();
-
-            }else{
-                setStateChronometer(view, true);
-                chronometer().setBase(SystemClock.elapsedRealtime());
-                showChronometer(view);
-                chronometer().start();
-                btnPause.setVisibility(View.VISIBLE);
-                btnStop.setVisibility(View.VISIBLE);
-                btnPlay.setVisibility(View.GONE);
-
-
-                setSwipeEnable(false);
-            }
-
-
-        }
-
-        public void pauseChronometer(View view) {
-            chronometer().stop();
-        }
-
-        public void stopChronometer(View view) {
-            pauseChronometer(view);
-            setStateChronometer(view, false);
-            clearChronometer(view);
-        }
-
-        public String getChronometer(View view) {
-            return chronometer().getFormat();
-        }
-
-        public void showChronometer(View view) {
-            chronometer().setVisibility(View.VISIBLE);
-        }
-
-        public void clearChronometer(View view) {
-
-            chronometer().setVisibility(View.GONE);
-            btnPause.setVisibility(View.GONE);
-            btnStop.setVisibility(View.GONE);
-            btnPlay.setVisibility(View.VISIBLE);
-        }
-
-        private int getElapsedTime() {
-            //Duration in seconds
-            int elapsedTime = (int) (SystemClock.elapsedRealtime() - chronometer().getBase())/1000;
-            return elapsedTime;
-        }
-
-        /* end Chronometer */
 
         @Override
         public void onClick(View v) {
@@ -199,40 +150,42 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                 case R.id.btnDeleteTask:
 
                     final TaskModel t = TaskModel.findById(TaskModel.class, getIdTask());
-                    Toast.makeText(mcon, "Atividade deletada!", Toast.LENGTH_SHORT).show();
-
-                    /*
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Atividade deletada", Snackbar.LENGTH_LONG)
-                            .setAction("DESFAZER", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-                                    t.status = 1;
-                                    t.save();
-                                    setNotChange = true;
-                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Atividade retornou!", Snackbar.LENGTH_SHORT);
-                                    snackbar1.show();
-                                }
-                            });
-
-                    snackbar.show();
-
-                    if(!setNotChange){
-                    */
                         t.status = 0;
                         t.save();
-                        findViewById(R.id.itemTask).setVisibility(v.GONE);
-                        findViewById(R.id.swipe_left).setVisibility(v.GONE);
-                    //}
 
+                        txtNameTask.setPaintFlags(txtNameTask.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+                        btnPlay.setVisibility(v.GONE);
 
-                    mTasksList.remove(getIdTask());
+                        btnDeleteTask.setVisibility(v.GONE);
+                        btnEditTask.setVisibility(v.GONE);
+                        btnBack.setVisibility(v.VISIBLE);
+
+                    smoothCloseMenu();
+
+                    showToast("Atividade deletada. Segure-a para reativá-la.");
 
                     updateView(t);
 
+
                     break;
 
+                case R.id.btnBack:
+
+                    final TaskModel tBack = TaskModel.findById(TaskModel.class, getIdTask());
+                    tBack.status = 1;
+                    tBack.save();
+
+                    txtNameTask.setPaintFlags(txtNameTask.getPaintFlags()  & (~ Paint.STRIKE_THRU_TEXT_FLAG));
+                    btnPlay.setVisibility(v.VISIBLE);
+                    btnDeleteTask.setVisibility(v.VISIBLE);
+                    btnEditTask.setVisibility(v.VISIBLE);
+                    btnBack.setVisibility(v.GONE);
+
+                    showToast("Atividade retornou!");
+                    smoothCloseMenu();
+                    updateView(tBack);
+
+                    break;
                 case R.id.btnPlay:
 
                     Intent intentPlay = new Intent(mcon, FocusMode.class);
@@ -244,8 +197,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                             .setContentText("00:00")
                             .setPriority(NotificationCompat.PRIORITY_DEFAULT);
                     NotificationManagerCompat notificationManager = NotificationManagerCompat.from(mcon);
-
-// notificationId is a unique int for each notification that you must define
                     notificationManager.notify(1, mBuilder.build());
 
 
@@ -255,23 +206,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
 
                     break;
-
-                case R.id.btnPause:
-                    pauseChronometer(v);
-                    break;
-
-                case R.id.btnStop:
-
-
-                    /*
-                    EndActivity cdd = new EndActivity(itemView.getContext(), getIdTask(), getElapsedTime(), startAt);
-                    cdd.show();
-                    stopChronometer(v);
-                    setSwipeEnable(true);
-
-                    */
-
-                    break;
             }
         }
 
@@ -279,10 +213,8 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             Toast.makeText(itemView.getContext(), message, Toast.LENGTH_SHORT).show();
         }
 
-
         Long getIdTask(){ return idTask; }
         String getTitleTask(){ return nameTask; }
     }
-
 
 }

@@ -5,6 +5,16 @@
     android:id="@+id/swipe_left"
     android:layout_height="match_parent"
     android:orientation="horizontal">
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_height="match_parent"
+        android:layout_width="120dp"
+        android:text="Ativar"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@color/blue"
+        android:drawableLeft="@drawable/ic_baseline_done"
+        />
 
     <Button
         android:id="@+id/btnEditTask"
@@ -23,5 +33,6 @@
         android:textColor="#da4141"
         android:drawableLeft="@drawable/ic_baseline_delete_forever_24px"
     />
+
 
 </LinearLayout>

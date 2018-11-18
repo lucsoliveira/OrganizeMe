@@ -8,11 +8,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -28,6 +30,9 @@ import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import static android.app.Notification.EXTRA_NOTIFICATION_ID;
 
@@ -48,13 +53,16 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
         this.stateChronometer = state;
     }
     private boolean stateChronometer;
-
+    public Handler handler;
     public String startedAt;
+    public Runnable r;
+    Future longRunningTaskFuture;
 
+    public String stringElapsedTime;
     public boolean getStateChronometer(View v){
         return stateChronometer;
     }
-
+    ExecutorService executorService;
     public Chronometer chronometer(){
         return ((Chronometer) findViewById(R.id.chronometer_task));
     }
@@ -98,34 +106,29 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
 
         SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss dd/MM/yy");
         startedAt = df.format(c.getTime());
+        handler = new Handler();
 
-        final String stringElapsedTime = getDurationString(getElapsedTime());
-
-        Thread thread = new Thread() {
-
-            @Override
+         r = new Runnable() {
             public void run() {
-                try { Thread.sleep(1000); }
-                catch (InterruptedException e) {}
+                Log.i("Runable seconds:", "aqui");
+                stringElapsedTime = getDurationString(getElapsedTime());
+                NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "sd")
+                        .setSmallIcon(R.drawable.ic_launcher)
+                        .setContentTitle(t.getTitleTask())
+                        .setContentText(stringElapsedTime)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+                NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
+                Log.i("String notification:", stringElapsedTime);
 
-                        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), "sd")
-                            .setSmallIcon(R.drawable.ic_launcher)
-                            .setContentTitle(t.getTitleTask())
-                            .setContentText(getDurationString(getElapsedTime()))
-                            .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
-
-
-                        notificationManager.notify(1,mBuilder.build());
-                    }
-                });
+                notificationManager.notify(1,mBuilder.build());
+                handler.postDelayed(this, 1000);
             }
         };
-        thread.start();
+
+        handler.postDelayed(r, 1000);
+        executorService = Executors.newSingleThreadExecutor();
+        longRunningTaskFuture = executorService.submit(r);
 
     }
 
@@ -160,6 +163,10 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
     }
 
     public void pauseChronometer(View view) {
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.cancelAll();
+        handler.removeCallbacks(r);
         chronometer().stop();
         btnPlay.setVisibility(View.VISIBLE);
         btnPause.setVisibility(View.GONE);
@@ -198,8 +205,12 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
             case R.id.btnStop:
 
                 EndActivity cdd = new EndActivity(view.getContext(), getIdTask(), getElapsedTime(), startedAt);
+                cdd.setCanceledOnTouchOutside(false);
                 cdd.show();
                 pauseChronometer(view);
+                longRunningTaskFuture.cancel(true);
+                handler.removeCallbacks(r);
+
                 break;
         }
     }
@@ -217,14 +228,53 @@ public class FocusMode extends AppCompatActivity implements View.OnClickListener
                 })
                 .setNegativeButton("Não", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                        notificationManager.cancelAll();
+                        handler.removeCallbacks(r);
                         dialog.cancel();
+
                     }
                 });
         AlertDialog alert = builder.create();
         alert.show();
 
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.cancelAll();
+        handler.removeCallbacks(r);
+
     }
 
+
+    public void onDestroy() {
+
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Você deseja para o cronômetro?")
+                .setCancelable(false)
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                })
+                .setNegativeButton("Não", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                        notificationManager.cancelAll();
+                        handler.removeCallbacks(r);
+                        dialog.cancel();
+
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
+        notificationManager.cancelAll();
+        handler.removeCallbacks(r);
+        super.onDestroy();
+    }
 
     private String getDurationString(int seconds) {
 

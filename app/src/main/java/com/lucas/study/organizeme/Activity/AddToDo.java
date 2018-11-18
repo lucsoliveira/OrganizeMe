@@ -13,7 +13,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.lucas.study.organizeme.Adapter.ToDo;
+import com.lucas.study.organizeme.MainActivity;
 import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.Page.ToDos;
 import com.lucas.study.organizeme.R;
 import com.lucas.study.organizeme.Model.ToDoModel;
 
@@ -65,22 +68,13 @@ public class AddToDo extends AppCompatActivity {
                             formattedDate);
                     t.save();
 
-                    final Long idCreated = t.getId();
+                    Toast.makeText(getApplicationContext(), "Lembrete criado com sucesso.", Toast.LENGTH_SHORT).show();
 
-                    Snackbar snackbar = Snackbar
-                            .make(coordinatorLayout, "Lembrete criado", Snackbar.LENGTH_LONG)
-                            .setAction("DESFAZER", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
 
-                                    ToDoModel toDeleteToDo = ToDoModel.findById(ToDoModel.class, idCreated);
-                                    toDeleteToDo.delete();
-
-                                    Snackbar snackbar1 = Snackbar.make(coordinatorLayout, "Lembrete desfeito!", Snackbar.LENGTH_SHORT);
-                                    snackbar1.show();
-                                }
-                            });
-                    snackbar.show();
+                    //finish and open mainactivity with tab to do
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    i.putExtra("pageTab",2);
+                    startActivity(i);
                 }
             }
         });

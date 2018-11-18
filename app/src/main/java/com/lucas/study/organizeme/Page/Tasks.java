@@ -1,10 +1,14 @@
 package com.lucas.study.organizeme.Page;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,19 +22,27 @@ import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.util.List;
+import java.util.concurrent.Future;
 
 public class Tasks extends Fragment {
 
     public List<TaskModel> listTasks;
     public CoordinatorLayout messageNoActivities;
-
+    public Task adapter;
+    public Handler handler;
+    public String startedAt;
+    public Runnable r;
+    public Message msgNoTasks;
+    Future longRunningTaskFuture;
+    public static String s = "A";
+    public OmegaRecyclerView omegaRecyclerView;
     public FloatingActionButton mFloatingActionButtonTasks;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab_activities, container, false);
 
-        OmegaRecyclerView omegaRecyclerView = rootView.findViewById(R.id.custom_recycler_view);
+        omegaRecyclerView = rootView.findViewById(R.id.custom_recycler_view);
 
         listTasks = TaskModel.findWithQuery(TaskModel.class, "Select * from Task_Model where status = ? order by id DESC", "1");
         messageNoActivities = (CoordinatorLayout) rootView.findViewById(R.id.messageActivities);
@@ -48,7 +60,7 @@ public class Tasks extends Fragment {
             }
         });
 
-        Message msgNoTasks = new Message(R.string.message_no_tasks_tab,
+        msgNoTasks = new Message(R.string.message_no_tasks_tab,
                 MaterialDrawableBuilder.IconValue.TIMETABLE,
                 messageNoActivities, R.color.colorPrimaryDark,
                 96);
@@ -60,12 +72,13 @@ public class Tasks extends Fragment {
             msgNoTasks.showMessageView();
 
         } else {
-            Task adapter = new Task(listTasks, getActivity());
+            adapter = new Task(listTasks, getActivity());
+
             omegaRecyclerView.setAdapter(adapter);
 
         }
 
+
         return rootView;
     }
-
 }

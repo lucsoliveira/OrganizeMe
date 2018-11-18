@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -83,6 +85,7 @@ public class EndActivity extends Dialog implements View.OnClickListener {
 
         }
 
+
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
@@ -132,7 +135,11 @@ public class EndActivity extends Dialog implements View.OnClickListener {
                     Toast.makeText(getContext(),"Cronometragem Armazenada",Toast.LENGTH_LONG).show();
 
                     Intent i = new Intent(getContext(), MainActivity.class);
+
                     getContext().startActivity(i);
+
+                    NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getContext());
+                    notificationManager.cancelAll();
 
                     dismiss();
 

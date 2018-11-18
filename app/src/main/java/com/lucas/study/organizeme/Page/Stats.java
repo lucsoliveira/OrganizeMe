@@ -73,10 +73,14 @@ public class Stats extends Fragment{
         });
 
         Date now = c.getTime();
+        DateTime d1 = new DateTime(now);
+        int day = d1.getDayOfMonth();
+        d1.minusDays(day);
 
         String dateNow = df.format(now);
-        String[] dNow = new String[1];
-        dNow[0] = dateNow;
+        String[] dNow = new String[2];
+        dNow[0] = d1.minusDays(day).toString();
+        dNow[1] = d1.plusDays(day).toString();
 
         Log.i("DateNow", dateNow);
 

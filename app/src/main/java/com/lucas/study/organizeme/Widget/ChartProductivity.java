@@ -59,8 +59,6 @@ public class ChartProductivity {
         String formattedDate = df.format(c.getTime());
         actualDate = formattedDate;
 
-        /* Here i start to generate date */
-
 
     }
 
@@ -81,12 +79,8 @@ public class ChartProductivity {
 
         valuesChart = generatePoints(args);
 
-
-
-
         series = new LineGraphSeries<DataPoint>(valuesChart);
         if(actualDate!=args[0]){
-            Log.i("actualDate","Entrou aqui");
             chart.removeAllSeries();
         }
 
@@ -108,7 +102,9 @@ public class ChartProductivity {
         staticLabelsFormatter.setHorizontalLabels(new String[] {"Madrugada", "Manhã", "Tarde", "Noite"});
         chart.getGridLabelRenderer().setHumanRounding(false);
 
-        chart.getGridLabelRenderer().setHorizontalLabelsVisible(true);//hide de X-axis labels
+        chart.getGridLabelRenderer().setHorizontalLabelsVisible(true);
+        chart.getGridLabelRenderer().setVerticalLabelsVisible(false);//hide de Y-axis labels
+
         chart.getGridLabelRenderer().setLabelFormatter(staticLabelsFormatter);
         chart.getGridLabelRenderer().setVerticalAxisTitle("Produtividade");
         chart.getGridLabelRenderer().setHorizontalAxisTitle("Período");
@@ -153,10 +149,8 @@ public class ChartProductivity {
 
             timesInterval = TimingModel.createTaskTime(args[0],args[1]);
         }
-        Log.i("Tamanho do chart",String.valueOf(timesInterval.size()));
 
         clearVector(vectorHoursOfDay);
-        Log.i("Tamanho do vectorHour",String.valueOf(vectorHoursOfDay.size()));
 
 
 
@@ -176,9 +170,6 @@ public class ChartProductivity {
         }
 
         values = new DataPoint[vectorHoursOfDay.size()];
-        Log.i("Tamanho do ValuesCHart", String.valueOf(values.length));
-
-
         for (int i=0; i<vectorHoursOfDay.size(); i++) {
             Integer xi = i;
             Float yi = vectorHoursOfDay.get(i);

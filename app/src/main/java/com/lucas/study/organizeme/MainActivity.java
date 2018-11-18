@@ -1,14 +1,18 @@
 package com.lucas.study.organizeme;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,6 +92,14 @@ public class MainActivity extends AppCompatActivity {
             //tabLayout.getTabAt(1).setText(R.string.tab_text_2);
             tabLayout.getTabAt(2).setIcon(R.drawable.ic_round_done_outline);
             //tabLayout.getTabAt(2).setText(R.string.tab_text_3);
+            Intent intent = getIntent();
+
+            if (intent.hasExtra("pageTab")) {
+                TabLayout.Tab tab = tabLayout.getTabAt(intent.getIntExtra("pageTab", 0));
+                tab.select();
+            } else {
+                // Do something else
+            }
 
         }
 
@@ -99,10 +111,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
     public void openAddToDoActivity(View view) {
         Intent intent = new Intent(this, AddToDo.class);
         startActivity(intent);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -118,10 +134,6 @@ public class MainActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         if (id == R.id.action_about) {
             Intent intent = new Intent(MainActivity.this, About.class);
@@ -171,6 +183,27 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getCount() { return 3; }
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+        new AlertDialog.Builder(this)
+                .setIcon(R.drawable.ic_launcher)
+                .setTitle(R.string.app_name)
+                .setMessage("Você deseja sair da aplicação?")
+                .setPositiveButton("Sim", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+
+                })
+                .setNegativeButton("Não", null)
+                .show();
     }
 
 
