@@ -157,7 +157,7 @@ public class ChartProductivity {
             DateTime dt = new DateTime(timesInterval.get(i).getFinishedAt());
 
             float previousValue = vectorHoursOfDay.get(dt.getHourOfDay());
-            float sumValue = (float) timesInterval.get(i).getProductivity() + previousValue;
+            float sumValue = (float) 1 + previousValue;
             vectorHoursOfDay.add(dt.getHourOfDay(), sumValue);
 
             if (sumValue > biggerNumber) {
@@ -182,18 +182,9 @@ public class ChartProductivity {
 
 
     void clearVector(Vector<Float> vector) {
-
         if (vector.size() == 0) {
-
-            for (int i = 0; i < 24; i++) {
-                vector.add(i, (float) 0);
-            }
-
-        } else {
-            vector.clear();
-
-        }
-
+            for (int i = 0; i < 24; i++) { vector.add(i, (float) 0); }
+        } else { vector.clear(); }
     }
 
 
