@@ -9,7 +9,6 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Chronometer;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -66,7 +65,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
-        private ImageButton btnPlay, btnPause, btnStop;
+        private ImageButton btnPlay;
         private TextView txtNameTask;
         private Button btnEditTask, btnDeleteTask, btnBack;
         private long idTask;
@@ -78,12 +77,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
             btnPlay = findViewById(R.id.btnPlay);
             btnPlay.setOnClickListener(this);
-
-            btnPause = findViewById(R.id.btnPause);
-            btnPause.setOnClickListener(this);
-
-            btnStop = findViewById(R.id.btnStop);
-            btnStop.setOnClickListener(this);
 
             btnBack = findViewById(R.id.btnBack);
             btnBack.setOnClickListener(this);
@@ -106,10 +99,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
                     return true;
                 }
             });
-        }
-
-        public Chronometer chronometer() {
-            return ((Chronometer) findViewById(R.id.chronometer_task));
         }
 
         void updateView(TaskModel task) {
@@ -184,9 +173,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
 
                     mcon.startActivity(intentPlay);
-
-                    //startChronometer(v);
-
 
                     break;
             }

@@ -53,8 +53,8 @@
     <string name="txt_info_duration">Duração em minutos</string>
 
     <!--Cards-->
-    <string name="title_card_productivity">Gráfico de rendimento</string>
-    <string name="title_card_best_time">Melhor Produtividade por Humor</string>
+    <string name="title_card_productivity">Estatística de Produtividade</string>
+    <string name="title_card_best_time">Duração Máxima por Humor</string>
 
     <!--TODO-->
     <string name="todo_name">Título do lembrete</string>

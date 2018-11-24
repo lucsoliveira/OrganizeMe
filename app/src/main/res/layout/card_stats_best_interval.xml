@@ -27,10 +27,9 @@
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Estatística de Produtividade"
+                android:text="@string/title_card_productivity"
                 android:textSize="@dimen/title_card"
                 />
-
 
             <com.jjoe64.graphview.GraphView
                 android:id="@+id/chartProductivityByHour"

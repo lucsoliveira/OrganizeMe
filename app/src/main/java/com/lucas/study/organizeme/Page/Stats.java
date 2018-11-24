@@ -36,6 +36,8 @@ public class Stats extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
         View rootView = inflater.inflate(R.layout.tab_stats, container, false);
 
         layoutWidgetBestChoice = (CoordinatorLayout) rootView.findViewById(R.id.widgetBestChoice);
@@ -91,5 +93,9 @@ public class Stats extends Fragment {
 
         return rootView;
     }
+
+
+
+
 
 }

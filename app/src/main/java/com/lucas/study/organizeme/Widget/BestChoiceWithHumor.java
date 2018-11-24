@@ -12,6 +12,7 @@ import java.util.List;
 
 public class BestChoiceWithHumor {
 
+
     public ImageView iconCardBest1, iconCardBest2, iconCardBest3;
     public TextView textCardBest1, textCardBest2, textCardBest3;
     private int msg;
@@ -20,6 +21,7 @@ public class BestChoiceWithHumor {
     public BestChoiceWithHumor() {
 
     }
+
 
     public BestChoiceWithHumor(CoordinatorLayout layoutAttack) {
         /* CARD BEST CHOICE */
@@ -37,8 +39,9 @@ public class BestChoiceWithHumor {
 
         this.layoutAttack = layoutAttack;
 
-    }
 
+    }
+    
 
     public CoordinatorLayout getLayoutAttack() {
         return layoutAttack;
