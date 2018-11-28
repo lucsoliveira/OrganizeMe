@@ -5,7 +5,7 @@
     <string name="activity_edit_activi">Editar Atividade</string>
     <string name="activity_times">Cronometragens</string>
     <string name="activity_edit_times">Editar Cronometragem</string>
-    <string name="activity_add_todo">Criar Lembrete</string>
+    <string name="activity_add_todo">Criar Tarefa</string>
     <string name="activity_focus">Modo Produtividade</string>
 
     <!--WIDGETS-->
@@ -60,14 +60,14 @@
     <string name="info_card_best_time">Com base em suas cronometragens, este Card gera um tempo médio para obter uma boa produtividade p/ os seus estados de espírito.</string>
 
     <!--TODO-->
-    <string name="todo_name">Título do lembrete</string>
+    <string name="todo_name">Título da tarefa</string>
     <string name="todo_observation">Observações</string>
-    <string name="todo_no_name">O título do lembrete não pode ficar vazio.</string>
-    <string name="todo_description">Observações para este lembrete</string>
-    <string name="todo_no_description">Esse lembrete não possuí nenhuma observação.</string>
-    <string name="todo_edit">Editar Lembrete</string>
-    <string name="todo_edit_success">Lembrete alterado com sucesso!</string>
-    <string name="todo_edit_error">Não foi possível alterar oo lembrete!</string>
+    <string name="todo_no_name">O título da tarefa não pode ficar vazio.</string>
+    <string name="todo_description">Observações para esta tarefa</string>
+    <string name="todo_no_description">Essa tarefa não possuí nenhuma observação.</string>
+    <string name="todo_edit">Editar tarefa</string>
+    <string name="todo_edit_success">Tarefa alterada com sucesso!</string>
+    <string name="todo_edit_error">Não foi possível alterar a tarefa.</string>
 
     <!--MESSAGES-->
     <string name="message_welcome">Bem-vindo(a) ao </string>

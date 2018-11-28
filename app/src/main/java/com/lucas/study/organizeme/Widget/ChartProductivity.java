@@ -85,6 +85,7 @@ public class ChartProductivity {
         actualDate = args[0];
         series.setDataPointsRadius(10);
         series.setThickness(8);
+        series.setColor(R.color.colorPrimary);
 
         // series.resetData(values);
         chart.addSeries(series);
