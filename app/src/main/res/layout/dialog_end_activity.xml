@@ -68,8 +68,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_margin="10dp"
+        android:layout_gravity="center"
         android:text="@string/txt_info_humor_before"
         android:textColor="@android:color/white"
         android:textSize="12sp"

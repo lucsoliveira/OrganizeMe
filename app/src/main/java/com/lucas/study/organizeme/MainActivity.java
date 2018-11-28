@@ -1,5 +1,6 @@
 package com.lucas.study.organizeme;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.lucas.study.organizeme.Activity.AddTask;
 import com.lucas.study.organizeme.Activity.AddToDo;
 import com.lucas.study.organizeme.Activity.FirstUse;
 import com.lucas.study.organizeme.Activity.HistoryTasks;
+import com.lucas.study.organizeme.Dialog.Default;
 import com.lucas.study.organizeme.Model.AppConfig;
 import com.lucas.study.organizeme.Page.Stats;
 import com.lucas.study.organizeme.Page.Tasks;
@@ -108,6 +110,23 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void openInfoCardHumor(View view){
+        Default dialogInfo = new Default(view.getContext(),
+                getResources().getString(R.string.title_card_best_time),
+                getResources().getString(R.string.info_card_best_time)
+                );
+        dialogInfo.setCanceledOnTouchOutside(true);
+        dialogInfo.show();
+    }
+
+    public void openInfoCardProductivity(View view){
+        Default dialogInfo = new Default(view.getContext(),
+                getResources().getString(R.string.title_card_productivity),
+                getResources().getString(R.string.info_card_productivity)
+        );
+        dialogInfo.setCanceledOnTouchOutside(true);
+        dialogInfo.show();
+    }
 
     public void openAddToDoActivity(View view) {
         Intent intent = new Intent(this, AddToDo.class);

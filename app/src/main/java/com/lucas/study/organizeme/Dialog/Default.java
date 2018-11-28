@@ -15,6 +15,7 @@ public class Default extends Dialog implements View.OnClickListener {
     public Context c;
     public TextView titleDialog, msgDialog;
     public String strTitle, strMsg;
+    public int intTitle, intMsg;
     private CoordinatorLayout coordinatorLayout;
 
     public Default(Context a, String strTitle, String strMsg) {
