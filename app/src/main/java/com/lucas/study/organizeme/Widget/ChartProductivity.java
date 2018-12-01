@@ -148,7 +148,11 @@ public class ChartProductivity {
             timesInterval = TimingModel.createTaskTime(args[0], args[1]);
         }
 
+
         clearVector(vectorHoursOfDay);
+        if (vectorHoursOfDay.size() == 0) {
+            clearVector(vectorHoursOfDay);
+        }
 
 
         float biggerNumber = 0;
@@ -157,8 +161,10 @@ public class ChartProductivity {
 
             DateTime dt = new DateTime(timesInterval.get(i).getFinishedAt());
 
+
             float previousValue = vectorHoursOfDay.get(dt.getHourOfDay());
-            float sumValue = (float) 1 + previousValue;
+
+            float sumValue = (float) timesInterval.get(i).getProductivity() + previousValue;
             vectorHoursOfDay.set(dt.getHourOfDay(), sumValue);
 
             if (sumValue > biggerNumber) {

@@ -57,7 +57,7 @@
     <string name="info_card_productivity">Com os dados de início e término de suas atividades, conseguimos plotar um gráfico com intervalos do dia onde você é mais produtivo.</string>
 
     <string name="title_card_best_time">Duração Máxima por Humor</string>
-    <string name="info_card_best_time">Com base em suas cronometragens, este Card gera um tempo médio para obter uma boa produtividade p/ os seus estados de espírito.</string>
+    <string name="info_card_best_time">Com base em suas cronometragens, este Card gera um tempo médio para obter uma boa produtividade em cada estado de espírito.</string>
 
     <!--TODO-->
     <string name="todo_name">Título da tarefa</string>
