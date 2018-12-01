@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import com.lucas.study.organizeme.Activity.EditTask;
 import com.lucas.study.organizeme.Activity.FocusMode;
 import com.lucas.study.organizeme.Model.TaskModel;
+import com.lucas.study.organizeme.Model.TimingModel;
 import com.lucas.study.organizeme.R;
 import com.omega_r.libs.omegarecyclerview.OmegaRecyclerView;
 import com.omega_r.libs.omegarecyclerview.swipe_menu.SwipeViewHolder;
@@ -28,9 +30,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
 
     public int sizeList;
     public CoordinatorLayout coordinatorLayout;
-    public boolean setNotChange = false;
     private Context mcon;
-    private boolean stateChronometer;
     private List<TaskModel> mTasksList = new ArrayList<>();
 
     public Task(List<TaskModel> tasksList, Context con) {
@@ -38,14 +38,6 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
         mcon = con;
         mTasksList = tasksList;
         sizeList = mTasksList.size();
-    }
-
-    public boolean getStateChronometer(View v) {
-        return stateChronometer;
-    }
-
-    public void setStateChronometer(View v, boolean state) {
-        this.stateChronometer = state;
     }
 
     @Override
@@ -66,7 +58,7 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
     public class ViewHolder extends SwipeViewHolder implements View.OnClickListener {
 
         private ImageButton btnPlay;
-        private TextView txtNameTask;
+        private TextView txtNameTask, txtDurationRecomendation;
         private Button btnEditTask, btnDeleteTask, btnBack;
         private long idTask;
         private String nameTask;
@@ -88,7 +80,10 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             btnDeleteTask.setOnClickListener(this);
 
 
+
             txtNameTask = findViewById(R.id.txtNameTask);
+            txtDurationRecomendation = findViewById(R.id.txtDurationRecomendation);
+
 
             setSwipeEnable(true);
 
@@ -105,6 +100,15 @@ public class Task extends OmegaRecyclerView.Adapter<Task.ViewHolder> {
             txtNameTask.setText(task.getTitleTask());
             idTask = task.getId();
             nameTask = task.getTitleTask();
+
+            int timeRecomendation = TimingModel.getProductvityMinutesById(String.valueOf(getIdTask()));
+            Log.i("idPassed", String.valueOf(getIdTask()));
+            if(timeRecomendation == 0){
+
+            }else{
+                txtDurationRecomendation.setText("Duração recomendada: " + timeRecomendation + " min." );
+            }
+
         }
 
 

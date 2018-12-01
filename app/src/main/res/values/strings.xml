@@ -18,7 +18,7 @@
     <string name="btn_save">Salvar</string>
 
     <!--TABS-->
-    <string name="app_name">OrganizeMe</string>
+    <string name="app_name">Organize</string>
     <string name="tab_text_1">Atividades</string>
     <string name="tab_text_2">Estatísticas</string>
     <string name="tab_text_3">Tarefas</string>
@@ -86,7 +86,7 @@
     <string name="tab_two_title">Estatísticas úteis</string>
     <string name="tab_two_description">Você terá em mãos suas estatísticas que o ajudarão a obter uma melhor produtividade.</string>
     <string name="tab_three_title">Esqueceu de fazer algo?</string>
-    <string name="tab_three__description">Você poderá utilizar a lista de tarefas que App dispõe para acrescentar algo que não queira esquecer.</string>
+    <string name="tab_three__description">Você poderá utilizar a lista de tarefas para acrescentar algo que não queira esquecer.</string>
 
     <!--ABOUT PAGE-->
     <string name="about_page">Desenvolvi esse aplicativo para auxiliar os estudantes na organização do seu tempo de estudo. O presente trabalho foi realizado com o apoio da Universidade Tecnológica Federal do Paraná - UTFPR - Brasil.</string>

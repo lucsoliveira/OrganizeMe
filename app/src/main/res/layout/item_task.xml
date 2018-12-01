@@ -17,66 +17,79 @@
 
     <LinearLayout
         android:id="@+id/buttons_container"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
+        android:weightSum="5"
         android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/title_content"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:orientation="vertical">
 
         <TextView
             android:id="@+id/txtNameTask"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:layout_marginTop="3dp"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="18.5dp"
+            android:textSize="17dp"
             />
 
-        <Chronometer
-            android:id="@+id/chronometer_task"
-            android:visibility="gone"
+        <TextView
+            android:id="@+id/txtDurationRecomendation"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/colorAccent"
+            android:textSize="13dp"
+            />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="0.3"
-            android:textSize="16dp"
-            android:layout_marginTop="13dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnPlay"
+                android:layout_height="40dp"
+                android:layout_width="50dp"
+                android:src="@drawable/ic_baseline_play_arrow_24px"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                />
+
+            <ImageButton
+                android:id="@+id/btnStop"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_baseline_stop_24px"
+
+                android:layout_alignBaseline="@+id/btnPlay"
+                android:layout_alignBottom="@+id/btnPlay"
+                />
+
+            <ImageButton
+                android:id="@+id/btnPause"
+
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_alignBaseline="@+id/btnStop"
+                android:layout_alignBottom="@+id/btnStop"
+                android:src="@drawable/ic_baseline_pause_24px"/>
+
+        </LinearLayout>
 
 
-
-        <ImageButton
-            android:id="@+id/btnPlay"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-
-            android:src="@drawable/ic_baseline_play_arrow_24px"
-
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-
-            />
-
-        <ImageButton
-            android:id="@+id/btnStop"
-            android:layout_width="wrap_content"
-            android:visibility="gone"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_stop_24px"
-
-            android:layout_alignBaseline="@+id/btnPlay"
-            android:layout_alignBottom="@+id/btnPlay"
-            />
-
-        <ImageButton
-            android:id="@+id/btnPause"
-
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_alignBaseline="@+id/btnStop"
-            android:layout_alignBottom="@+id/btnStop"
-            android:src="@drawable/ic_baseline_pause_24px"/>
 
     </LinearLayout>
 

@@ -117,6 +117,7 @@ public class TimingModel extends SugarRecord<TimingModel> {
         return listTimeProductivity;
     }
 
+
     public int getHumorAfter() {
         return humorAfter;
     }
@@ -198,6 +199,27 @@ public class TimingModel extends SugarRecord<TimingModel> {
         this.finishedAt = finishedAt;
     }
 
+    public static int getProductvityMinutesById(String idTask){
+
+
+        List<TimingModel> listTimeProductivity = TimingModel.findWithQuery(TimingModel.class, "Select * from Timing_Model where productivity = 2 and id_Task = ? order by id DESC LIMIT 100", idTask);
+        int minutesProductivity = 0;
+        int valueFinal;
+        int listSize = listTimeProductivity.size();
+        if(listSize == 0){
+
+            return 0;
+
+        }else{
+            for(int i=0; i< listTimeProductivity.size(); i++){
+                minutesProductivity = minutesProductivity + listTimeProductivity.get(i).getTimeSecondsTask();
+            }
+        }
+
+        valueFinal = (minutesProductivity/listSize)/60;
+
+        return valueFinal;
+    }
 
     /* END LIST CREATOR */
 }
