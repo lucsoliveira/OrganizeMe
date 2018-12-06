@@ -1,6 +1,6 @@
 
 # OrganizeMe
-Essa aplicação faz parte do desenvolvimento de um projeto para o Protagonismo Estudantil da Universidade Tecnológica Federal do Paraná - UTFPR.
+O presente trabalho foi realizado com o apoio da Universidade Tecnológica Federal do Paraná - UTFPR - Brasil.
 ## Installation//Instalação
 Baixe o APK dentro da pasta Debug e instale no dispositivo Android.
 ## Usage//Como usar
